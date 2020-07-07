@@ -1,5 +1,35 @@
-niubi
-再次提交
-牛逼
+记录
+1. 一行文字，多个不同颜色
+    Text.rich(
+            TextSpan(
+              text: '聆听璇律测试',
+              children: <TextSpan>[
+                TextSpan(
+                  text: '测试1',
+                  style: TextStyle(color: Colors.red)
+                ),
+                TextSpan(
+                    text: '哈哈',
+                    style: TextStyle(color: Colors.yellow)
+                ),
+              ]
+            )
+        )
 
-很🐂逼
+ 2.线性布局垂直居中
+    mainAxisSize: MainAxisSize.min,   
+    代码
+    aaa
+    aaaa
+    aaaaaa
+    aaaa
+    aaaa
+    a
+    a
+    a
+aaaaa 
+    aaaasdad
+
+    wicao
+
+    woxao

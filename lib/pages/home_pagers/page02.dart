@@ -18,27 +18,33 @@ class _PagesState extends State<Page02> with AutomaticKeepAliveClientMixin {
     /// see AutomaticKeepAliveClientMixin
     // TODO: implement build
     return Container(
+        padding: EdgeInsets.all(10),
         color: Colors.white,
         child: ListView.builder(
             itemCount: 10,
             itemBuilder: (context, ids) {
-              return Card(
-                elevation: 10,
-                clipBehavior: Clip.antiAlias,
-                margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(15.0))),
-                child: Container(
-                  color: Colors.white,
-                  height: 250,
-                  child: Column(
-                    children: <Widget>[
-                      Image.network(
-                          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1593772644391&di=564251f047eee64f0e422e47ef1d772d&imgtype=0&src=http%3A%2F%2Fa3.att.hudong.com%2F66%2F53%2F01300001373640131675539310611.jpg'),
-                      Text('数据数据数据数据数据数据数据数据数据数据')
-                    ],
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: FadeInImage.assetNetwork(
+                      placeholder: "images/img_load.jpeg",
+                      image:
+                          'http://00.minipic.eastday.com/20170410/20170410150211_20a86b147c8417a18f26792a8f7c3c88_1.jpeg',
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10, bottom: 20),
+                    child: Text(
+                      '酒店偷拍·经验丰富的男子带白领开放与朋友3p·美女停叫喊...',
+                      style: TextStyle(fontSize: 16),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
               );
             }));
   }
