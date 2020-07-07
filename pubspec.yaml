@@ -50,6 +50,7 @@ flutter:
    - images/home_change.png
    - images/home_more.png
    - images/collection.png
+   - images/img_load.jpeg
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

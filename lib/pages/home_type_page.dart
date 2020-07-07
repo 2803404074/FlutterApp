@@ -9,10 +9,19 @@ class HomeTypePage extends StatefulWidget {
 class _SearchPageState extends State<HomeTypePage>
     with AutomaticKeepAliveClientMixin {
   Future<int> future;
+  var list = ['亚洲无码', '日本AV', '偷拍自拍', '欧美唯美', '动漫三级', 'AV剧情', '大杂烩'];
 
+  var listImg = [
+    'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2939692531,2718654753&fm=26&gp=0.jpg',
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594125580024&di=a2d25045ff04702a384b1e3a8c817baf&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2%2F581da8abb79ea.jpg',
+    'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3906214032,1279273669&fm=26&gp=0.jpg',
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594125727709&di=cfc1dca24829d359c54399c9e1ae1212&imgtype=0&src=http%3A%2F%2F00.minipic.eastday.com%2F20161228%2F20161228145808_b28cca05546947924378c43406487cce_7.jpeg',
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594125985907&di=49d3f80efaafcfacbfb8a9ab50cbd45b&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3Db984b7bef8edab6474724dc8c737af81%2F200bab64034f78f0eabd53867a310a55b2191c73.jpg',
+    'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594125851999&di=a2f2017b6a5be6c896a8a9b58a616276&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20171128%2F08157deff4424f409e1736d4cf432ac2.gif',
+    'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3169534223,907257987&fm=26&gp=0.jpg'
+  ];
   @override
   Widget build(BuildContext context) {
-    var list = ['亚洲无码', '日本AV', '偷拍自拍', '欧美唯美', '动漫三级', 'AV剧情', '大杂烩'];
     print('进入页面');
     return Scaffold(
         appBar: AppBar(
@@ -43,7 +52,7 @@ class _SearchPageState extends State<HomeTypePage>
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15.0))),
                         child: Image.network(
-                          'http://01.minipic.eastday.com/20170113/20170113174441_4a700387e67e0119e06a111ee2292bf7_10.jpeg',
+                          '${listImg[ids]}',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -61,21 +70,9 @@ class _SearchPageState extends State<HomeTypePage>
                             borderRadius:
                                 BorderRadius.all(Radius.circular(15.0))),
                         child: Container(
-                          padding: EdgeInsets.fromLTRB(30, 100, 0, 0),
-                          decoration: BoxDecoration(color: Color(0x80000000)),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                '${list[ids]}',
-                                style: TextStyle(
-                                    fontSize: 20, color: Colors.white),
-                              ),
-                              Text('介绍介绍介绍介绍介绍介绍介绍介绍',
-                                  style: TextStyle(
-                                      fontSize: 15, color: Colors.white))
-                            ],
-                          ),
+                          padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
+                          decoration: BoxDecoration(color: Color(0x4D000000)),
+                          child: _judgeItemType(ids),
                         ),
                       ),
                     )
@@ -83,6 +80,63 @@ class _SearchPageState extends State<HomeTypePage>
                 );
               }),
         ));
+  }
+
+  Widget _judgeItemType(int ids) {
+    return Column(
+      crossAxisAlignment:
+          ids % 2 == 0 ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Text(
+          '${list[ids]}',
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+          ),
+          maxLines: 2,
+        ),
+        Expanded(
+            child: Container(
+          margin: EdgeInsets.only(top: 10, bottom: 10),
+          width: 150,
+          child: Text(
+            "国内成人视频海量汇聚·精品推荐·越看越爽...",
+            maxLines: 2,
+            style: TextStyle(
+                color: Colors.white54,
+                fontSize: 16,
+                decoration: TextDecoration.none),
+            overflow: TextOverflow.ellipsis,
+          ),
+        )),
+        Expanded(
+            child: Wrap(
+          spacing: 8.0,
+          runSpacing: 10.0,
+          children: getChile(),
+        ))
+      ],
+    );
+  }
+
+  List<Widget> getChile() {
+    print("走。。。。。。。");
+    List<Widget> a = List();
+    for (int i = 0; i < 4; i++) {
+      a.add(Container(
+        padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+        child: Text(
+          '精品',
+          style: TextStyle(fontSize: 12, color: Colors.white),
+        ),
+        decoration: BoxDecoration(
+            color: Color(0x80000000),
+            borderRadius: BorderRadius.all(Radius.circular(15))),
+      ));
+    }
+    return a;
   }
 
   @override
