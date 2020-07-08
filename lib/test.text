@@ -18,22 +18,8 @@
 
  2.线性布局垂直居中
     mainAxisSize: MainAxisSize.min,   
-    代码
-    aaa
-    aaaa
-    aaaaaa
-    aaaa
-    aaaa
-    a
-    a
-    a
-aaaaa 
-    aaaasdad
+    
 
-    wicao
 
-    woxao
-
-    男
-
-    我成功了
+3.垂直线性布局 Colum
+  水平线性布局 row    
