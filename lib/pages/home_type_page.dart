@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
+import 'package:flutterapp/pages/classtype/type_page.dart';
+
 class HomeTypePage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _SearchPageState();
@@ -38,45 +40,53 @@ class _SearchPageState extends State<HomeTypePage>
               itemCount: 7,
               itemBuilder: (context, ids) {
                 print('渲染第$ids');
-                return Stack(
-                  children: <Widget>[
-                    Container(
-                      height: 200,
-                      margin: EdgeInsets.only(bottom: 20),
-                      width: double.infinity,
-                      child: Card(
-                        elevation: 10,
-                        clipBehavior: Clip.antiAlias,
-                        margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15.0))),
-                        child: Image.network(
-                          '${listImg[ids]}',
-                          fit: BoxFit.cover,
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return TypePage();
+                    }));
+                  },
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        height: 200,
+                        margin: EdgeInsets.only(bottom: 20),
+                        width: double.infinity,
+                        child: Card(
+                          elevation: 10,
+                          clipBehavior: Clip.antiAlias,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15.0))),
+                          child: Image.network(
+                            '${listImg[ids]}',
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
-                    ),
-                    Container(
-                      height: 200,
-                      width: double.infinity,
-                      margin: EdgeInsets.only(bottom: 20),
-                      child: Card(
-                        elevation: 0,
-                        color: Color(0x00000000),
-                        clipBehavior: Clip.antiAlias,
-                        margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15.0))),
-                        child: Container(
-                          padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
-                          decoration: BoxDecoration(color: Color(0x4D000000)),
-                          child: _judgeItemType(ids),
+                      Container(
+                        height: 200,
+                        width: double.infinity,
+                        margin: EdgeInsets.only(bottom: 20),
+                        child: Card(
+                          elevation: 0,
+                          color: Color(0x00000000),
+                          clipBehavior: Clip.antiAlias,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15.0))),
+                          child: Container(
+                            padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
+                            decoration: BoxDecoration(color: Color(0x4D000000)),
+                            child: _judgeItemType(ids),
+                          ),
                         ),
-                      ),
-                    )
-                  ],
+                      )
+                    ],
+                  ),
                 );
               }),
         ));

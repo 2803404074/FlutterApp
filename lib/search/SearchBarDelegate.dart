@@ -5,18 +5,21 @@ typedef SearchItemCall = void Function(String item);
 class SearchBarDelegate extends SearchDelegate<String> {
   @override
   // TODO: implement searchFieldLabel
-  String get searchFieldLabel => '想看些什么';
+  String get searchFieldLabel => '想看些什么?';
 
   @override
   List<Widget> buildActions(BuildContext context) {
     //右侧显示内容 这里放清除按钮
     return [
-      IconButton(
-        icon: Icon(Icons.clear),
-        onPressed: () {
-          query = "";
-          showSuggestions(context);
-        },
+      Container(
+        margin: EdgeInsets.only(right: 10),
+        alignment: Alignment.center,
+        child: Text(
+          '搜索',
+          textAlign: TextAlign.end,
+          style: TextStyle(
+              fontSize: 18, color: Colors.white, fontWeight: FontWeight.w700),
+        ),
       ),
     ];
   }
@@ -31,6 +34,7 @@ class SearchBarDelegate extends SearchDelegate<String> {
         if (query.isEmpty) {
           close(context, null);
         } else {
+          //清除按钮需要执行的代码
           query = "";
           showSuggestions(context);
         }
@@ -55,7 +59,14 @@ class SearchBarDelegate extends SearchDelegate<String> {
 
   @override
   ThemeData appBarTheme(BuildContext context) {
-    return super.appBarTheme(context);
+    //return super.appBarTheme(context);
+    return ThemeData(
+        primaryColor: Colors.red,
+        primaryIconTheme: IconThemeData(color: Colors.white),
+        primaryColorBrightness: Brightness.light,
+        inputDecorationTheme: InputDecorationTheme(
+          hintStyle: TextStyle(color: Colors.white),
+        ));
   }
 }
 
@@ -68,25 +79,34 @@ class _SearchContentViewState extends State<SearchContentView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.only(left: 10, right: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
+              margin: EdgeInsets.only(top: 20, bottom: 10),
+              child: Row(
+                children: <Widget>[
+                  Text(
+                    '历史搜索',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                  ),
+                  Expanded(child: Text('')),
+                  Icon(
+                    Icons.delete,
+                    color: Colors.grey,
+                  )
+                ],
+              )),
+          HistoryItemView(),
+          Container(
+            margin: EdgeInsets.only(top: 20, bottom: 10),
             child: Text(
               '大家都在搜',
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
             ),
           ),
           SearchItemView(),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            child: Text(
-              '历史记录',
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          HistoryItemView(),
         ],
       ),
     );

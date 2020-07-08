@@ -7,6 +7,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  //发送验证码按钮状态标识
+  var isEnableSendMessage = false;
+
   var height;
 
   //焦点
@@ -22,6 +25,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   var _password = ''; //用户名
   var _username = ''; //密码
+  var _usercode = ''; //验证码
   var _isShowPwd = false; //是否显示密码
   var _isShowClear = false; //是否显示输入框尾部的清除按钮
 
@@ -42,7 +46,15 @@ class _RegisterPageState extends State<RegisterPage> {
       } else {
         _isShowClear = false;
       }
-      setState(() {});
+
+      //当手机号正常时，发送验证码按钮应该改变颜色，并且可以点击状态
+      setState(() {
+        if (validateUserName(_userNameController.text) == null) {
+          isEnableSendMessage = true;
+        } else {
+          isEnableSendMessage = false;
+        }
+      });
     });
 
     height = new MediaQueryData.fromWindow(window).padding.top;
@@ -142,13 +154,14 @@ class _RegisterPageState extends State<RegisterPage> {
               //设置键盘类型
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
+                contentPadding: EdgeInsets.all(20),
                 labelText: "用户名",
                 hintText: "请输入手机号",
-                prefixIcon: Icon(Icons.person),
+                prefixIcon: Icon(Icons.phone_android),
                 //尾部添加清除按钮
                 suffixIcon: (_isShowClear)
                     ? IconButton(
-                        icon: Icon(Icons.clear),
+                        icon: Icon(Icons.security),
                         onPressed: () {
                           // 清空输入框内容
                           _userNameController.clear();
@@ -165,44 +178,56 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
 
             //验证码
-            TextFormField(
-              focusNode: _focusNodeUserCode,
-              decoration: InputDecoration(
-                labelText: "验证码",
-                hintText: "请输入验证码",
-                prefixIcon: Icon(Icons.save),
-                suffixIcon: RaisedButton(
-                  elevation: 0,
-                  color: ((_isShowPwd) ? Colors.white : Colors.black),
-                  child: Text(
-                    "发送验证码",
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: (_isShowPwd) ? Colors.white : Colors.black),
+            Container(
+              margin: EdgeInsets.only(top: 10, bottom: 10),
+              child: TextFormField(
+                focusNode: _focusNodeUserCode,
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(20),
+                  labelText: "验证码",
+                  hintText: "请输入验证码",
+                  prefixIcon: Icon(Icons.save),
+                  suffixIcon: Padding(
+                    padding: EdgeInsets.all(5),
+                    child: RaisedButton(
+                      elevation: 0,
+                      color: isEnableSendMessage ? Colors.red : Colors.grey,
+                      child: Text(
+                        "发送验证码",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white,
+                        ),
+                      ),
+                      // 设置按钮圆角
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0)),
+                      onPressed: () {
+                        //手机号正确
+                        if (validateUserName(_username) == null) {
+                          //todo 获取验证码操作
+                          print("获取验证码");
+                        }
+                      },
+                    ),
                   ),
-                  // 设置按钮圆角
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  onPressed: () {
-                    //手机号正确
-                    if (validateUserName(_username) == null) {
-                      //todo 登录操作
-                      print("获取验证码");
-                    }
-                  },
                 ),
+
+                obscureText: false, //是否是密码
+                //密码验证
+                validator: validatePassWord,
+                //保存数据
+                onSaved: (String value) {
+                  _usercode = value;
+                },
               ),
-              obscureText: !_isShowPwd,
-              //密码验证
-              validator: validatePassWord,
-              //保存数据
-              onSaved: (String value) {
-                _password = value;
-              },
             ),
+
+            //密码
             TextFormField(
               focusNode: _focusNodePassWord,
               decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(20),
                   labelText: "密码",
                   hintText: "请输入密码",
                   prefixIcon: Icon(Icons.lock),

@@ -131,6 +131,7 @@ class _LoginPageState extends State<LoginPage> {
               //设置键盘类型
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
+                contentPadding: EdgeInsets.all(20),
                 labelText: "用户名",
                 hintText: "请输入手机号",
                 prefixIcon: Icon(Icons.person),
@@ -152,31 +153,36 @@ class _LoginPageState extends State<LoginPage> {
                 _username = value;
               },
             ),
-            TextFormField(
-              focusNode: _focusNodePassWord,
-              decoration: InputDecoration(
-                  labelText: "密码",
-                  hintText: "请输入密码",
-                  prefixIcon: Icon(Icons.lock),
-                  // 是否显示密码
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                        (_isShowPwd) ? Icons.visibility : Icons.visibility_off),
-                    // 点击改变显示或隐藏密码
-                    onPressed: () {
-                      setState(() {
-                        _isShowPwd = !_isShowPwd;
-                      });
-                    },
-                  )),
-              obscureText: !_isShowPwd,
-              //密码验证
-              validator: validatePassWord,
-              //保存数据
-              onSaved: (String value) {
-                _password = value;
-              },
-            )
+            Container(
+              margin: EdgeInsets.only(top: 10),
+              child: TextFormField(
+                focusNode: _focusNodePassWord,
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(20),
+                    labelText: "密码",
+                    hintText: "请输入密码",
+                    prefixIcon: Icon(Icons.lock),
+                    // 是否显示密码
+                    suffixIcon: IconButton(
+                      icon: Icon((_isShowPwd)
+                          ? Icons.visibility
+                          : Icons.visibility_off),
+                      // 点击改变显示或隐藏密码
+                      onPressed: () {
+                        setState(() {
+                          _isShowPwd = !_isShowPwd;
+                        });
+                      },
+                    )),
+                obscureText: !_isShowPwd,
+                //密码验证
+                validator: validatePassWord,
+                //保存数据
+                onSaved: (String value) {
+                  _password = value;
+                },
+              ),
+            ),
           ],
         ),
       ),
