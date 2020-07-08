@@ -73,7 +73,9 @@ class _HomePageState extends State<HomePage>
                       child: InkWell(
                         onTap: () {
                           showSearch(
-                              context: context, delegate: SearchBarDelegate());
+                            context: context,
+                            delegate: SearchBarDelegate(),
+                          );
                         },
                         child: Row(
                           children: <Widget>[

@@ -27,7 +27,7 @@ class _TypePageSunState extends State<TypePageSun>
               crossAxisCount: 2, //横向item数量
               crossAxisSpacing: 10.0, //水平距离
               mainAxisSpacing: 20.0, //垂直距离
-              childAspectRatio: 1.07),
+              childAspectRatio: 1.04),
           itemBuilder: (context, index) {
             return Container(
               child: Column(
