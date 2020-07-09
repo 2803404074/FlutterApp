@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/pages/history_page.dart';
 import 'package:flutterapp/user/login_page.dart';
 import 'dart:ui';
 
@@ -146,17 +147,26 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                       child: Text(''),
                       flex: 1,
                     ),
-                    IconText(
-                      '全部',
-                      direction: Axis.horizontal,
-                      position: 0,
-                      padding: EdgeInsets.all(2),
-                      style: TextStyle(fontSize: 15, color: Color(0xff7A7A7A)),
-                      icon: Icon(
-                        Icons.navigate_next,
-                        color: Color(0xff7A7A7A),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return HistoryPage();
+                        }));
+                      },
+                      child: IconText(
+                        '全部',
+                        direction: Axis.horizontal,
+                        position: 0,
+                        padding: EdgeInsets.all(2),
+                        style:
+                            TextStyle(fontSize: 15, color: Color(0xff7A7A7A)),
+                        icon: Icon(
+                          Icons.navigate_next,
+                          color: Color(0xff7A7A7A),
+                        ),
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

@@ -5,7 +5,6 @@ import 'package:flutterapp/http/DioManager.dart';
 import 'dart:math' as math;
 
 import 'package:flutterapp/util/dashedLine.dart';
-// import 'package:flutter/dashedLine.dart';
 
 class TuigPage extends StatefulWidget {
   @override
@@ -25,6 +24,7 @@ class _TuigPageState extends State<TuigPage>
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
+        // 背景图片
         Container(
           width: double.infinity,
           height: double.infinity,
@@ -45,6 +45,7 @@ class _TuigPageState extends State<TuigPage>
               width: double.infinity,
               height: 260,
               color: Colors.white,
+              // 二维码区域
               child: Column(
                 children: <Widget>[
                   Padding(
@@ -81,6 +82,7 @@ class _TuigPageState extends State<TuigPage>
                       ],
                     ),
                   ),
+                  // 虚线
                   Container(
                     margin: EdgeInsets.only(top: 20, bottom: 10),
                     child: dashedLine(
@@ -91,6 +93,8 @@ class _TuigPageState extends State<TuigPage>
                       color: Colors.black,
                     ),
                   ),
+
+                  // 保存二维码,复制推广链接
                   Expanded(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -142,11 +146,12 @@ class _TuigPageState extends State<TuigPage>
             ),
           ),
         ),
+        // 三角形符号
         Container(
           width: double.infinity,
           height: double.infinity,
           alignment: Alignment.bottomCenter,
-          padding: EdgeInsets.only(bottom: 253),
+          padding: EdgeInsets.only(bottom: 258),
           child: Container(
             //transform: Matrix4.identity()..rotateY(90),
             child: Icon(
