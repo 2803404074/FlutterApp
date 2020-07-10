@@ -23,3 +23,9 @@
 
 3.垂直线性布局 Colum
   水平线性布局 row    
+
+4. 禁止listview滑动
+  physics: NeverScrollableScrollPhysics(),
+  
+5. listview高度自适应
+  shrinkWrap: true,

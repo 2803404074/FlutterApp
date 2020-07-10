@@ -52,6 +52,8 @@ flutter:
    - images/collection.png
    - images/img_load.jpeg
    - images/generalize.png
+   - images/extension_top_bg.png
+   - images/extention_right.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

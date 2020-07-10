@@ -48,7 +48,15 @@ class _CollectionPageState extends State<CollectionPage> {
         appBar: AppBar(
           title: Text('我的收藏'),
           centerTitle: true,
-          leading: Icon(Icons.navigate_before),
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.navigate_before,
+              color: Colors.white,
+            ),
+          ),
           actions: <Widget>[
             GestureDetector(
               onTap: () {

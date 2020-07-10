@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/pages/collection_page.dart';
+import 'package:flutterapp/pages/extension_page.dart';
 import 'package:flutterapp/pages/history_page.dart';
 import 'package:flutterapp/user/login_page.dart';
 import 'dart:ui';
@@ -119,10 +120,18 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                             child: Container(
                               padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
                               color: Colors.red,
-                              child: Text('立即推广',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w700)),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return ExtensionPage();
+                                  }));
+                                },
+                                child: Text('立即推广',
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w700)),
+                              ),
                             ),
                           ),
                         )
