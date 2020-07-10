@@ -44,19 +44,38 @@ class _HistoryPageState extends State<HistoryPage>
 
   Widget getAppBar() {
     return AppBar(
-        elevation: 0,
-        centerTitle: true,
-        title: Text("历史"),
-        actions: <Widget>[Text("清空")],
-        bottom: PreferredSize(
+      elevation: 0,
+      centerTitle: true,
+      title: Text("历史"),
+      actions: <Widget>[
+        GestureDetector(
+          onTap: () {
+            setState(() {});
+          },
           child: Container(
+            padding: EdgeInsets.all(10),
+            alignment: Alignment.center,
+            child: Text(
+              "清空",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+        )
+      ],
+      bottom: PreferredSize(
+        child: Expanded(
+          child: Container(
+            alignment: Alignment.center,
             width: double.infinity,
             padding: EdgeInsets.only(top: 5),
             color: Colors.white,
             child: _tabBar(),
           ),
-          preferredSize: const Size.fromHeight(48.0),
-        ));
+        ),
+        preferredSize: const Size.fromHeight(48.0),
+      ),
+    );
   }
 
   Widget _tabBar() {

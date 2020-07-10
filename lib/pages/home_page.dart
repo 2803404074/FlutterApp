@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutterapp/pages/history_page.dart';
 import 'package:flutterapp/pages/home_pagers/page01.dart';
 import 'package:flutterapp/pages/home_pagers/page02.dart';
 
@@ -94,7 +95,14 @@ class _HomePageState extends State<HomePage>
                     ),
                   ),
                 )),
-            Icon(Icons.history)
+            GestureDetector(
+              child: Icon(Icons.history),
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return HistoryPage();
+                }));
+              },
+            )
           ],
         ),
       ),

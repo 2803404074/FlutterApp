@@ -21,36 +21,70 @@ class _HistoryContentPageState extends State<HistoryContentPage> {
   Widget build(BuildContext context) {
     return Container(
       child: ListView.builder(
-        padding: new EdgeInsets.all(5.0),
         itemCount: 5,
+        padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
         itemBuilder: (context, index) {
           return GestureDetector(
-            child: Row(
+            child: Column(
               children: <Widget>[
-                Image.asset(
-                  "images/img_load.jpeg",
-                  width: 150,
-                  height: 100,
-                  fit: BoxFit.cover,
-                ),
-                Column(
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                      "酒店自拍 经验丰富的男子带白领开发与朋友3p",
-                      style: TextStyle(
-                        fontSize: 15,
+                    Padding(
+                      padding: EdgeInsets.only(top: 3),
+                      child: ClipRRect(
+                        child: Image.network(
+                          'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2307511656,3386189028&fm=26&gp=0.jpg',
+                          fit: BoxFit.cover,
+                          height: 120,
+                          width: 160,
+                        ),
+                        borderRadius: BorderRadius.circular(5),
                       ),
                     ),
-                    TagView(
-                      tags: tags,
-                      backgroundColor: null,
-                      itemStyle: TextStyle(color: Colors.red, fontSize: 11),
-                      radius: 9,
-                      tagHeight: 18,
-                      width: 250,
-                    ),
+                    Expanded(
+                        child: Container(
+                      height: 120,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            margin: EdgeInsets.only(left: 10, right: 10),
+                            child: Text(
+                              '酒店偷拍，经验酒店偷拍，经验酒店偷拍，经验酒店偷拍，经验酒店偷拍，经验',
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          Wrap(
+                            children: <Widget>[
+                              TagView(
+                                tags: tags,
+                                backgroundColor: null,
+                                itemStyle:
+                                    TextStyle(color: Colors.red, fontSize: 11),
+                                radius: 9,
+                                tagHeight: 18,
+                                itemPadding: EdgeInsets.only(
+                                    left: 10, right: 10, bottom: 2),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ))
                   ],
                 ),
+                Offstage(
+                  offstage: index != 5 - 1 ? false : true,
+                  child: Container(
+                    margin: EdgeInsets.only(top: 10, bottom: 5),
+                    child: Divider(
+                      height: 1,
+                    ),
+                  ),
+                )
               ],
             ),
           );
