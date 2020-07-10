@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/pages/collection_page.dart';
 import 'package:flutterapp/pages/history_page.dart';
 import 'package:flutterapp/user/login_page.dart';
 import 'dart:ui';
 
-import 'package:flutterapp/util/IconText.dart';
+import 'package:flutterapp/widget/IconText.dart';
 
 class MyPage extends StatefulWidget {
   @override
@@ -244,29 +245,37 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
               ),
 
               //我的收藏
-              Container(
-                margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
-                child: Row(
-                  children: <Widget>[
-                    Image.asset(
-                      'images/collection.png',
-                      width: 20,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 5),
-                      child: Text('我的收藏'),
-                    ),
-                    Expanded(
-                      child: Text(''),
-                      flex: 1,
-                    ),
-                    Icon(
-                      Icons.navigate_next,
-                      color: Color(0xff7A7A7A),
-                    )
-                  ],
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return CollectionPage();
+                  }));
+                },
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                  child: Row(
+                    children: <Widget>[
+                      Image.asset(
+                        'images/collection.png',
+                        width: 20,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 5),
+                        child: Text('我的收藏'),
+                      ),
+                      Expanded(
+                        child: Text(''),
+                        flex: 1,
+                      ),
+                      Icon(
+                        Icons.navigate_next,
+                        color: Color(0xff7A7A7A),
+                      )
+                    ],
+                  ),
                 ),
               ),
+
               //小分割线
               Container(
                 margin: EdgeInsets.all(10),

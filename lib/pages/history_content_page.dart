@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/util/tagView.dart';
+import 'package:flutterapp/widget/tagView.dart';
 
 class HistoryContentPage extends StatefulWidget {
   HistoryContentPage({Key key}) : super(key: key);

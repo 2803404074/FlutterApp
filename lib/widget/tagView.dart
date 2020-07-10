@@ -121,6 +121,7 @@ class _TagViewState extends State<TagView> {
                           child: Text(
                             widget.tags[i],
                             style: widget.itemStyle,
+                            textAlign: TextAlign.center,
                           ),
                           padding: widget.itemPadding,
                           decoration: BoxDecoration(
