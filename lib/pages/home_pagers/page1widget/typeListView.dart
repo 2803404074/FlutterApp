@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/pages/player/video_player_pager.dart';
 /**
  * 首页-其他视频列表
  */
@@ -33,16 +34,29 @@ class _PagesState extends State<TypeListView>
             textAlign: TextAlign.right,
             style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
           ),
-          Container(
-            margin: EdgeInsets.only(top: 10),
-            height: 200,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: Image.network(
-                'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3532249801,4016244769&fm=26&gp=0.jpg',
-                fit: BoxFit.cover,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return VideoPlayerPage(
+                    url:
+                        'http://video-qn.ibaotu.com/18/04/11/45p888piCB4r.mp4');
+              }));
+            },
+            child: Container(
+              margin: EdgeInsets.only(top: 10),
+              height: 200,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Image.network(
+                  'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3532249801,4016244769&fm=26&gp=0.jpg',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
+          ),
+          Text(
+            '酒店偷拍 经验丰富的男子带白领开房与朋友3p 美女浪叫不停...',
+            textAlign: TextAlign.start,
           ),
           Container(
             margin: EdgeInsets.only(top: 10),
@@ -96,29 +110,37 @@ class _PagesState extends State<TypeListView>
   }
 
   Widget getItemContainer(String item) {
-    return Container(
-      width: 100,
-      height: 100,
-      alignment: Alignment.center,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: Image.network(
-                'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2307511656,3386189028&fm=26&gp=0.jpg',
-                fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return VideoPlayerPage(
+              url: 'http://video-qn.ibaotu.com/18/04/11/45p888piCB4r.mp4');
+        }));
+      },
+      child: Container(
+        width: 100,
+        height: 100,
+        alignment: Alignment.center,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Image.network(
+                  'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2307511656,3386189028&fm=26&gp=0.jpg',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          Text(
-            '数据数',
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-          )
-        ],
+            Text(
+              '数据数',
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+            )
+          ],
+        ),
       ),
     );
   }

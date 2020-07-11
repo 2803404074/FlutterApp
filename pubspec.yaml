@@ -19,6 +19,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  fijkplayer: ^0.8.6
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -54,6 +55,12 @@ flutter:
    - images/generalize.png
    - images/extension_top_bg.png
    - images/extention_right.png
+   - images/play_extension.png
+   - images/play_rotation.png
+   - images/play_no_collection.png
+   - images/play_no_down.png
+   - images/play_no_share.png
+
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

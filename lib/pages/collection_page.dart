@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/pages/player/video_player_pager.dart';
 import 'package:flutterapp/widget/tagView.dart';
 import 'package:flutterapp/widget/RoundCheckBox.dart';
 
@@ -94,7 +95,12 @@ class _CollectionPageState extends State<CollectionPage> {
                         _isChecks[index] = !_isChecks[index];
                       });
                     } else {
-                      print('跳转');
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return VideoPlayerPage(
+                            url:
+                                'http://video-qn.ibaotu.com/18/04/11/45p888piCB4r.mp4');
+                      }));
                     }
                   },
                   child: Column(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterapp/pages/player/video_player_pager.dart';
 
 /**
  * 首页第一选显卡-猜你喜欢列表
@@ -82,29 +83,37 @@ class _PagesState extends State<GuessLikeListView>
   }
 
   Widget getItemContainer(String item) {
-    return Container(
-      width: 100,
-      height: 100,
-      alignment: Alignment.center,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: Image.network(
-                'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2307511656,3386189028&fm=26&gp=0.jpg',
-                fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return VideoPlayerPage(
+              url: 'http://video-qn.ibaotu.com/18/04/11/45p888piCB4r.mp4');
+        }));
+      },
+      child: Container(
+        width: 100,
+        height: 100,
+        alignment: Alignment.center,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Image.network(
+                  'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2307511656,3386189028&fm=26&gp=0.jpg',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          Text(
-            '数据数',
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
-          )
-        ],
+            Text(
+              '数据数',
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+            )
+          ],
+        ),
       ),
     );
   }
