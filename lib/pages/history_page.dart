@@ -68,7 +68,6 @@ class _HistoryPageState extends State<HistoryPage>
           child: Container(
             alignment: Alignment.center,
             width: double.infinity,
-            padding: EdgeInsets.only(top: 5),
             color: Colors.white,
             child: _tabBar(),
           ),
@@ -80,10 +79,10 @@ class _HistoryPageState extends State<HistoryPage>
 
   Widget _tabBar() {
     return TabBar(
-        indicatorPadding: EdgeInsets.all(5),
         isScrollable: true,
         controller: mController,
         labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+        labelPadding: EdgeInsets.only(left: 50, right: 50),
         //设置tab选中得颜色
         labelColor: Colors.black,
         //设置tab未选中得颜色
@@ -95,7 +94,7 @@ class _HistoryPageState extends State<HistoryPage>
         //indicatorWight 设置指示器厚度
         //indicatorPadding
         //indicatorSize  设置指示器大小计算方式
-
+        indicatorPadding: EdgeInsets.all(5),
         indicatorColor: Color(0xffff6e40),
         indicatorSize: TabBarIndicatorSize.label,
         tabs: tabTitles.map((item) {
