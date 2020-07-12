@@ -44,6 +44,7 @@ class GradientButton extends StatelessWidget {
       decoration: BoxDecoration(
           gradient: LinearGradient(colors: _colors),
           borderRadius: borderRadius,
+          backgroundBlendMode: BlendMode.srcOver,
           // 阴影的设置
           boxShadow: [
             BoxShadow(

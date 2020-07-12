@@ -293,6 +293,7 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                 color: Color(0xfff5f5f5),
               ),
 
+              //意见反馈
               GestureDetector(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -323,7 +324,6 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                   ),
                 ),
               ),
-              //意见反馈
 
               //小分割线
               Container(
