@@ -11,10 +11,9 @@ class HistoryContentPage extends StatefulWidget {
 class _HistoryContentPageState extends State<HistoryContentPage> {
   List<String> tags = [
     '多人运动',
-    '无码高清',
+    '无码',
     '无套内射',
-    '少妇系列',
-    '制服诱惑',
+    '少妇系',
   ];
 
   @override
@@ -57,7 +56,8 @@ class _HistoryContentPageState extends State<HistoryContentPage> {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                          Wrap(
+                          Expanded(
+                              child: Wrap(
                             children: <Widget>[
                               TagView(
                                 tags: tags,
@@ -70,7 +70,7 @@ class _HistoryContentPageState extends State<HistoryContentPage> {
                                     left: 10, right: 10, bottom: 2),
                               ),
                             ],
-                          )
+                          ))
                         ],
                       ),
                     ))
