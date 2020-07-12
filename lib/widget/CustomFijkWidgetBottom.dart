@@ -4,13 +4,15 @@ import 'dart:math';
 import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/material.dart';
 
+typedef MyCallBackFuture = Future Function();
+
 class CustomFijkWidgetBottom extends StatefulWidget {
   final FijkPlayer player;
   final BuildContext buildContext;
   final Size viewSize;
   final Rect texturePos;
 
-  const CustomFijkWidgetBottom({
+  CustomFijkWidgetBottom({
     @required this.player,
     this.buildContext,
     this.viewSize,
@@ -29,6 +31,15 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
 
   /// 是否显示状态栏+菜单栏
   bool isPlayShowCont = true;
+
+  //是否显示清晰度
+  bool isShowQua = false;
+
+  //当前清晰度,0标清，1高清，2超清
+  int quaStatus = 0;
+
+  //清晰度高度控制，窗口220和播放器高度一样，全屏模式下高度撑满。
+  bool isFull = false;
 
   /// 总时长
   String duration = "00:00:00";
@@ -107,11 +118,14 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
             if (isPlayShowCont)
               _timer =
                   Timer(Duration(seconds: 3), () => isPlayShowCont = false);
+
+            //隐藏清晰度视图
+            isShowQua = false;
           });
         },
         child: Container(
             color: Color.fromRGBO(0, 0, 0, 0.0),
-            alignment: Alignment.bottomLeft,
+            alignment: Alignment.bottomRight,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -127,9 +141,87 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              '标题',
+                              "标题",
                               style: TextStyle(color: Colors.white),
                             ),
+                          ],
+                        ),
+                      ),
+
+                //清晰度
+                !isShowQua
+                    ? SizedBox()
+                    : Container(
+                        height: widget.player.value.fullScreen == false
+                            ? 220
+                            : MediaQuery.of(context).size.height,
+                        width: 100,
+                        color: Color.fromRGBO(0, 0, 0, 0.65),
+                        child: Column(
+                          children: <Widget>[
+                            Expanded(child: Text('')),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    quaStatus = 0;
+                                  });
+                                },
+                                child: Center(
+                                  child: Text(
+                                    '标清',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w700,
+                                        color: quaStatus == 0
+                                            ? Colors.red
+                                            : Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    quaStatus = 1;
+                                  });
+                                },
+                                child: Center(
+                                  child: Text(
+                                    '高清',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w700,
+                                        color: quaStatus == 1
+                                            ? Colors.red
+                                            : Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    quaStatus = 2;
+                                  });
+                                },
+                                child: Center(
+                                  child: Text(
+                                    '超清',
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w700,
+                                        color: quaStatus == 2
+                                            ? Colors.red
+                                            : Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(child: Text('')),
                           ],
                         ),
                       ),
@@ -197,21 +289,45 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
                                 ),
                               ),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(left: 10, right: 5),
-                              child: Image.asset(
-                                'images/play_rotation.png',
-                                width: 30,
-                                height: 30,
+                            GestureDetector(
+                              onTap: () {
+                                if (player.value.fullScreen == false) {
+                                  widget.player.pause().then((value) =>
+                                      widget.player.enterFullScreen());
+                                } else {
+                                  widget.player.pause().then((value) =>
+                                      widget.player.exitFullScreen());
+                                }
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(left: 10, right: 5),
+                                child: Image.asset(
+                                  'images/play_rotation.png',
+                                  width: 30,
+                                  height: 30,
+                                ),
                               ),
                             ),
-                            Container(
-                              margin: EdgeInsets.only(left: 5, right: 10),
-                              child: Text(
-                                "标清",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w700),
+
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  isPlayShowCont = false;
+                                  isShowQua = !isShowQua;
+                                });
+                              },
+                              child: Container(
+                                margin: EdgeInsets.only(left: 5, right: 10),
+                                child: Text(
+                                  quaStatus == 0
+                                      ? "标清"
+                                      : quaStatus == 1
+                                          ? "高清"
+                                          : quaStatus == 2 ? "超清" : "蓝光",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w700),
+                                ),
                               ),
                             ),
                           ],

@@ -35,7 +35,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      height: double.infinity,
       child: Column(
         children: <Widget>[
           Stack(
@@ -43,9 +42,10 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
               Container(
                 height: 220,
                 margin: EdgeInsets.only(top: topHeight),
-                width: double.infinity,
+                width: MediaQuery.of(context).size.width,
                 child: FijkView(
                   player: player,
+                  cover: AssetImage('images/img_load.jpeg'),
                   width: double.infinity,
                   height: 220,
                   fit: FijkFit.cover,
@@ -102,7 +102,91 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                               ),
                             );
                           case 3:
-                            return getListView;
+                            return ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: 10,
+                                padding: EdgeInsets.only(left: 20, right: 20),
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                      onTap: () {
+                                        player.pause();
+                                        Navigator.push(context,
+                                            MaterialPageRoute(
+                                                builder: (context) {
+                                          return VideoPlayerPage(
+                                              url:
+                                                  'http://video-qn.ibaotu.com/18/04/11/45p888piCB4r.mp4');
+                                        }));
+                                      },
+                                      child: Column(
+                                        children: <Widget>[
+                                          Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: <Widget>[
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 3),
+                                                child: ClipRRect(
+                                                  child: Image.network(
+                                                    'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2307511656,3386189028&fm=26&gp=0.jpg',
+                                                    fit: BoxFit.cover,
+                                                    height: 120,
+                                                    width: 160,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                ),
+                                              ),
+                                              Expanded(
+                                                  child: Container(
+                                                height: 120,
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: <Widget>[
+                                                    Container(
+                                                      margin: EdgeInsets.only(
+                                                          left: 10, right: 10),
+                                                      child: Text(
+                                                        '酒店偷拍，经验酒店偷拍，经验酒店偷拍，经验酒店偷拍，经验酒店偷拍，经验',
+                                                        maxLines: 2,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      margin: EdgeInsets.only(
+                                                          left: 10,
+                                                          right: 10,
+                                                          top: 5),
+                                                      child: Wrap(
+                                                        spacing: 8.0,
+                                                        runSpacing: 10.0,
+                                                        children: getTagChile(),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ))
+                                            ],
+                                          ),
+                                          Offstage(
+                                            offstage:
+                                                index != 10 ? false : true,
+                                            child: Container(
+                                              margin: EdgeInsets.only(
+                                                  top: 10, bottom: 5),
+                                              child: Divider(
+                                                height: 1,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ));
+                                });
                         }
                       })))
         ],
@@ -242,73 +326,6 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
       ],
     ),
   );
-
-  Widget getListView = ListView.builder(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      itemCount: 10,
-      padding: EdgeInsets.only(left: 20, right: 20),
-      itemBuilder: (context, index) {
-        return GestureDetector(
-            onTap: () {},
-            child: Column(
-              children: <Widget>[
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(top: 3),
-                      child: ClipRRect(
-                        child: Image.network(
-                          'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2307511656,3386189028&fm=26&gp=0.jpg',
-                          fit: BoxFit.cover,
-                          height: 120,
-                          width: 160,
-                        ),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                    ),
-                    Expanded(
-                        child: Container(
-                      height: 120,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.only(left: 10, right: 10),
-                            child: Text(
-                              '酒店偷拍，经验酒店偷拍，经验酒店偷拍，经验酒店偷拍，经验酒店偷拍，经验',
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          Container(
-                            margin:
-                                EdgeInsets.only(left: 10, right: 10, top: 5),
-                            child: Wrap(
-                              spacing: 8.0,
-                              runSpacing: 10.0,
-                              children: getTagChile(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ))
-                  ],
-                ),
-                Offstage(
-                  offstage: index != 10 ? false : true,
-                  child: Container(
-                    margin: EdgeInsets.only(top: 10, bottom: 5),
-                    child: Divider(
-                      height: 1,
-                    ),
-                  ),
-                )
-              ],
-            ));
-      });
 
   @override
   void dispose() {
