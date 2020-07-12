@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/pages/collection_page.dart';
 import 'package:flutterapp/pages/extension_page.dart';
+import 'package:flutterapp/pages/feedback_page.dart';
 import 'package:flutterapp/pages/history_page.dart';
 import 'package:flutterapp/user/login_page.dart';
 import 'dart:ui';
@@ -292,30 +293,38 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                 color: Color(0xfff5f5f5),
               ),
 
-              //意见反馈
-              Container(
-                margin: EdgeInsets.all(10),
-                child: Row(
-                  children: <Widget>[
-                    Image.asset(
-                      'images/collection.png',
-                      width: 20,
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(left: 5),
-                      child: Text('意见反馈'),
-                    ),
-                    Expanded(
-                      child: Text(''),
-                      flex: 1,
-                    ),
-                    Icon(
-                      Icons.navigate_next,
-                      color: Color(0xff7A7A7A),
-                    )
-                  ],
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return FeedbackPage();
+                  }));
+                },
+                child: Container(
+                  margin: EdgeInsets.all(10),
+                  child: Row(
+                    children: <Widget>[
+                      Image.asset(
+                        'images/collection.png',
+                        width: 20,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 5),
+                        child: Text('意见反馈'),
+                      ),
+                      Expanded(
+                        child: Text(''),
+                        flex: 1,
+                      ),
+                      Icon(
+                        Icons.navigate_next,
+                        color: Color(0xff7A7A7A),
+                      )
+                    ],
+                  ),
                 ),
               ),
+              //意见反馈
+
               //小分割线
               Container(
                 margin: EdgeInsets.all(10),
