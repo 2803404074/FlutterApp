@@ -54,11 +54,15 @@ class _HomePageState extends State<HomePage>
     return AppBar(
       titleSpacing: 0.0,
       title: Container(
-        margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+        margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: Row(
           children: <Widget>[
             InkWell(
-              child: Icon(Icons.history),
+              child: Image.asset(
+                'images/home_logo.png',
+                width: 40,
+                height: 40,
+              ),
               onTap: () {
                 print('点击了icon');
               },
@@ -66,7 +70,7 @@ class _HomePageState extends State<HomePage>
             Expanded(
                 flex: 1,
                 child: Container(
-                  margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                  margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Container(
@@ -96,7 +100,11 @@ class _HomePageState extends State<HomePage>
                   ),
                 )),
             GestureDetector(
-              child: Icon(Icons.history),
+              child: Image.asset(
+                'images/history.png',
+                width: 25,
+                height: 25,
+              ),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return HistoryPage();

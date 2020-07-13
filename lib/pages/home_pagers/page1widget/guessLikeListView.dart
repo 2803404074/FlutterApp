@@ -10,11 +10,28 @@ class GuessLikeListView extends StatefulWidget {
 }
 
 class _PagesState extends State<GuessLikeListView>
-    with AutomaticKeepAliveClientMixin {
+    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
+  AnimationController controller;
+
   @override
   bool get wantKeepAlive => true;
 
   ///see AutomaticKeepAliveClientMixin
+  ///
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller = AnimationController(
+        duration: const Duration(milliseconds: 200), vsync: this);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,33 +68,49 @@ class _PagesState extends State<GuessLikeListView>
                 return getItemContainer(datas[index]);
               }),
         ),
-        Container(
-          margin: EdgeInsets.fromLTRB(30, 30, 30, 0),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Image.asset(
-                    'images/home_change.png',
-                    width: 20,
-                    fit: BoxFit.cover,
-                  ),
-                  Text(' '),
-                  Text(
-                    '换一换',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 14),
-                  )
-                ],
+        InkWell(
+          splashColor: Color(0x00ffffff),
+          onTap: () {
+            controller.reset();
+            controller.forward();
+          },
+          child: Container(
+            margin: EdgeInsets.fromLTRB(30, 30, 30, 0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    RotationTransition(
+                      //将要执行动画的子view
+                      child: Image.asset(
+                        'images/home_change.png',
+                        width: 20,
+                        fit: BoxFit.cover,
+                      ),
+                      //设置动画的旋转中心
+                      alignment: Alignment.center,
+                      //动画控制器
+                      turns: controller,
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      '换一换',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 14),
+                    )
+                  ],
+                ),
+                color: Color(0x80DCDCDC),
+                height: 38,
               ),
-              color: Color(0x80DCDCDC),
-              height: 38,
             ),
           ),
-        )
+        ),
       ],
     );
   }

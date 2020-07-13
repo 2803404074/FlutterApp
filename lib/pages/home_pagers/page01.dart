@@ -60,7 +60,7 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
                   height: 100,
                 ),
                 Container(
-                  margin: EdgeInsets.all(10),
+                  margin: EdgeInsets.only(top: 10, bottom: 10),
                   height: 150,
                   child: Swiper(
                     itemCount: 4,
@@ -69,7 +69,7 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
                         alignment: Alignment.bottomRight,
                         margin: const EdgeInsets.fromLTRB(0, 0, 20, 10),
                         builder: DotSwiperPaginationBuilder(
-                            color: Colors.black54, activeColor: Colors.white)),
+                            color: Color(0x80ffffff), activeColor: Colors.red)),
                     controller: SwiperController(),
                     scrollDirection: Axis.horizontal,
                     autoplay: true,
@@ -201,6 +201,7 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
   Widget _swiperBuilder(BuildContext context, int index) {
     // return (imageList[index]);
     return Container(
+      padding: EdgeInsets.only(left: 10, right: 10),
       child: ClipRRect(
           borderRadius: BorderRadius.circular(10), child: imageList[index]),
     );

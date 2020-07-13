@@ -66,6 +66,8 @@ flutter:
    - images/play_no_down.png
    - images/play_no_share.png
    - images/app_adv_bottom.jpg
+   - images/home_logo.png
+   - images/history.png
 
 
   #  - images/a_dot_ham.jpeg

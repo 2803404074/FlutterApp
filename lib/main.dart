@@ -101,7 +101,7 @@ class _MyAppPageState extends State<MyApp> {
                                 "$seconds",
                                 style: TextStyle(
                                   fontSize: 22,
-                                  color: Colors.lightGreenAccent,
+                                  color: Colors.white,
                                   decoration: TextDecoration.none,
                                 ),
                               ),
