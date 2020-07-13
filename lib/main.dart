@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 
 import 'navigator/tab_navigator.dart';
 
+/**
+ * 启动、广告逻辑
+ */
 void main() {
   //初始化数据后跳转广告页
   Future.delayed(Duration(seconds: 2), () {
