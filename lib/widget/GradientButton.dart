@@ -45,8 +45,8 @@ class GradientButton extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
           gradient: LinearGradient(colors: _colors),
-          borderRadius: borderRadius,
-          border: border,
+          borderRadius: borderRadius, // 圆角设置
+          border: border, // 边框设置
           backgroundBlendMode: BlendMode.srcOver,
           // 阴影的设置
           boxShadow: [
@@ -58,9 +58,10 @@ class GradientButton extends StatelessWidget {
           ]),
       child: Material(
         type: MaterialType.transparency,
-        child: InkWell(
+        child: InkResponse(
           splashColor: _colors.last,
           highlightColor: Colors.transparent,
+          radius: 0.0,
           borderRadius: borderRadius,
           onTap: onPressed,
           child: ConstrainedBox(
