@@ -13,6 +13,7 @@ class GradientButton extends StatelessWidget {
     this.height,
     this.onPressed,
     this.borderRadius,
+    this.border,
     @required this.child,
   });
 
@@ -25,6 +26,7 @@ class GradientButton extends StatelessWidget {
 
   final Widget child;
   final BorderRadius borderRadius;
+  final Border border;
 
   //阴影颜色
   Color shadow;
@@ -43,7 +45,9 @@ class GradientButton extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
           gradient: LinearGradient(colors: _colors),
-          borderRadius: borderRadius,
+          borderRadius: borderRadius, // 圆角设置
+          border: border, // 边框设置
+          backgroundBlendMode: BlendMode.srcOver,
           // 阴影的设置
           boxShadow: [
             BoxShadow(
@@ -54,9 +58,10 @@ class GradientButton extends StatelessWidget {
           ]),
       child: Material(
         type: MaterialType.transparency,
-        child: InkWell(
+        child: InkResponse(
           splashColor: _colors.last,
           highlightColor: Colors.transparent,
+          radius: 0.0,
           borderRadius: borderRadius,
           onTap: onPressed,
           child: ConstrainedBox(
