@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutterapp/widget/GradientButton.dart';
 
 import 'navigator/tab_navigator.dart';
 
@@ -35,7 +36,6 @@ class _MyAppPageState extends State<MyApp> {
         if (seconds > 0) {
           seconds--;
         } else {
-          isMissingAdv = true;
           countdownTimer.cancel();
           countdownTimer = null;
         }
@@ -54,25 +54,76 @@ class _MyAppPageState extends State<MyApp> {
           TabNavigator(),
           Offstage(
             offstage: isMissingAdv,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+            child: Stack(
               children: <Widget>[
-                Expanded(
-                    flex: 1,
-                    child: Container(
-                      color: Colors.white,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Expanded(
+                        flex: 1,
+                        child: Container(
+                          color: Colors.white,
+                          width: double.infinity,
+                          child: Image.network(
+                            'http://img.pconline.com.cn/images/upload/upc/tx/itbbs/1609/30/c48/27767814_1475244403695_1024x1024.jpg',
+                            fit: BoxFit.cover,
+                          ),
+                        )),
+                    Container(
                       width: double.infinity,
-                      child: Image.network(
-                        'http://img.pconline.com.cn/images/upload/upc/tx/itbbs/1609/30/c48/27767814_1475244403695_1024x1024.jpg',
-                        fit: BoxFit.cover,
+                      alignment: Alignment.center,
+                      color: Colors.white,
+                      child: Image.asset(
+                        'images/app_adv_bottom.jpg',
+                        width: 220,
+                        height: 100,
                       ),
-                    )),
-                Container(
-                  width: double.infinity,
-                  alignment: Alignment.center,
-                  color: Colors.white,
-                  child: Text('$seconds'),
+                    ),
+                  ],
                 ),
+                Container(
+                  alignment: Alignment.topRight,
+                  width: double.infinity,
+                  child: GestureDetector(
+                    child: Container(
+                        width: 50,
+                        height: 50,
+                        margin: EdgeInsets.only(top: 40, right: 20),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: Color(0x80000000),
+                            borderRadius: BorderRadius.circular(1000)),
+                        child: Stack(
+                          children: <Widget>[
+                            Offstage(
+                              offstage: seconds == 0 ? true : false,
+                              child: Text(
+                                "$seconds",
+                                style: TextStyle(
+                                  fontSize: 22,
+                                  color: Colors.lightGreenAccent,
+                                  decoration: TextDecoration.none,
+                                ),
+                              ),
+                            ),
+                            Offstage(
+                              offstage: seconds == 0 ? false : true,
+                              child: Icon(
+                                Icons.close,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        )),
+                    onTap: () {
+                      if (seconds == 0) {
+                        setState(() {
+                          isMissingAdv = true;
+                        });
+                      }
+                    },
+                  ),
+                )
               ],
             ),
           ),
