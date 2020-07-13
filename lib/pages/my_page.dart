@@ -3,6 +3,7 @@ import 'package:flutterapp/pages/collection_page.dart';
 import 'package:flutterapp/pages/extension_page.dart';
 import 'package:flutterapp/pages/feedback_page.dart';
 import 'package:flutterapp/pages/history_page.dart';
+import 'package:flutterapp/pages/player/video_player_pager.dart';
 import 'package:flutterapp/user/login_page.dart';
 import 'dart:ui';
 
@@ -185,7 +186,16 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
               Container(
                 margin: EdgeInsets.only(left: 10, right: 10),
                 height: 150,
-                child: ListView.builder(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return VideoPlayerPage(
+                          url:
+                              'http://video-qn.ibaotu.com/18/04/11/45p888piCB4r.mp4');
+                    }));
+                  },
+                  child: ListView.builder(
                     scrollDirection: Axis.horizontal,
                     itemCount: 10,
                     itemBuilder: (context, ids) {
@@ -213,7 +223,9 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                           )
                         ],
                       );
-                    }),
+                    },
+                  ),
+                ),
               ),
 
               //视频缓存

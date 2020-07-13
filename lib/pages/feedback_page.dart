@@ -30,7 +30,12 @@ class _FeedbackPageState extends State<FeedbackPage> {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          leading: Icon(Icons.navigate_before),
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.navigate_before),
+          ),
           centerTitle: true,
           title: Text("意见反馈"),
         ),
@@ -105,7 +110,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                   },
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 40, right: 40, top: 55),
+                  margin:
+                      EdgeInsets.only(left: 40, right: 40, top: 55, bottom: 10),
                   child: GradientButton(
                     child: Text(
                       "提交",
@@ -117,6 +123,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                       Color.fromRGBO(255, 40, 37, 1)
                     ],
                     borderRadius: BorderRadius.circular(22),
+                    shadow: Color.fromRGBO(255, 40, 37, 0.3),
                   ),
                 )
               ],
