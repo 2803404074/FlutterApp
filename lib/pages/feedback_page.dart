@@ -34,7 +34,10 @@ class _FeedbackPageState extends State<FeedbackPage> {
             onTap: () {
               Navigator.pop(context);
             },
-            child: Icon(Icons.navigate_before),
+            child: Icon(
+              Icons.navigate_before,
+              size: 35,
+            ),
           ),
           centerTitle: true,
           title: Text("意见反馈"),
