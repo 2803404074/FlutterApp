@@ -65,7 +65,7 @@ class _TuigPageState extends State<TuigPage>
                             Text(
                               "LYSMUS",
                               style: TextStyle(
-                                fontSize: 40,
+                                fontSize: 35,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.black,
                               ),

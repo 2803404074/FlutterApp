@@ -84,12 +84,16 @@ class _HomePageState extends State<HomePage>
                         },
                         child: Row(
                           children: <Widget>[
-                            Icon(Icons.search),
+                            Image.asset(
+                              'images/search.png',
+                              width: 17,
+                            ),
                             Text(' '),
                             Text(
-                              '搜索',
+                              '想看什么就点我',
                               textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 14),
+                              style: TextStyle(
+                                  fontSize: 14, color: Color(0xffFFBCBC)),
                             )
                           ],
                         ),
@@ -115,7 +119,13 @@ class _HomePageState extends State<HomePage>
         ),
       ),
       elevation: 0,
-      backgroundColor: Colors.red,
+      flexibleSpace: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+          Color(0xffFF2825),
+          Color(0xffFF5B59),
+        ])),
+      ),
       bottom: _tabBar(),
     );
   }

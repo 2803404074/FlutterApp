@@ -86,8 +86,8 @@ class _MyAppPageState extends State<MyApp> {
                   width: double.infinity,
                   child: GestureDetector(
                     child: Container(
-                        width: 50,
-                        height: 50,
+                        width: 40,
+                        height: 40,
                         margin: EdgeInsets.only(top: 40, right: 20),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutterapp/pages/classtype/type_page.dart';
 import 'package:flutterapp/pages/home_pagers/page1widget/guessLikeListView.dart';
 import 'package:flutterapp/pages/home_pagers/page1widget/recommentListView.dart';
 import 'package:flutterapp/pages/home_pagers/page1widget/typeListView.dart';
@@ -56,8 +57,12 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
             Stack(
               children: <Widget>[
                 Container(
-                  color: Colors.red,
                   height: 100,
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: [
+                    Color(0xffFF2825),
+                    Color(0xffFF5B59),
+                  ])),
                 ),
                 Container(
                   margin: EdgeInsets.only(top: 10, bottom: 10),
@@ -84,76 +89,116 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
                 children: <Widget>[
                   Expanded(
                       flex: 1,
-                      child: Column(
-                        children: <Widget>[
-                          Image.asset(
-                            'images/test.png',
-                            width: 50,
-                            fit: BoxFit.cover,
+                      child: GestureDetector(
+                          child: Column(
+                            children: <Widget>[
+                              FadeInImage.assetNetwork(
+                                placeholder: "images/img_load.jpeg",
+                                image:
+                                    'http://p9.pccoo.cn/weixin/20171113/2017111316565418467518_1080_1080.jpg',
+                                width: 50,
+                                height: 50,
+                                fit: BoxFit.cover,
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 8),
+                                child: Text(
+                                  '无码素人',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              )
+                            ],
                           ),
-                          Container(
-                            margin: EdgeInsets.only(top: 8),
-                            child: Text(
-                              '无码素人',
-                              style: TextStyle(fontSize: 14),
-                            ),
-                          )
-                        ],
-                      )),
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return TypePage();
+                            }));
+                          })),
                   Expanded(
                       flex: 1,
-                      child: Column(
-                        children: <Widget>[
-                          Image.asset(
-                            'images/test.png',
-                            width: 50,
-                            fit: BoxFit.cover,
+                      child: GestureDetector(
+                          child: Column(
+                            children: <Widget>[
+                              FadeInImage.assetNetwork(
+                                placeholder: "images/img_load.jpeg",
+                                image:
+                                    'http://ku.90sjimg.com/element_origin_min_pic/00/86/24/3156eade908f1d1.jpg',
+                                width: 50,
+                                height: 50,
+                                fit: BoxFit.cover,
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 8),
+                                child: Text(
+                                  '国产自拍',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              )
+                            ],
                           ),
-                          Container(
-                            margin: EdgeInsets.only(top: 8),
-                            child: Text(
-                              '无码素人',
-                              style: TextStyle(fontSize: 14),
-                            ),
-                          )
-                        ],
-                      )),
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return TypePage();
+                            }));
+                          })),
                   Expanded(
                       flex: 1,
-                      child: Column(
-                        children: <Widget>[
-                          Image.asset(
-                            'images/test.png',
-                            width: 50,
-                            fit: BoxFit.cover,
+                      child: GestureDetector(
+                          child: Column(
+                            children: <Widget>[
+                              FadeInImage.assetNetwork(
+                                placeholder: "images/img_load.jpeg",
+                                image:
+                                    'http://e0.ifengimg.com/05/2019/0227/4FF08CBB201C96B45205D381BC106BFE537F4BFE_size19_w300_h300.png',
+                                width: 50,
+                                height: 50,
+                                fit: BoxFit.cover,
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 8),
+                                child: Text(
+                                  '人气淑女',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              )
+                            ],
                           ),
-                          Container(
-                            margin: EdgeInsets.only(top: 8),
-                            child: Text(
-                              '无码素人',
-                              style: TextStyle(fontSize: 14),
-                            ),
-                          )
-                        ],
-                      )),
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return TypePage();
+                            }));
+                          })),
                   Expanded(
                       flex: 1,
-                      child: Column(
-                        children: <Widget>[
-                          Image.asset(
-                            'images/test.png',
-                            width: 50,
-                            fit: BoxFit.cover,
+                      child: GestureDetector(
+                          child: Column(
+                            children: <Widget>[
+                              FadeInImage.assetNetwork(
+                                placeholder: "images/img_load.jpeg",
+                                image:
+                                    'http://bpic.588ku.com/element_origin_min_pic/17/08/10/3e9752eebe792b296e7c77d860ad8484.jpg%21/fwfh/804x804/quality/90/unsharp/true/compress/true',
+                                width: 50,
+                                height: 50,
+                                fit: BoxFit.cover,
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: 8),
+                                child: Text(
+                                  '角色扮演',
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              )
+                            ],
                           ),
-                          Container(
-                            margin: EdgeInsets.only(top: 8),
-                            child: Text(
-                              '无码素人',
-                              style: TextStyle(fontSize: 14),
-                            ),
-                          )
-                        ],
-                      ))
+                          onTap: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return TypePage();
+                            }));
+                          }))
                 ],
               ),
             ),

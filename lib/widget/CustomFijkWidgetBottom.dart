@@ -4,9 +4,10 @@ import 'dart:math';
 import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/material.dart';
 
-typedef MyCallBackFuture = Future Function();
+typedef clickCallback = void Function(bool value);
 
 class CustomFijkWidgetBottom extends StatefulWidget {
+  final clickCallback onClick;
   final FijkPlayer player;
   final BuildContext buildContext;
   final Size viewSize;
@@ -17,14 +18,23 @@ class CustomFijkWidgetBottom extends StatefulWidget {
     this.buildContext,
     this.viewSize,
     this.texturePos,
+    this.onClick,
   });
 
   @override
-  _CustomFijkWidgetBottomState createState() => _CustomFijkWidgetBottomState();
+  _CustomFijkWidgetBottomState createState() =>
+      _CustomFijkWidgetBottomState(onClick: this.onClick);
 }
 
 class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
+  final clickCallback onClick;
+  _CustomFijkWidgetBottomState({
+    this.onClick,
+  });
+
   FijkPlayer get player => widget.player;
+
+  bool isShowBefor = true;
 
   /// 播放状态
   bool _playing = false;
@@ -95,6 +105,15 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
     /// 播放状态
     bool playing = (value.state == FijkState.started);
     if (playing != _playing) setState(() => _playing = playing);
+
+    print("状态${value.state}");
+    //播放完成
+    if (value.state == FijkState.completed) {
+      print('回调啦1111111111');
+      this.onClick(true);
+      //显示重播按钮
+
+    }
   }
 
   @override
@@ -133,13 +152,34 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
                 !isPlayShowCont
                     ? SizedBox()
                     : Container(
-                        padding: EdgeInsets.only(left: 30),
-                        color: Color.fromRGBO(0, 0, 0, 0.65),
-                        height: 50,
+                        color: Color.fromRGBO(0, 0, 0, 0.45),
+                        height: 40,
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
+                            GestureDetector(
+                              onTap: () {
+                                if (player.value.fullScreen == false) {
+                                  Navigator.pop(context);
+                                } else {
+                                  widget.player.pause().then((value) =>
+                                      widget.player.exitFullScreen());
+                                  // 延时1s执行返回
+                                  Future.delayed(Duration(milliseconds: 200),
+                                      () {
+                                    widget.player.start();
+                                  });
+
+                                  setState(() {
+                                    isShowBefor = !isShowBefor;
+                                  });
+                                }
+                              },
+                              child: Icon(
+                                Icons.navigate_before,
+                                size: 30,
+                                color: Colors.white,
+                              ),
+                            ),
                             Text(
                               "标题",
                               style: TextStyle(color: Colors.white),
@@ -156,7 +196,7 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
                             ? 220
                             : MediaQuery.of(context).size.height,
                         width: 100,
-                        color: Color.fromRGBO(0, 0, 0, 0.65),
+                        color: Color.fromRGBO(0, 0, 0, 0.45),
                         child: Column(
                           children: <Widget>[
                             Expanded(child: Text('')),
@@ -231,7 +271,7 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
                     ? SizedBox()
                     : Container(
                         color: Color.fromRGBO(0, 0, 0, 0.65),
-                        height: 50,
+                        height: 40,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
@@ -256,7 +296,7 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
                                   //已拖动的颜色
                                   activeTrackColor: Colors.redAccent,
                                   //未拖动的颜色
-                                  inactiveTrackColor: Colors.redAccent,
+                                  inactiveTrackColor: Colors.grey,
                                   //提示进度的气泡的背景色
                                   valueIndicatorColor: Colors.redAccent,
                                   //提示进度的气泡文本的颜色
@@ -298,6 +338,14 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
                                   widget.player.pause().then((value) =>
                                       widget.player.exitFullScreen());
                                 }
+                                // 延时1s执行返回
+                                Future.delayed(Duration(milliseconds: 200), () {
+                                  widget.player.start();
+                                });
+
+                                setState(() {
+                                  isShowBefor = !isShowBefor;
+                                });
                               },
                               child: Container(
                                 margin: EdgeInsets.only(left: 10, right: 5),

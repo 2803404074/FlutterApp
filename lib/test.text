@@ -29,3 +29,29 @@
   
 5. listview高度自适应
   shrinkWrap: true,
+
+6. 路由跳转
+   Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return ExtensionPage();
+                              }));  
+
+
+7. 跳转销毁
+   pushAndRemoveUntil方式：跳转到下个页面，并且销毁当前页面   
+   //第一个为上下文环境，
+
+// 第二个参数为静态注册的对应的页面名称，
+
+// 第三个参数为跳转后的操作，route == null 为销毁当前页面
+
+Navigator.pushAndRemoveUntil(context,
+
+    new MaterialPageRoute(builder: (BuildContext context) {
+
+      return TextWdigetPage(title: "传递的参数");
+
+    }), (route) => route == null
+
+)
+                          

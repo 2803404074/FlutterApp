@@ -51,7 +51,7 @@ class GradientButton extends StatelessWidget {
           // 阴影的设置
           boxShadow: [
             BoxShadow(
-              color: shadow == null ? Colors.white : shadow,
+              color: shadow == null ? Color(0x00000000) : shadow,
               offset: Offset(1.0, 4.0),
               blurRadius: 5.0,
               // spreadRadius: 2.0,

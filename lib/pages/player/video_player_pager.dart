@@ -56,23 +56,13 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                       buildContext: context,
                       viewSize: viewSize,
                       texturePos: texturePos,
+                      onClick: (value) {
+                        print('回调啦');
+                      },
                     );
                   },
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  height: 50,
-                  margin: EdgeInsets.only(top: topHeight),
-                  child: Icon(
-                    Icons.navigate_before,
-                    color: Colors.white,
-                  ),
-                ),
-              )
             ],
           ),
           Expanded(

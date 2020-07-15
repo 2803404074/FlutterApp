@@ -5,6 +5,7 @@ import 'package:flutterapp/pages/feedback_page.dart';
 import 'package:flutterapp/pages/history_page.dart';
 import 'package:flutterapp/pages/player/video_player_pager.dart';
 import 'package:flutterapp/user/login_page.dart';
+import 'package:flutterapp/widget/GradientButton.dart';
 import 'dart:ui';
 
 import 'package:flutterapp/widget/IconText.dart';
@@ -73,9 +74,12 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                           topLeft: Radius.circular(15),
                           bottomLeft: Radius.circular(15)),
                       child: Container(
-                        padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                        color: Colors.yellow,
-                        child: Text('推广人数 8'),
+                        padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
+                        color: Color(0xffFFF8F8),
+                        child: Text(
+                          '推广人数 8',
+                          style: TextStyle(color: Color(0xffFF2825)),
+                        ),
                       ),
                     )
                   ],
@@ -116,25 +120,23 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                               ],
                             )),
                         Container(
+                          alignment: Alignment.center,
                           margin: EdgeInsets.only(right: 20),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Container(
-                              padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-                              color: Colors.red,
-                              child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return ExtensionPage();
-                                  }));
-                                },
-                                child: Text('立即推广',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w700)),
-                              ),
+                          child: GradientButton(
+                            child: Text(
+                              '立即推广',
+                              textAlign: TextAlign.center,
                             ),
+                            height: 35,
+                            width: 80,
+                            colors: [Color(0xffFF5B59), Color(0xffFF2825)],
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return ExtensionPage();
+                              }));
+                            },
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
                           ),
                         )
                       ],
