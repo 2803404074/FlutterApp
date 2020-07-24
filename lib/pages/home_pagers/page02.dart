@@ -85,7 +85,7 @@ class _PagesState extends State<Page02> with AutomaticKeepAliveClientMixin {
   Widget getBase64(int index) {
     ImageDownHttp.getInstance().startDownLoad(
         'http://image.i438500.com/storage/images/video/thumbnail/936edb5d4c71976cb3a8b96afc9bf9cb.raw!t!70!600.js',
-        (values) {
+        (values, status) {
       setState(() {
         list[index].base64Str = values;
       });
@@ -93,7 +93,7 @@ class _PagesState extends State<Page02> with AutomaticKeepAliveClientMixin {
 
     return Container(
       height: 200,
-      color: Colors.red,
+      color: Colors.grey[300],
     );
   }
 }
