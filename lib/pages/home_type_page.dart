@@ -10,7 +10,6 @@ class HomeTypePage extends StatefulWidget {
 
 class _SearchPageState extends State<HomeTypePage>
     with AutomaticKeepAliveClientMixin {
-  Future<int> future;
   var list = ['亚洲无码', '日本AV', '偷拍自拍', '欧美唯美', '动漫三级', 'AV剧情', '大杂烩'];
 
   var listImg = [
@@ -24,7 +23,8 @@ class _SearchPageState extends State<HomeTypePage>
   ];
   @override
   Widget build(BuildContext context) {
-    print('进入页面');
+    super.build(context);
+    print('分类页build');
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -39,7 +39,6 @@ class _SearchPageState extends State<HomeTypePage>
           child: ListView.builder(
               itemCount: 7,
               itemBuilder: (context, ids) {
-                print('渲染第$ids');
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(context,
@@ -132,7 +131,6 @@ class _SearchPageState extends State<HomeTypePage>
   }
 
   List<Widget> getChile() {
-    print("走。。。。。。。");
     List<Widget> a = List();
     for (int i = 0; i < 4; i++) {
       a.add(Container(
@@ -147,12 +145,6 @@ class _SearchPageState extends State<HomeTypePage>
       ));
     }
     return a;
-  }
-
-  @override
-  void initState() {
-    future = Future.value(42);
-    super.initState();
   }
 
   @override

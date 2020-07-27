@@ -26,6 +26,8 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    super.build(context);
+    print('我的build');
     return CustomScrollView(
         scrollDirection: Axis.vertical,
         shrinkWrap: true,

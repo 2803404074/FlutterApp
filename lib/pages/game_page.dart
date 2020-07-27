@@ -10,6 +10,8 @@ class _GamePageState extends State<GamePage>
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    super.build(context);
+    print('游戏页build');
     return Scaffold(
         body: ConstrainedBox(
       constraints: BoxConstraints.expand(),

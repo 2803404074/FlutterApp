@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
+    future = Future.value(42);
     tabTitles = [
       "中国",
       "日本",
@@ -169,8 +170,11 @@ class _HomePageState extends State<HomePage>
     );
   }
 
+  Future<int> future;
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+    print('首页build');
     return Scaffold(
       appBar: _appBarView(),
       body: _tabBarView(),

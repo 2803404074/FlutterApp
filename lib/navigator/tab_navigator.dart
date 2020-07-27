@@ -11,31 +11,35 @@ class TabNavigator extends StatefulWidget {
 }
 
 class _TabNavigatorState extends State<TabNavigator> {
-  final _defaultColor = Colors.grey;
-  final _activeColor = Colors.red;
-  int _currentIndex = 0;
+  List<Widget> pages = List();
+  var _currentIndex = 0;
 
-  final PageController _controller = PageController(initialPage: 0);
+  // final PageController _controller = PageController(initialPage: 0);
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    pages
+      ..add(HomePage())
+      ..add(HomeTypePage())
+      ..add(GamePage())
+      ..add(TuigPage())
+      ..add(MyPage());
+  }
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      body: PageView(
-        controller: _controller,
-        children: <Widget>[
-          HomePage(),
-          HomeTypePage(),
-          GamePage(),
-          TuigPage(),
-          MyPage()
-        ],
-        physics: NeverScrollableScrollPhysics(), //禁止滑动
+      body: IndexedStack(
+        index: _currentIndex,
+        children: pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _currentIndex,
           onTap: (index) {
-            _controller.jumpToPage(index);
+            //_controller.jumpToPage(index);
             setState(() {
               _currentIndex = index;
             });
@@ -45,72 +49,72 @@ class _TabNavigatorState extends State<TabNavigator> {
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.home,
-                  color: _defaultColor,
+                  color: Colors.grey,
                 ),
                 activeIcon: Icon(
                   Icons.home,
-                  color: _activeColor,
+                  color: Colors.red,
                 ),
                 title: Text(
                   '首页',
                   style: TextStyle(
-                      color: _currentIndex != 0 ? _defaultColor : _activeColor),
+                      color: _currentIndex != 0 ? Colors.grey : Colors.red),
                 )),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.merge_type,
-                  color: _defaultColor,
+                  color: Colors.grey,
                 ),
                 activeIcon: Icon(
                   Icons.merge_type,
-                  color: _activeColor,
+                  color: Colors.red,
                 ),
                 title: Text(
                   '分类',
                   style: TextStyle(
-                      color: _currentIndex != 1 ? _defaultColor : _activeColor),
+                      color: _currentIndex != 1 ? Colors.grey : Colors.red),
                 )),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.games,
-                  color: _defaultColor,
+                  color: Colors.grey,
                 ),
                 activeIcon: Icon(
                   Icons.games,
-                  color: _activeColor,
+                  color: Colors.red,
                 ),
                 title: Text(
                   '游戏',
                   style: TextStyle(
-                      color: _currentIndex != 2 ? _defaultColor : _activeColor),
+                      color: _currentIndex != 2 ? Colors.grey : Colors.red),
                 )),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.extension,
-                  color: _defaultColor,
+                  color: Colors.grey,
                 ),
                 activeIcon: Icon(
                   Icons.extension,
-                  color: _activeColor,
+                  color: Colors.red,
                 ),
                 title: Text(
                   '推广',
                   style: TextStyle(
-                      color: _currentIndex != 3 ? _defaultColor : _activeColor),
+                      color: _currentIndex != 3 ? Colors.grey : Colors.red),
                 )),
             BottomNavigationBarItem(
                 icon: Icon(
                   Icons.account_circle,
-                  color: _defaultColor,
+                  color: Colors.grey,
                 ),
                 activeIcon: Icon(
                   Icons.account_circle,
-                  color: _activeColor,
+                  color: Colors.red,
                 ),
                 title: Text(
                   '我的',
                   style: TextStyle(
-                      color: _currentIndex != 4 ? _defaultColor : _activeColor),
+                      color: _currentIndex != 4 ? Colors.grey : Colors.red),
                 ))
           ]),
     );

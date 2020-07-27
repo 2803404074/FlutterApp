@@ -22,6 +22,8 @@ class _TuigPageState extends State<TuigPage>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+    print('推广build');
     return Stack(
       children: <Widget>[
         // 背景图片
