@@ -171,13 +171,21 @@ class _HomePageState extends State<HomePage>
   }
 
   Future<int> future;
+
+  Widget content;
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    print('首页build');
-    return Scaffold(
-      appBar: _appBarView(),
-      body: _tabBarView(),
-    );
+
+    if (content == null) {
+      print('首页build');
+      content = Scaffold(
+        appBar: _appBarView(),
+        body: _tabBarView(),
+      );
+    } else {
+      print('首页缓存页');
+    }
+    return content;
   }
 }

@@ -21,74 +21,84 @@ class _SearchPageState extends State<HomeTypePage>
     'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1594125851999&di=a2f2017b6a5be6c896a8a9b58a616276&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20171128%2F08157deff4424f409e1736d4cf432ac2.gif',
     'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3169534223,907257987&fm=26&gp=0.jpg'
   ];
+
+  Widget content;
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    print('分类页build');
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          centerTitle: true,
-          title: Text(
-            '全部分类',
-            style: TextStyle(
-                fontSize: 18, color: Colors.black, fontWeight: FontWeight.w700),
+    if (content == null) {
+      print('分类页build');
+      content = Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            centerTitle: true,
+            title: Text(
+              '全部分类',
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w700),
+            ),
           ),
-        ),
-        body: Container(
-          child: ListView.builder(
-              itemCount: 7,
-              itemBuilder: (context, ids) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return TypePage();
-                    }));
-                  },
-                  child: Stack(
-                    children: <Widget>[
-                      Container(
-                        height: 200,
-                        margin: EdgeInsets.only(bottom: 20),
-                        width: double.infinity,
-                        child: Card(
-                          elevation: 10,
-                          clipBehavior: Clip.antiAlias,
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15.0))),
-                          child: Image.network(
-                            '${listImg[ids]}',
-                            fit: BoxFit.cover,
+          body: Container(
+            child: ListView.builder(
+                itemCount: 7,
+                itemBuilder: (context, ids) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return TypePage();
+                      }));
+                    },
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          height: 200,
+                          margin: EdgeInsets.only(bottom: 20),
+                          width: double.infinity,
+                          child: Card(
+                            elevation: 10,
+                            clipBehavior: Clip.antiAlias,
+                            margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15.0))),
+                            child: Image.network(
+                              '${listImg[ids]}',
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      Container(
-                        height: 200,
-                        width: double.infinity,
-                        margin: EdgeInsets.only(bottom: 20),
-                        child: Card(
-                          elevation: 0,
-                          color: Color(0x00000000),
-                          clipBehavior: Clip.antiAlias,
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15.0))),
-                          child: Container(
-                            padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
-                            decoration: BoxDecoration(color: Color(0x4D000000)),
-                            child: _judgeItemType(ids),
+                        Container(
+                          height: 200,
+                          width: double.infinity,
+                          margin: EdgeInsets.only(bottom: 20),
+                          child: Card(
+                            elevation: 0,
+                            color: Color(0x00000000),
+                            clipBehavior: Clip.antiAlias,
+                            margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                            shape: RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15.0))),
+                            child: Container(
+                              padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
+                              decoration:
+                                  BoxDecoration(color: Color(0x4D000000)),
+                              child: _judgeItemType(ids),
+                            ),
                           ),
-                        ),
-                      )
-                    ],
-                  ),
-                );
-              }),
-        ));
+                        )
+                      ],
+                    ),
+                  );
+                }),
+          ));
+    } else {
+      print('分类缓存页');
+    }
+    return content;
   }
 
   Widget _judgeItemType(int ids) {

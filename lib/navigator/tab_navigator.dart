@@ -31,6 +31,7 @@ class _TabNavigatorState extends State<TabNavigator> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+    print('tab rebuild');
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,

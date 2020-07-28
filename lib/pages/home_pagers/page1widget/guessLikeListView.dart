@@ -33,6 +33,7 @@ class _PagesState extends State<GuessLikeListView>
     super.dispose();
   }
 
+  String aaa = "猜你喜欢猜你喜欢猜你喜欢猜你喜欢";
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -73,6 +74,9 @@ class _PagesState extends State<GuessLikeListView>
           onTap: () {
             controller.reset();
             controller.forward();
+            setState(() {
+              aaa = '换一换';
+            });
           },
           child: Container(
             margin: EdgeInsets.fromLTRB(30, 30, 30, 0),
@@ -141,7 +145,7 @@ class _PagesState extends State<GuessLikeListView>
               ),
             ),
             Text(
-              '数据数',
+              aaa,
               overflow: TextOverflow.ellipsis,
               maxLines: 2,
             )
