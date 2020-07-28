@@ -285,7 +285,7 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
                                   : widget.player.start(),
                             ),
                             Text(
-                              "${durrentPos} / ${duration}",
+                              "$durrentPos",
                               style: TextStyle(color: Colors.white),
                             ),
 
@@ -328,6 +328,10 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
                                   },
                                 ),
                               ),
+                            ),
+                            Text(
+                              '$duration',
+                              style: TextStyle(color: Colors.white),
                             ),
                             GestureDetector(
                               onTap: () {

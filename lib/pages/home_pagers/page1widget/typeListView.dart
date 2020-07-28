@@ -1,68 +1,55 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutterapp/http/ImageDownHttp.dart';
+import 'package:flutterapp/model/MovieMo.dart';
+import 'package:flutterapp/model/MovieMoList.dart';
 import 'package:flutterapp/pages/player/video_player_pager.dart';
 /**
  * 首页-其他视频列表
  */
 
 class TypeListView extends StatefulWidget {
+  List<MovieMo> mData;
+  int index;
+  TypeListView(List<MovieMo> mData) {
+    this.mData = mData;
+  }
   @override
-  _PagesState createState() => _PagesState();
+  _PagesState createState() => _PagesState(this.mData);
 }
 
 class _PagesState extends State<TypeListView>
     with AutomaticKeepAliveClientMixin {
+  List<MovieMo> mData;
+  _PagesState(List<MovieMo> mData) {
+    this.mData = mData;
+  }
   @override
   bool get wantKeepAlive => true;
 
-  ///see AutomaticKeepAliveClientMixin
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
-    List<String> datas = getDataList();
-
     /// see AutomaticKeepAliveClientMixin
     // TODO: implement build
     return Container(
-      margin: EdgeInsets.only(top: 30),
+      margin: EdgeInsets.only(top: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            '日本无码',
-            textAlign: TextAlign.right,
-            style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return VideoPlayerPage(
-                    url:
-                        'http://video-qn.ibaotu.com/18/04/11/45p888piCB4r.mp4');
-              }));
-            },
-            child: Container(
-              margin: EdgeInsets.only(top: 10),
-              height: 200,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: Image.network(
-                  'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3532249801,4016244769&fm=26&gp=0.jpg',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ),
-          Text(
-            '酒店偷拍 经验丰富的男子带白领开房与朋友3p 美女浪叫不停...',
-            textAlign: TextAlign.start,
-          ),
           Container(
             margin: EdgeInsets.only(top: 10),
             height: 320,
             child: GridView.builder(
-                itemCount: 4,
+                itemCount: mData.length,
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     //横轴元素个数
@@ -74,7 +61,7 @@ class _PagesState extends State<TypeListView>
                     //子组件宽高长度比例
                     childAspectRatio: 1.3),
                 itemBuilder: (BuildContext context, int index) {
-                  return getItemContainer(datas[index]);
+                  return getItemContainer(index);
                 }),
           ),
           Container(
@@ -109,7 +96,7 @@ class _PagesState extends State<TypeListView>
     );
   }
 
-  Widget getItemContainer(String item) {
+  Widget getItemContainer(int index) {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -126,13 +113,17 @@ class _PagesState extends State<TypeListView>
           children: <Widget>[
             Expanded(
               flex: 1,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: Image.network(
-                  'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2307511656,3386189028&fm=26&gp=0.jpg',
-                  fit: BoxFit.cover,
-                ),
-              ),
+              child: mData[index].decodeStr != null
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: Image.memory(
+                        base64.decode(mData[index].decodeStr),
+                        height: 200,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                        gaplessPlayback: true,
+                      ))
+                  : getImg(index),
             ),
             Text(
               '数据数',
@@ -145,11 +136,13 @@ class _PagesState extends State<TypeListView>
     );
   }
 
-  List<String> getDataList() {
-    List<String> list = [];
-    for (int i = 0; i < 4; i++) {
-      list.add(i.toString());
-    }
-    return list;
+  Widget getImg(int index) {
+    ImageDownHttp.getInstance().startDownLoad(mData[index].imgUrl,
+        (values, status) {
+      setState(() {
+        mData[index].decodeStr = values;
+      });
+    });
+    return SizedBox();
   }
 }
