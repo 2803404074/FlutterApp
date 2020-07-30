@@ -5,9 +5,11 @@ import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/material.dart';
 
 typedef clickCallback = void Function(bool value);
+typedef SliderValueCallback = void Function(double value);
 
 class CustomFijkWidgetBottom extends StatefulWidget {
   final clickCallback onClick;
+  final SliderValueCallback onSlider;
   final FijkPlayer player;
   final BuildContext buildContext;
   final Size viewSize;
@@ -19,17 +21,20 @@ class CustomFijkWidgetBottom extends StatefulWidget {
     this.viewSize,
     this.texturePos,
     this.onClick,
+    this.onSlider,
   });
 
   @override
-  _CustomFijkWidgetBottomState createState() =>
-      _CustomFijkWidgetBottomState(onClick: this.onClick);
+  _CustomFijkWidgetBottomState createState() => _CustomFijkWidgetBottomState(
+      onClick: this.onClick, onSlider: this.onSlider);
 }
 
 class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
   final clickCallback onClick;
+  final SliderValueCallback onSlider;
   _CustomFijkWidgetBottomState({
     this.onClick,
+    this.onSlider,
   });
 
   FijkPlayer get player => widget.player;
@@ -84,6 +89,7 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
         /// 实时获取当前播放进度（数字展示）
         durrentPos = v.toString().substring(0, v.toString().indexOf("."));
       });
+      this.onSlider(this.sliderValue);
     });
 
     /// 初始化
@@ -116,6 +122,9 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
     }
   }
 
+  Offset finstDownDx;
+  Offset windowDx;
+  double releseDwnX;
   @override
   Widget build(BuildContext context) {
     Rect rect = Rect.fromLTRB(
@@ -141,6 +150,20 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
             //隐藏清晰度视图
             isShowQua = false;
           });
+        },
+        onHorizontalDragDown: (details) {
+          print('当前进度 = $sliderValue');
+
+          finstDownDx = details.globalPosition;
+        },
+        onHorizontalDragUpdate: (details) {
+          windowDx = details.globalPosition;
+
+          this.sliderValue += (windowDx.dx - finstDownDx.dx) * 20;
+        },
+        onHorizontalDragEnd: (details) {
+          print('现在进度 = $sliderValue');
+          setState(() => player.seekTo(this.sliderValue.toInt()));
         },
         child: Container(
             color: Color.fromRGBO(0, 0, 0, 0.0),
@@ -316,7 +339,7 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
                                       '${int.parse((this.sliderValue / 3600000).toStringAsFixed(0)) < 10 ? '0' + (this.sliderValue / 3600000).toStringAsFixed(0) : (this.sliderValue / 3600000).toStringAsFixed(0)}:${int.parse(((this.sliderValue % 3600000) / 60000).toStringAsFixed(0)) < 10 ? '0' + ((this.sliderValue % 3600000) / 60000).toStringAsFixed(0) : ((this.sliderValue % 3600000) / 60000).toStringAsFixed(0)}:${int.parse(((this.sliderValue % 60000) / 1000).toStringAsFixed(0)) < 10 ? '0' + ((this.sliderValue % 60000) / 1000).toStringAsFixed(0) : ((this.sliderValue % 60000) / 1000).toStringAsFixed(0)}',
                                   min: 0.0,
                                   max: maxDurations,
-                                  divisions: 1000,
+                                  divisions: 100,
                                   onChanged: (val) {
                                     ///转化成double
                                     setState(() =>

@@ -20,15 +20,25 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   //顶部panding
   var topHeight;
 
-  final FijkPlayer player = FijkPlayer();
+  FijkPlayer player;
 
   _VideoPlayerPageState();
 
+  double oldSlider;
   @override
   void initState() {
     super.initState();
     topHeight = new MediaQueryData.fromWindow(window).padding.top;
+    player = FijkPlayer();
+    player.setOption(FijkOption.formatCategory, "headers",
+        "token:094f4c94d24411ea898966ee0bdf668a");
     player.setDataSource(widget.url, autoPlay: true);
+  }
+
+  void onResum() {
+    player.start();
+    print(
+        'onResum---------------------------------------------------------------------------------');
   }
 
   @override
@@ -45,6 +55,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                 width: MediaQuery.of(context).size.width,
                 child: FijkView(
                   player: player,
+                  color: Colors.black,
                   cover: AssetImage('images/img_load.jpeg'),
                   width: double.infinity,
                   height: 220,
@@ -58,6 +69,9 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                       texturePos: texturePos,
                       onClick: (value) {
                         print('回调啦');
+                      },
+                      onSlider: (value) {
+                        oldSlider = value;
                       },
                     );
                   },
@@ -101,13 +115,14 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                                   return GestureDetector(
                                       onTap: () {
                                         player.pause();
+
                                         Navigator.push(context,
                                             MaterialPageRoute(
                                                 builder: (context) {
                                           return VideoPlayerPage(
                                               url:
-                                                  'http://video-qn.ibaotu.com/18/04/11/45p888piCB4r.mp4');
-                                        }));
+                                                  'http://api.dev.pear.pw/api/app/video_m3u8/index.m3u8?rate=360&license=U2FsdGVkX1%2FNmDuQMpCH%2FN3mPZ0DdDTv%2FuE6lhBAZImYInQAvh7a6h3%2BKIHb4T%2FzA57xZ4O5XbHXddbgXZIqZV4BhoqopAubyjST3hrU8Ww20C2I6bpvS8sOrGn9x3mtvmHElOP%2BqWatg%2F2Rvg2XRA%3D%3D');
+                                        })).then((value) => onResum());
                                       },
                                       child: Column(
                                         children: <Widget>[

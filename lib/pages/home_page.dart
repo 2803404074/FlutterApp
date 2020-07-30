@@ -6,6 +6,7 @@ import 'package:flutterapp/pages/home_pagers/page01.dart';
 import 'package:flutterapp/pages/home_pagers/page02.dart';
 
 import 'package:flutterapp/search/SearchBarDelegate.dart';
+import 'package:flutterapp/util/EventBus.dart';
 
 class HomePage extends StatefulWidget {
   @override

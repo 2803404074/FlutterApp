@@ -4,6 +4,7 @@ import 'package:flutterapp/pages/my_page.dart';
 import 'package:flutterapp/pages/home_type_page.dart';
 import 'package:flutterapp/pages/game_page.dart';
 import 'package:flutterapp/pages/tuig_page.dart';
+import 'package:flutterapp/util/EventBus.dart';
 
 class TabNavigator extends StatefulWidget {
   @override
