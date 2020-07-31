@@ -61,7 +61,7 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
     super.build(context);
     if (advWidget == null) {
       ImageDownHttp.getInstance().startDownLoad(
-          'http://api.dev.pear.pw/api/app/video_m3u8/index.m3u8?rate=360&license=U2FsdGVkX1%2FMCJMbgToMum3O00Z3nqmF10HSknltQz7%2FfSuqUVsxD7HTGRzZhEhRX2TgjopOkLap0HgsM33zgPGc3lFomGuDvPJ5hwrafzIm7OuMnz0omRK%2BieVAxVh%2Fd0ynBdFc6Hu6kCQObdb2qw%3D%3D',
+          'http://image.i438500.com/storage/images/video/thumbnail/d834f6a7f0dc4419c426ea952cf73bb5.raw!t!70!600.js',
           (values, status) {
         advWidget = Image.memory(
           base64.decode(values),
@@ -344,7 +344,7 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
       print(
           '-------------------------------------------------------------------');
       ImageDownHttp.getInstance().startDownLoad(
-          'http://api.dev.pear.pw/api/app/video_m3u8/index.m3u8?rate=360&license=U2FsdGVkX1%2FMCJMbgToMum3O00Z3nqmF10HSknltQz7%2FfSuqUVsxD7HTGRzZhEhRX2TgjopOkLap0HgsM33zgPGc3lFomGuDvPJ5hwrafzIm7OuMnz0omRK%2BieVAxVh%2Fd0ynBdFc6Hu6kCQObdb2qw%3D%3D',
+          'http://image.i438500.com/storage/images/video/thumbnail/d834f6a7f0dc4419c426ea952cf73bb5.raw!t!70!600.js',
           (values, status) {
         bannerWidget[index] = Container(
           padding: EdgeInsets.only(left: 10, right: 10),

@@ -30,7 +30,7 @@ class MainHelpe {
           disCountdownTimer();
           //如果都成功了，先解码第一个需要显示的广告，减少解密过程中出现白屏的时间。
           ImageDownHttp.getInstance().startDownLoad(
-              'http://image.i438500.com/storage/images/video/thumbnail/936edb5d4c71976cb3a8b96afc9bf9cb.raw!t!70!600.js',
+              'http://image.i438500.com/storage/images/app/banner/49edc9d335cc4784c7d33deaa4e526d4.raw',
               (values, status) {
             callback(values, status);
           });
