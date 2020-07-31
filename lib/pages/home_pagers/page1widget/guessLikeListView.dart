@@ -44,7 +44,7 @@ class _PagesState extends State<GuessLikeListView>
     // TODO: implement initState
     super.initState();
     initDate(
-        'http://image.i438500.com/storage/images/video/thumbnail/936edb5d4c71976cb3a8b96afc9bf9cb.raw!t!70!600.js');
+        'http://api.dev.pear.pw/api/app/video_m3u8/index.m3u8?rate=720&license=U2FsdGVkX1%2FMCJMbgToMum3O00Z3nqmF10HSknltQz7%2FfSuqUVsxD7HTGRzZhEhRX2TgjopOkLap0HgsM33zgPGc3lFomGuDvPJ5hwrafzIm7OuMnz0omRK%2BieVAxVh%2Fd0ynBdFc6Hu6kCQObdb2qw%3D%3D');
     controller = AnimationController(
         duration: const Duration(milliseconds: 200), vsync: this);
   }

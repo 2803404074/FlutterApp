@@ -19,6 +19,8 @@ class ImageDownHttp {
     if (_instance == null) {
       _instance = ImageDownHttp._internal();
       dio = new Dio();
+      dio.options.connectTimeout = 5000; // 服务器链接超时，毫秒
+      dio.options.receiveTimeout = 5000; // 响应流上前后两次接受到数据的间隔，毫秒
     }
     return _instance;
   }
