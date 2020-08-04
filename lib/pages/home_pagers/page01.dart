@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutterapp/http/ImageDownHttp.dart';
 import 'package:flutterapp/model/MovieMo.dart';
@@ -56,6 +57,7 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
     setState(() {});
   }
 
+  EasyRefreshController _controller = EasyRefreshController();
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -78,6 +80,7 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
     // TODO: implement build
 
     return ListView.builder(
+      physics: BouncingScrollPhysics(),
       cacheExtent: 3000,
       itemCount: 6,
       itemBuilder: (BuildContext context, int index) {

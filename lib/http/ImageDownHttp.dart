@@ -90,6 +90,7 @@ class ImageDownHttp {
           }
         }
 
+        print('返回加密字符串-------------------------------');
         //回调
         callback(str, true);
       }
