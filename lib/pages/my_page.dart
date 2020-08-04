@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp/pages/collection_page.dart';
 import 'package:flutterapp/pages/extension_page.dart';
 import 'package:flutterapp/pages/feedback_page.dart';
@@ -40,14 +41,16 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                   delegate: SliverChildListDelegate(<Widget>[
 // 头像区域布局
                 Container(
-                  margin: EdgeInsets.fromLTRB(10, 10, 0, 10),
+                  margin: EdgeInsets.fromLTRB(ScreenUtil().setWidth(30),
+                      ScreenUtil().setHeight(46), 0, 0),
                   child: Row(
                     children: <Widget>[
                       GestureDetector(
                         child: ClipOval(
                           child: Image.asset(
                             'images/test.png',
-                            width: 70,
+                            width: ScreenUtil().setWidth(120),
+                            height: ScreenUtil().setHeight(120),
                           ),
                         ),
                         onTap: () {
@@ -60,16 +63,23 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                       Expanded(
                           flex: 1,
                           child: Container(
-                            margin: EdgeInsets.only(left: 10),
+                            margin: EdgeInsets.only(
+                                left: ScreenUtil().setWidth(21)),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
                                   '登录/注册',
                                   style: TextStyle(
-                                      fontSize: 20, color: Colors.black),
+                                      fontSize: ScreenUtil().setSp(32),
+                                      color: Colors.black),
                                 ),
-                                Text('观影次数:100/100')
+                                Text(
+                                  '观影次数:100/100',
+                                  style: TextStyle(
+                                      fontSize: ScreenUtil().setSp(26),
+                                      color: Color.fromRGBO(102, 102, 102, 1)),
+                                )
                               ],
                             ),
                           )),
