@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp/pages/history_page.dart';
 import 'package:flutterapp/pages/home_pagers/page01.dart';
 import 'package:flutterapp/pages/home_pagers/page02.dart';
@@ -56,14 +57,15 @@ class _HomePageState extends State<HomePage>
     return AppBar(
       titleSpacing: 0.0,
       title: Container(
-        margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+        margin: EdgeInsets.fromLTRB(
+            ScreenUtil().setWidth(30), 0, ScreenUtil().setWidth(30), 0),
         child: Row(
           children: <Widget>[
             InkWell(
               child: Image.asset(
                 'images/home_logo.png',
-                width: 40,
-                height: 40,
+                width: ScreenUtil().setWidth(66),
+                height: ScreenUtil().setHeight(66),
               ),
               onTap: () {
                 print('点击了icon');
@@ -72,11 +74,15 @@ class _HomePageState extends State<HomePage>
             Expanded(
                 flex: 1,
                 child: Container(
-                  margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                  margin: EdgeInsets.fromLTRB(ScreenUtil().setWidth(30), 0,
+                      ScreenUtil().setWidth(30), 0),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius:
+                        BorderRadius.circular(ScreenUtil().setWidth(43)),
                     child: Container(
-                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                      color: Color(0x4c000000),
+                      height: ScreenUtil().setHeight(66),
+                      padding: EdgeInsets.only(left: ScreenUtil().setWidth(30)),
                       child: InkWell(
                         onTap: () {
                           showSearch(
@@ -90,26 +96,27 @@ class _HomePageState extends State<HomePage>
                               'images/search.png',
                               width: 17,
                             ),
-                            Text(' '),
+                            SizedBox(
+                              width: ScreenUtil().setWidth(21),
+                            ),
                             Text(
                               '想看什么就点我',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 14, color: Color(0xffFFBCBC)),
+                                  fontSize: ScreenUtil().setSp(24),
+                                  color: Color(0xffFFBCBC)),
                             )
                           ],
                         ),
                       ),
-                      color: Color(0x4c000000),
-                      height: 38,
                     ),
                   ),
                 )),
             GestureDetector(
               child: Image.asset(
                 'images/history.png',
-                width: 25,
-                height: 25,
+                width: ScreenUtil().setWidth(40),
+                height: ScreenUtil().setHeight(40),
               ),
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
@@ -137,7 +144,8 @@ class _HomePageState extends State<HomePage>
         indicatorPadding: EdgeInsets.all(5),
         isScrollable: true,
         controller: mController,
-        labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+        labelStyle: TextStyle(
+            fontSize: ScreenUtil().setSp(32), fontWeight: FontWeight.bold),
         //设置tab选中得颜色
         labelColor: Colors.white,
         //设置tab未选中得颜色

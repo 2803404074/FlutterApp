@@ -40,6 +40,41 @@ class _MyAppPageState extends State<MyApp> with AutomaticKeepAliveClientMixin {
   }
   bool initStatus;
   var base64Str = '';
+
+  @override
+  Widget build(BuildContext context) {
+    //
+    return MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.red,
+        ),
+        home: MainPageHome(this.base64Str, this.initStatus));
+  }
+}
+
+class MainPageHome extends StatefulWidget {
+  var base64Str = '';
+  bool initStatus;
+  MainPageHome(String baseStr, bool initStatus) {
+    print('进入MyApp');
+    this.base64Str = baseStr;
+    this.initStatus = initStatus;
+  }
+  @override
+  _MainPageState createState() =>
+      _MainPageState(this.base64Str, this.initStatus);
+}
+
+class _MainPageState extends State<MainPageHome>
+    with AutomaticKeepAliveClientMixin {
+  bool get wantKeepAlive => true;
+
+  _MainPageState(String base64Str, bool initStatus) {
+    this.base64Str = base64Str;
+    this.initStatus = initStatus;
+  }
+  bool initStatus;
+  var base64Str = '';
   bool isMissingAdv = false;
 
   Timer _timer;
@@ -89,105 +124,96 @@ class _MyAppPageState extends State<MyApp> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
-    //
+    // TODO: implement build
     ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
-    print('广告进入');
-    if (!initStatus) {
-      return showErrMessage(context);
-    } else {
-      return MaterialApp(
-          theme: ThemeData(
-            primarySwatch: Colors.red,
-          ),
-          home: Stack(
+    return Stack(
+      children: <Widget>[
+        TabNavigator(),
+        Offstage(
+          offstage: isMissingAdv,
+          child: Stack(
             children: <Widget>[
-              TabNavigator(),
-              Offstage(
-                offstage: isMissingAdv,
-                child: Stack(
-                  children: <Widget>[
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Expanded(
-                            flex: 1,
-                            child: Container(
-                              color: Colors.white,
-                              width: double.infinity,
-                              child: this.base64Str != ''
-                                  ? Image.memory(
-                                      base64.decode(this.base64Str),
-                                      height: double.infinity,
-                                      width: double.infinity,
-                                      fit: BoxFit.cover,
-                                      gaplessPlayback: true,
-                                    )
-                                  : Container(
-                                      height: double.infinity,
-                                      width: double.infinity,
-                                      color: Colors.red,
-                                    ),
-                            )),
-                        Container(
-                          width: double.infinity,
-                          alignment: Alignment.center,
-                          color: Colors.white,
-                          child: Image.asset(
-                            'images/app_adv_bottom.jpg',
-                            width: 220,
-                            height: 100,
-                          ),
-                        ),
-                      ],
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                      flex: 1,
+                      child: Container(
+                        color: Colors.white,
+                        width: double.infinity,
+                        child: this.base64Str != ''
+                            ? Image.memory(
+                                base64.decode(this.base64Str),
+                                height: double.infinity,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                                gaplessPlayback: true,
+                              )
+                            : Container(
+                                height: double.infinity,
+                                width: double.infinity,
+                                color: Colors.red,
+                              ),
+                      )),
+                  Container(
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    color: Colors.white,
+                    child: Image.asset(
+                      'images/app_adv_bottom.jpg',
+                      width: 220,
+                      height: 100,
                     ),
-                    Container(
-                      alignment: Alignment.topRight,
-                      width: double.infinity,
-                      child: GestureDetector(
-                        child: Container(
-                            width: 40,
-                            height: 40,
-                            margin: EdgeInsets.only(top: 40, right: 20),
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                                color: Color(0x80000000),
-                                borderRadius: BorderRadius.circular(1000)),
-                            child: Stack(
-                              children: <Widget>[
-                                Offstage(
-                                  offstage: count == 0 ? true : false,
-                                  child: Text(
-                                    "$count",
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      color: Colors.white,
-                                      decoration: TextDecoration.none,
-                                    ),
-                                  ),
-                                ),
-                                Offstage(
-                                  offstage: count == 0 ? false : true,
-                                  child: Icon(
-                                    Icons.close,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
-                            )),
-                        onTap: () {
-                          if (count == 0) {
-                            setState(() {
-                              isMissingAdv = true;
-                            });
-                          }
-                        },
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                ],
               ),
+              Container(
+                alignment: Alignment.topRight,
+                width: double.infinity,
+                child: GestureDetector(
+                  child: Container(
+                      width: 40,
+                      height: 40,
+                      margin: EdgeInsets.only(top: 40, right: 20),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Color(0x80000000),
+                          borderRadius: BorderRadius.circular(1000)),
+                      child: Stack(
+                        children: <Widget>[
+                          Offstage(
+                            offstage: count == 0 ? true : false,
+                            child: Text(
+                              "$count",
+                              style: TextStyle(
+                                fontSize: 22,
+                                color: Colors.white,
+                                decoration: TextDecoration.none,
+                              ),
+                            ),
+                          ),
+                          Offstage(
+                            offstage: count == 0 ? false : true,
+                            child: Icon(
+                              Icons.close,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      )),
+                  onTap: () {
+                    if (count == 0) {
+                      setState(() {
+                        isMissingAdv = true;
+                      });
+                    }
+                  },
+                ),
+              )
             ],
-          ));
-    }
+          ),
+        ),
+      ],
+    );
   }
 }
