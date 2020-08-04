@@ -76,6 +76,7 @@ class _HomePageState extends State<HomePage>
                 child: Container(
                   margin: EdgeInsets.fromLTRB(ScreenUtil().setWidth(30), 0,
                       ScreenUtil().setWidth(30), 0),
+                  height: ScreenUtil().setHeight(66),
                   child: ClipRRect(
                     borderRadius:
                         BorderRadius.circular(ScreenUtil().setWidth(43)),

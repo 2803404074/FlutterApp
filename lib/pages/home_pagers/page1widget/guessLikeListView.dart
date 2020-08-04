@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp/http/ImageDownHttp.dart';
 import 'package:flutterapp/model/MovieMo.dart';
 import 'package:flutterapp/pages/player/video_player_pager.dart';
@@ -69,23 +70,25 @@ class _PagesState extends State<GuessLikeListView>
         Text(
           '猜你喜欢',
           textAlign: TextAlign.right,
-          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
+          style: TextStyle(
+              fontWeight: FontWeight.w700, fontSize: ScreenUtil().setSp(32)),
         ),
         Container(
-          margin: EdgeInsets.only(top: 10),
+          margin: EdgeInsets.only(top: ScreenUtil().setHeight(39)),
           child: GridView.builder(
               itemCount: mData.length,
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  //横轴元素个数
-                  crossAxisCount: 2,
-                  //纵轴间距
-                  mainAxisSpacing: 20.0,
-                  //横轴间距
-                  crossAxisSpacing: 10.0,
-                  //子组件宽高长度比例
-                  childAspectRatio: 1.3),
+                //横轴元素个数
+                crossAxisCount: 2,
+                //纵轴间距
+                mainAxisSpacing: 20.0,
+                //横轴间距
+                crossAxisSpacing: ScreenUtil().setWidth(20),
+                //子组件宽高长度比例
+                //childAspectRatio: 1.1,
+              ),
               itemBuilder: (BuildContext context, int index) {
                 return getItemContainer(index);
               }),
@@ -149,8 +152,8 @@ class _PagesState extends State<GuessLikeListView>
         }));
       },
       child: Container(
-        width: 100,
-        height: 100,
+        width: ScreenUtil().setWidth(335),
+        height: ScreenUtil().setHeight(300),
         alignment: Alignment.center,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,17 +167,20 @@ class _PagesState extends State<GuessLikeListView>
                         borderRadius: BorderRadius.circular(5),
                         child: Image.memory(
                           base64.decode(mData[index].decodeStr),
-                          height: 200,
-                          width: double.infinity,
+                          height: ScreenUtil().setWidth(225),
                           fit: BoxFit.cover,
                           gaplessPlayback: true,
                         ))
                     : getImg(index),
               ),
             ),
+            SizedBox(
+              height: ScreenUtil().setHeight(16),
+            ),
             Text(
               aaa,
               overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: ScreenUtil().setSp(24)),
               maxLines: 2,
             )
           ],

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp/http/ImageDownHttp.dart';
 import 'package:flutterapp/model/MovieMo.dart';
 import 'package:flutterapp/pages/player/video_player_pager.dart';
@@ -34,7 +35,7 @@ class _PagesState extends State<RecommentListView>
     // 延时1s执行返回
     Future.delayed(Duration(seconds: 6), () {
       print('执行*********************');
-      for (int i = 0; i < 20; i++) {
+      for (int i = 0; i < 10; i++) {
         MovieMo mo = MovieMo();
         mo.title = '数据$i';
         mo.imgUrl =
@@ -58,12 +59,14 @@ class _PagesState extends State<RecommentListView>
         Text(
           '热门推荐',
           textAlign: TextAlign.right,
-          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
+          style: TextStyle(
+              fontWeight: FontWeight.w700, fontSize: ScreenUtil().setSp(32)),
         ),
         Container(
-          margin: EdgeInsets.only(top: 10),
-          height: 130,
+          margin: EdgeInsets.only(top: ScreenUtil().setHeight(39)),
+          height: ScreenUtil().setHeight(253),
           child: ListView.builder(
+              shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemCount: mData.length,
               itemBuilder: (context, index) {
@@ -80,9 +83,10 @@ class _PagesState extends State<RecommentListView>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Container(
-                        width: 150,
-                        height: 100,
-                        margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                        width: ScreenUtil().setWidth(268),
+                        height: ScreenUtil().setHeight(180),
+                        margin: EdgeInsets.fromLTRB(
+                            0, 0, 10, ScreenUtil().setHeight(16)),
                         child: mData[index].decodeStr != ''
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(5),
@@ -95,10 +99,15 @@ class _PagesState extends State<RecommentListView>
                                 ))
                             : getImg(index),
                       ),
-                      Text(
-                        '数据数',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 2,
+                      Container(
+                        width: ScreenUtil().setWidth(268),
+                        height: ScreenUtil().setHeight(57),
+                        child: Text(
+                          '推荐推荐推荐推荐推荐推荐推荐推荐推荐推荐推荐推荐',
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontSize: ScreenUtil().setSp(24)),
+                          maxLines: 2,
+                        ),
                       )
                     ],
                   ),

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutterapp/http/ImageDownHttp.dart';
 import 'package:flutterapp/model/MovieMo.dart';
@@ -67,7 +68,7 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
           (values, status) {
         advWidget = Image.memory(
           base64.decode(values),
-          height: 150,
+          height: ScreenUtil().setWidth(190),
           width: double.infinity,
           fit: BoxFit.cover,
           gaplessPlayback: true,
@@ -99,7 +100,7 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 10, bottom: 10),
-                    height: 150,
+                    height: ScreenUtil().setHeight(320),
                     child: Swiper(
                       itemCount: 4,
                       itemBuilder: _swiperBuilder,
@@ -121,7 +122,9 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
           case 1:
             {
               return Container(
-                margin: EdgeInsets.only(top: 10),
+                margin: EdgeInsets.only(
+                    top: ScreenUtil().setHeight(40),
+                    bottom: ScreenUtil().setHeight(39)),
                 child: Row(
                   children: <Widget>[
                     Expanded(
@@ -133,15 +136,15 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
                                   placeholder: "images/img_load.jpeg",
                                   image:
                                       'http://p9.pccoo.cn/weixin/20171113/2017111316565418467518_1080_1080.jpg',
-                                  width: 50,
-                                  height: 50,
+                                  height: ScreenUtil().setHeight(100),
                                   fit: BoxFit.cover,
                                 ),
                                 Container(
                                   margin: EdgeInsets.only(top: 8),
                                   child: Text(
                                     '无码素人',
-                                    style: TextStyle(fontSize: 14),
+                                    style: TextStyle(
+                                        fontSize: ScreenUtil().setSp(24)),
                                   ),
                                 )
                               ],
@@ -161,15 +164,16 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
                                   placeholder: "images/img_load.jpeg",
                                   image:
                                       'http://ku.90sjimg.com/element_origin_min_pic/00/86/24/3156eade908f1d1.jpg',
-                                  width: 50,
-                                  height: 50,
+                                  height: ScreenUtil().setHeight(100),
                                   fit: BoxFit.cover,
                                 ),
                                 Container(
                                   margin: EdgeInsets.only(top: 8),
                                   child: Text(
                                     '国产自拍',
-                                    style: TextStyle(fontSize: 14),
+                                    style: TextStyle(
+                                      fontSize: ScreenUtil().setSp(24),
+                                    ),
                                   ),
                                 )
                               ],
@@ -189,15 +193,15 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
                                   placeholder: "images/img_load.jpeg",
                                   image:
                                       'http://e0.ifengimg.com/05/2019/0227/4FF08CBB201C96B45205D381BC106BFE537F4BFE_size19_w300_h300.png',
-                                  width: 50,
-                                  height: 50,
+                                  height: ScreenUtil().setHeight(100),
                                   fit: BoxFit.cover,
                                 ),
                                 Container(
                                   margin: EdgeInsets.only(top: 8),
                                   child: Text(
                                     '人气淑女',
-                                    style: TextStyle(fontSize: 14),
+                                    style: TextStyle(
+                                        fontSize: ScreenUtil().setSp(24)),
                                   ),
                                 )
                               ],
@@ -217,15 +221,15 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
                                   placeholder: "images/img_load.jpeg",
                                   image:
                                       'http://bpic.588ku.com/element_origin_min_pic/17/08/10/3e9752eebe792b296e7c77d860ad8484.jpg%21/fwfh/804x804/quality/90/unsharp/true/compress/true',
-                                  width: 50,
-                                  height: 50,
+                                  height: ScreenUtil().setHeight(100),
                                   fit: BoxFit.cover,
                                 ),
                                 Container(
                                   margin: EdgeInsets.only(top: 8),
                                   child: Text(
                                     '角色扮演',
-                                    style: TextStyle(fontSize: 14),
+                                    style: TextStyle(
+                                        fontSize: ScreenUtil().setSp(24)),
                                   ),
                                 )
                               ],
@@ -243,12 +247,16 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
           case 2:
             {
               return Container(
-                margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                margin: EdgeInsets.fromLTRB(
+                    ScreenUtil().setWidth(20),
+                    ScreenUtil().setHeight(0),
+                    ScreenUtil().setWidth(20),
+                    ScreenUtil().setHeight(0)),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: advWidget == null
                       ? SizedBox(
-                          height: 150,
+                          height: ScreenUtil().setWidth(190),
                         )
                       : advWidget,
                 ),
@@ -257,21 +265,33 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
           case 3:
             {
               return Container(
-                margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                margin: EdgeInsets.fromLTRB(
+                    ScreenUtil().setWidth(20),
+                    ScreenUtil().setHeight(50),
+                    ScreenUtil().setWidth(20),
+                    ScreenUtil().setHeight(50)),
                 child: RecommentListView(),
               );
             }
           case 4:
             {
               return Container(
-                margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                margin: EdgeInsets.fromLTRB(
+                    ScreenUtil().setWidth(20),
+                    ScreenUtil().setHeight(0),
+                    ScreenUtil().setWidth(20),
+                    ScreenUtil().setHeight(50)),
                 child: GuessLikeListView(),
               );
             }
           case 5:
             {
               return Container(
-                margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                margin: EdgeInsets.fromLTRB(
+                    ScreenUtil().setWidth(20),
+                    ScreenUtil().setHeight(0),
+                    ScreenUtil().setWidth(20),
+                    ScreenUtil().setHeight(50)),
                 child: ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
@@ -350,12 +370,15 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
           'http://image.i438500.com/storage/images/video/thumbnail/d834f6a7f0dc4419c426ea952cf73bb5.raw!t!70!600.js',
           (values, status) {
         bannerWidget[index] = Container(
-          padding: EdgeInsets.only(left: 10, right: 10),
+          padding: EdgeInsets.only(
+            left: ScreenUtil().setWidth(20),
+            right: ScreenUtil().setWidth(20),
+          ),
           child: ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.memory(
                 base64.decode(values),
-                height: 200,
+                height: ScreenUtil().setHeight(320),
                 width: double.infinity,
                 fit: BoxFit.cover,
                 gaplessPlayback: true,
@@ -364,11 +387,10 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
         setState(() {});
       });
       return Container(
-        padding: EdgeInsets.only(left: 10, right: 10),
         child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: SizedBox(
-              height: 200,
+              height: ScreenUtil().setHeight(320),
             )),
       );
     }
