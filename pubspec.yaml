@@ -33,6 +33,8 @@ dependencies:
 
   flutter_easyrefresh: ^2.1.4
 
+  flutter_screenutil: ^0.4.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

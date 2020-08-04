@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp/main_helpe.dart';
 import 'navigator/tab_navigator.dart';
 
@@ -89,6 +90,7 @@ class _MyAppPageState extends State<MyApp> with AutomaticKeepAliveClientMixin {
   @override
   Widget build(BuildContext context) {
     //
+    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
     print('广告进入');
     if (!initStatus) {
       return showErrMessage(context);
