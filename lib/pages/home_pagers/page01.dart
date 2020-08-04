@@ -298,7 +298,6 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
                     itemCount: mTypeData.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        margin: EdgeInsets.only(top: 30),
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -306,7 +305,8 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
                                 mTypeData[index].title,
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w700, fontSize: 18),
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: ScreenUtil().setSp(32)),
                               ),
                               GestureDetector(
                                 onTap: () {
@@ -318,8 +318,9 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
                                   }));
                                 },
                                 child: Container(
-                                  margin: EdgeInsets.only(top: 10),
-                                  height: 200,
+                                  margin: EdgeInsets.only(
+                                      top: ScreenUtil().setHeight(39)),
+                                  height: ScreenUtil().setHeight(464),
                                   child: judge(index)
                                       ? getTypeListFirstImage(index)
                                       : ClipRRect(
@@ -336,6 +337,9 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
                                           ),
                                         ),
                                 ),
+                              ),
+                              SizedBox(
+                                height: ScreenUtil().setHeight(16),
                               ),
                               Text(
                                 mTypeData[index].list[0].title,

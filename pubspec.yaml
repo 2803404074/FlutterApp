@@ -71,6 +71,16 @@ flutter:
    - images/home_logo.png
    - images/history.png
    - images/search.png
+   - images/nav_extension.png
+   - images/nav_extension_h.png
+   - images/nav_game.png
+   - images/nav_game_h.png
+   - images/nav_home.png
+   - images/nav_home_h.png
+   - images/nav_person.png
+   - images/nav_person_h.png
+   - images/nav_type.png
+   - images/nav_type_h.png
 
 
   #  - images/a_dot_ham.jpeg

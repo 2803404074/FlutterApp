@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp/http/ImageDownHttp.dart';
 import 'package:flutterapp/pages/player/video_player_pager.dart';
 
@@ -87,17 +88,20 @@ class _PagesState extends State<Page02> with AutomaticKeepAliveClientMixin {
                             ? getBase64(index)
                             : Image.memory(
                                 base64.decode(list[index].base64Str),
-                                height: 200,
+                                height: ScreenUtil().setHeight(300),
                                 width: double.infinity,
                                 fit: BoxFit.cover,
                                 gaplessPlayback: true,
                               ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(top: 10, bottom: 20),
+                        margin: EdgeInsets.only(
+                          top: ScreenUtil().setHeight(20),
+                          bottom: ScreenUtil().setHeight(40),
+                        ),
                         child: Text(
                           '啊啊啊啊啊啊啊啊啊啊啊啊啊啊',
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: ScreenUtil().setSp(24)),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),

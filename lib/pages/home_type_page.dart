@@ -42,6 +42,7 @@ class _SearchPageState extends State<HomeTypePage>
           ),
           body: Container(
             child: ListView.builder(
+                physics: BouncingScrollPhysics(),
                 itemCount: 7,
                 itemBuilder: (context, ids) {
                   return GestureDetector(

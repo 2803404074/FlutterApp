@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp/http/ImageDownHttp.dart';
 import 'package:flutterapp/model/MovieMo.dart';
 import 'package:flutterapp/model/MovieMoList.dart';
@@ -41,31 +42,32 @@ class _PagesState extends State<TypeListView>
     /// see AutomaticKeepAliveClientMixin
     // TODO: implement build
     return Container(
-      margin: EdgeInsets.only(top: 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            margin: EdgeInsets.only(top: 10),
-            height: 320,
+            margin: EdgeInsets.only(top: ScreenUtil().setHeight(20)),
             child: GridView.builder(
                 itemCount: mData.length,
+                shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    //横轴元素个数
-                    crossAxisCount: 2,
-                    //纵轴间距
-                    mainAxisSpacing: 20.0,
-                    //横轴间距
-                    crossAxisSpacing: 10.0,
-                    //子组件宽高长度比例
-                    childAspectRatio: 1.3),
+                  //横轴元素个数
+                  crossAxisCount: 2,
+                  //纵轴间距
+                  mainAxisSpacing: 20.0,
+                  //横轴间距
+                  crossAxisSpacing: ScreenUtil().setWidth(20),
+                  //子组件宽高长度比例
+                  //childAspectRatio: 1.3,
+                ),
                 itemBuilder: (BuildContext context, int index) {
                   return getItemContainer(index);
                 }),
           ),
           Container(
-            margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+            margin: EdgeInsets.fromLTRB(
+                30, ScreenUtil().setHeight(40), 30, ScreenUtil().setHeight(50)),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Container(
@@ -75,15 +77,18 @@ class _PagesState extends State<TypeListView>
                   children: <Widget>[
                     Image.asset(
                       'images/home_more.png',
-                      width: 20,
+                      width: ScreenUtil().setWidth(27),
+                      height: ScreenUtil().setHeight(26),
                       fit: BoxFit.cover,
                     ),
-                    Text(' '),
+                    SizedBox(
+                      width: ScreenUtil().setWidth(12),
+                    ),
                     Text(
                       '更多',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 14),
-                    )
+                      style: TextStyle(fontSize: ScreenUtil().setSp(24)),
+                    ),
                   ],
                 ),
                 color: Color(0x80DCDCDC),
@@ -106,8 +111,8 @@ class _PagesState extends State<TypeListView>
         }));
       },
       child: Container(
-        width: 100,
-        height: 100,
+        width: ScreenUtil().setWidth(335),
+        height: ScreenUtil().setHeight(300),
         alignment: Alignment.center,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,16 +124,20 @@ class _PagesState extends State<TypeListView>
                       borderRadius: BorderRadius.circular(5),
                       child: Image.memory(
                         base64.decode(mData[index].decodeStr),
-                        height: 200,
+                        height: ScreenUtil().setWidth(225),
                         width: double.infinity,
                         fit: BoxFit.cover,
                         gaplessPlayback: true,
                       ))
                   : getImg(index),
             ),
+            SizedBox(
+              height: ScreenUtil().setHeight(16),
+            ),
             Text(
               '数据数',
               overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: ScreenUtil().setSp(24)),
               maxLines: 2,
             )
           ],

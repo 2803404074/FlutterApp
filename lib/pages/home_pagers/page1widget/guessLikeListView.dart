@@ -114,7 +114,8 @@ class _PagesState extends State<GuessLikeListView>
                       //将要执行动画的子view
                       child: Image.asset(
                         'images/home_change.png',
-                        width: 20,
+                        width: ScreenUtil().setWidth(26),
+                        height: ScreenUtil().setHeight(26),
                         fit: BoxFit.cover,
                       ),
                       //设置动画的旋转中心
@@ -128,7 +129,7 @@ class _PagesState extends State<GuessLikeListView>
                     Text(
                       '换一换',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 14),
+                      style: TextStyle(fontSize: ScreenUtil().setSp(24)),
                     )
                   ],
                 ),

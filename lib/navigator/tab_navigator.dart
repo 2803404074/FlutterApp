@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp/pages/home_page.dart';
 import 'package:flutterapp/pages/my_page.dart';
 import 'package:flutterapp/pages/home_type_page.dart';
@@ -49,13 +50,15 @@ class _TabNavigatorState extends State<TabNavigator> {
           type: BottomNavigationBarType.fixed,
           items: [
             BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home,
-                  color: Colors.grey,
+                icon: Image.asset(
+                  'images/nav_home_h.png',
+                  width: ScreenUtil().setWidth(60),
+                  height: ScreenUtil().setHeight(60),
                 ),
-                activeIcon: Icon(
-                  Icons.home,
-                  color: Colors.red,
+                activeIcon: Image.asset(
+                  'images/nav_home.png',
+                  width: ScreenUtil().setWidth(60),
+                  height: ScreenUtil().setHeight(60),
                 ),
                 title: Text(
                   '首页',
@@ -63,13 +66,15 @@ class _TabNavigatorState extends State<TabNavigator> {
                       color: _currentIndex != 0 ? Colors.grey : Colors.red),
                 )),
             BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.merge_type,
-                  color: Colors.grey,
+                icon: Image.asset(
+                  'images/nav_type_h.png',
+                  width: ScreenUtil().setWidth(60),
+                  height: ScreenUtil().setHeight(60),
                 ),
-                activeIcon: Icon(
-                  Icons.merge_type,
-                  color: Colors.red,
+                activeIcon: Image.asset(
+                  'images/nav_type.png',
+                  width: ScreenUtil().setWidth(60),
+                  height: ScreenUtil().setHeight(60),
                 ),
                 title: Text(
                   '分类',
@@ -77,13 +82,15 @@ class _TabNavigatorState extends State<TabNavigator> {
                       color: _currentIndex != 1 ? Colors.grey : Colors.red),
                 )),
             BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.games,
-                  color: Colors.grey,
+                icon: Image.asset(
+                  'images/nav_game_h.png',
+                  width: ScreenUtil().setWidth(60),
+                  height: ScreenUtil().setHeight(60),
                 ),
-                activeIcon: Icon(
-                  Icons.games,
-                  color: Colors.red,
+                activeIcon: Image.asset(
+                  'images/nav_game.png',
+                  width: ScreenUtil().setWidth(60),
+                  height: ScreenUtil().setHeight(60),
                 ),
                 title: Text(
                   '游戏',
@@ -91,13 +98,15 @@ class _TabNavigatorState extends State<TabNavigator> {
                       color: _currentIndex != 2 ? Colors.grey : Colors.red),
                 )),
             BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.extension,
-                  color: Colors.grey,
+                icon: Image.asset(
+                  'images/nav_extension_h.png',
+                  width: ScreenUtil().setWidth(60),
+                  height: ScreenUtil().setHeight(60),
                 ),
-                activeIcon: Icon(
-                  Icons.extension,
-                  color: Colors.red,
+                activeIcon: Image.asset(
+                  'images/nav_extension.png',
+                  width: ScreenUtil().setWidth(60),
+                  height: ScreenUtil().setHeight(60),
                 ),
                 title: Text(
                   '推广',
@@ -105,13 +114,15 @@ class _TabNavigatorState extends State<TabNavigator> {
                       color: _currentIndex != 3 ? Colors.grey : Colors.red),
                 )),
             BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.account_circle,
-                  color: Colors.grey,
+                icon: Image.asset(
+                  'images/nav_person_h.png',
+                  width: ScreenUtil().setWidth(60),
+                  height: ScreenUtil().setHeight(60),
                 ),
-                activeIcon: Icon(
-                  Icons.account_circle,
-                  color: Colors.red,
+                activeIcon: Image.asset(
+                  'images/nav_person.png',
+                  width: ScreenUtil().setWidth(60),
+                  height: ScreenUtil().setHeight(60),
                 ),
                 title: Text(
                   '我的',
