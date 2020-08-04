@@ -32,7 +32,9 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
     player = FijkPlayer();
     player.setOption(FijkOption.formatCategory, "headers",
         "token:094f4c94d24411ea898966ee0bdf668a");
-    player.setDataSource(widget.url, autoPlay: true);
+    player.setDataSource(
+        "http://video.699pic.com/videos/32/71/72/a_yGHZgiIa2dfV1560327172.mp4",
+        autoPlay: true);
   }
 
   void onResum() {

@@ -73,6 +73,7 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
 
   /// 进度条当前进度
   double sliderValue = 0.0;
+  double volumeValue = 0.0;
 
   @override
   void initState() {
@@ -158,12 +159,24 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
         },
         onHorizontalDragUpdate: (details) {
           windowDx = details.globalPosition;
-
-          this.sliderValue += (windowDx.dx - finstDownDx.dx) * 20;
+          if ((windowDx.dx - finstDownDx.dx) > 0) {
+            this.sliderValue += (windowDx.dx - finstDownDx.dx) * 20;
+          } else {
+            this.sliderValue += (windowDx.dx - finstDownDx.dx) * 15;
+          }
         },
         onHorizontalDragEnd: (details) {
           print('现在进度 = $sliderValue');
           setState(() => player.seekTo(this.sliderValue.toInt()));
+        },
+        onVerticalDragDown: (details) {
+          this.volumeValue = details.globalPosition.dy;
+        },
+        onVerticalDragUpdate: (details) {
+          this.volumeValue = details.globalPosition.dy;
+        },
+        onVerticalDragEnd: (details) {
+          this.player.setVolume(volumeValue);
         },
         child: Container(
             color: Color.fromRGBO(0, 0, 0, 0.0),
