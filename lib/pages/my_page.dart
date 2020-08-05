@@ -85,11 +85,11 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                           )),
                       ClipRRect(
                         borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(15),
-                            bottomLeft: Radius.circular(15)),
+                            topLeft: Radius.circular(30),
+                            bottomLeft: Radius.circular(30)),
                         child: Container(
                           padding: EdgeInsets.fromLTRB(15, 10, 15, 10),
-                          color: Color(0xffFFF8F8),
+                          color: Color(0x08FF2825),
                           child: Text(
                             '推广人数 8',
                             style: TextStyle(color: Color(0xffFF2825)),
@@ -102,47 +102,73 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
 
                 //等级推广
                 Container(
-                  margin: EdgeInsets.all(10),
+                  margin: EdgeInsets.only(
+                    left: ScreenUtil().setWidth(30),
+                    right: ScreenUtil().setWidth(30),
+                    top: ScreenUtil().setWidth(42),
+                  ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(6.0),
                     child: Container(
-                      color: Colors.yellow,
-                      height: 80,
+                      height: ScreenUtil().setHeight(160),
+                      color: Color(0x0DFF2825),
                       child: Row(
                         children: <Widget>[
                           Container(
-                            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                            margin: EdgeInsets.only(
+                                left: ScreenUtil().setWidth(34)),
                             child: Image.asset(
                               'images/test.png',
-                              width: 50,
+                              width: ScreenUtil().setWidth(97),
+                              height: ScreenUtil().setHeight(92),
                             ),
                           ),
-                          Expanded(
-                              flex: 1,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Text(
+                          Padding(
+                            padding: EdgeInsets.only(
+                                left: ScreenUtil().setWidth(30)),
+                            child: Column(
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: ScreenUtil().setHeight(44)),
+                                  child: Text(
                                     '当前LV5.超凡大师',
                                     style: TextStyle(
-                                        fontSize: 16, color: Colors.black),
+                                      fontSize: ScreenUtil().setSp(30),
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                     textAlign: TextAlign.center,
                                   ),
-                                  Text('距离下一个等级还差 0',
-                                      textAlign: TextAlign.center),
-                                ],
-                              )),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: ScreenUtil().setHeight(22)),
+                                  child: Text(
+                                    '距离下一个等级还差 0',
+                                    style: TextStyle(
+                                        fontSize: ScreenUtil().setSp(24),
+                                        color:
+                                            Color.fromRGBO(102, 102, 102, 1)),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                           Container(
                             alignment: Alignment.center,
-                            margin: EdgeInsets.only(right: 20),
+                            margin: EdgeInsets.only(
+                                left: ScreenUtil().setWidth(80)),
                             child: GradientButton(
                               child: Text(
-                                '立即推广',
+                                '推广升级',
+                                style:
+                                    TextStyle(fontSize: ScreenUtil().setSp(26)),
                                 textAlign: TextAlign.center,
                               ),
-                              height: 35,
-                              width: 80,
+                              height: ScreenUtil().setHeight(60),
+                              width: ScreenUtil().setWidth(174),
                               colors: [Color(0xffFF5B59), Color(0xffFF2825)],
                               onPressed: () {
                                 Navigator.push(context,
@@ -162,14 +188,17 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
 
                 //观看历史
                 Container(
-                  margin: EdgeInsets.fromLTRB(10, 10, 3, 10),
+                  margin: EdgeInsets.only(
+                    top: ScreenUtil().setHeight(40),
+                    left: ScreenUtil().setWidth(30),
+                  ),
                   child: Row(
                     children: <Widget>[
                       Text(
                         '观看历史',
                         style: TextStyle(
                             color: Colors.black,
-                            fontSize: 18,
+                            fontSize: ScreenUtil().setSp(28),
                             fontWeight: FontWeight.w600),
                       ),
                       Expanded(
@@ -183,16 +212,22 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                             return HistoryPage();
                           }));
                         },
-                        child: IconText(
-                          '全部',
-                          direction: Axis.horizontal,
-                          position: 0,
-                          padding: EdgeInsets.all(2),
-                          style:
-                              TextStyle(fontSize: 15, color: Color(0xff7A7A7A)),
-                          icon: Icon(
-                            Icons.navigate_next,
-                            color: Color(0xff7A7A7A),
+                        child: Container(
+                          margin:
+                              EdgeInsets.only(right: ScreenUtil().setWidth(30)),
+                          child: IconText(
+                            '全部',
+                            direction: Axis.horizontal,
+                            position: 0,
+                            padding: EdgeInsets.only(
+                                left: ScreenUtil().setWidth(16)),
+                            style: TextStyle(
+                                fontSize: ScreenUtil().setSp(26),
+                                color: Color.fromRGBO(102, 102, 102, 1)),
+                            icon: Icon(
+                              Icons.navigate_next,
+                              color: Color(0xff7A7A7A),
+                            ),
                           ),
                         ),
                       ),
@@ -201,8 +236,11 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                 ),
 
                 Container(
-                  margin: EdgeInsets.only(left: 10, right: 10),
-                  height: 150,
+                  margin: EdgeInsets.only(
+                    left: ScreenUtil().setWidth(30),
+                    top: ScreenUtil().setHeight(34),
+                  ),
+                  // height: ScreenUtil().setHeight(209),
                   child: GestureDetector(
                     onTap: () {
                       Navigator.push(context,
@@ -219,11 +257,13 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                         return Column(
                           children: <Widget>[
                             Container(
-                              width: 150,
-                              height: 100,
-                              margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                              width: ScreenUtil().setWidth(246),
+                              height: ScreenUtil().setHeight(140),
+                              margin: EdgeInsets.only(
+                                  right: ScreenUtil().setWidth(16)),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(5),
+                                borderRadius: BorderRadius.circular(
+                                    ScreenUtil().setWidth(4)),
                                 child: Image.network(
                                   'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2307511656,3386189028&fm=26&gp=0.jpg',
                                   fit: BoxFit.cover,
@@ -231,11 +271,17 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                               ),
                             ),
                             Container(
-                              width: 150,
+                              margin: EdgeInsets.only(
+                                  top: ScreenUtil().setWidth(16)),
+                              width: ScreenUtil().setWidth(246),
                               child: Text(
                                 '酒店偷拍 经验丰酒店偷拍 经验丰酒店偷拍 经验丰',
+                                style: TextStyle(
+                                    color: Color(0xff333333),
+                                    fontSize: ScreenUtil().setSp(24)),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 2,
+                                textAlign: TextAlign.left,
                               ),
                             )
                           ],
