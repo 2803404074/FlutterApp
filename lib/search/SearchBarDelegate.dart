@@ -65,12 +65,16 @@ class SearchBarDelegate extends SearchDelegate<String> {
   ThemeData appBarTheme(BuildContext context) {
     //return super.appBarTheme(context);
     return ThemeData(
-        primaryColor: Colors.red,
-        primaryIconTheme: IconThemeData(color: Colors.white),
-        primaryColorBrightness: Brightness.light,
-        inputDecorationTheme: InputDecorationTheme(
-          hintStyle: TextStyle(color: Colors.white),
-        ));
+      primaryColor: Colors.red,
+      primaryIconTheme: IconThemeData(color: Colors.white),
+      primaryColorBrightness: Brightness.light,
+      inputDecorationTheme: InputDecorationTheme(
+        hintStyle: TextStyle(color: Colors.white),
+        border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.green),
+            borderRadius: BorderRadius.all(Radius.circular(5))),
+      ),
+    );
   }
 }
 

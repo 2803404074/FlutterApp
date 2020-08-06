@@ -236,6 +236,7 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                 ),
 
                 Container(
+                  height: ScreenUtil().setHeight(250),
                   margin: EdgeInsets.only(
                     left: ScreenUtil().setWidth(30),
                     top: ScreenUtil().setHeight(34),
@@ -253,6 +254,7 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
                     child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: 10,
+                      shrinkWrap: true,
                       itemBuilder: (context, ids) {
                         return Column(
                           children: <Widget>[
