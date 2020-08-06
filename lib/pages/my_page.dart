@@ -56,20 +56,20 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
               item = bigLin(ScreenUtil().setHeight(20), 0);
               break;
             case 6:
-              item = functionView('我的收藏', 'images/collection.png');
+              item = functionView('我的收藏', 'images/collection@2x.png');
               break;
             case 7:
               item =
                   bigLin(ScreenUtil().setHeight(2), ScreenUtil().setWidth(30));
               break;
             case 8:
-              item = functionView('意见反馈', 'images/collection.png');
+              item = functionView('意见反馈', 'images/feedBack@2x.png');
               break;
             case 9:
               item = bigLin(ScreenUtil().setHeight(20), 0);
               break;
             case 10:
-              item = functionView('退出登录', 'images/collection.png');
+              item = functionView('退出登录', 'images/logout@2x.png');
               break;
             case 11:
               item = bigLin(ScreenUtil().setHeight(20), 0);
@@ -318,10 +318,11 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
         children: <Widget>[
           Image.asset(
             imgAsst,
-            width: 20,
+            width: ScreenUtil().setWidth(35),
+            height: ScreenUtil().setHeight(37),
           ),
           Container(
-            margin: EdgeInsets.only(left: 5),
+            margin: EdgeInsets.only(left: ScreenUtil().setWidth(20)),
             child: Text(title),
           ),
           Expanded(
@@ -330,6 +331,7 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
           ),
           Icon(
             Icons.navigate_next,
+            size: ScreenUtil().setWidth(28),
             color: Color(0xff7A7A7A),
           )
         ],

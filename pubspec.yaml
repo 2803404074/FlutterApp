@@ -57,7 +57,6 @@ flutter:
    - images/test.png
    - images/home_change.png
    - images/home_more.png
-   - images/collection.png
    - images/img_load.jpeg
    - images/generalize.png
    - images/extension_top_bg.png
@@ -83,6 +82,12 @@ flutter:
    - images/nav_type_h.png
    - images/saveewm.png
    - images/extension_top_logo.png
+   - images/logout@2x.png
+   - images/logout@3x.png
+   - images/feedBack@2x.png
+   - images/feedBack@3x.png
+   - images/collection@2x.png
+   - images/collection@3x.png
 
 
   #  - images/a_dot_ham.jpeg
