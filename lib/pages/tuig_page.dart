@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp/http/CMApi.dart';
 import 'package:flutterapp/http/CMMethod.dart';
 import 'package:flutterapp/http/DioManager.dart';
@@ -41,55 +42,77 @@ class _TuigPageState extends State<TuigPage>
           Container(
             width: double.infinity,
             height: double.infinity,
-            padding: EdgeInsets.fromLTRB(10, 0, 10, 20),
+            padding: EdgeInsets.fromLTRB(ScreenUtil().setHeight(30), 0,
+                ScreenUtil().setHeight(30), ScreenUtil().setHeight(45)),
             alignment: Alignment.bottomCenter,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
               child: Container(
                 padding: EdgeInsets.only(top: 20, bottom: 10),
                 width: double.infinity,
-                height: 260,
+                height: ScreenUtil().setHeight(388),
                 color: Colors.white,
                 // 二维码区域
                 child: Column(
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.only(left: 30, right: 30),
+                      padding: EdgeInsets.only(left: 0, right: 0),
                       child: Row(
                         children: <Widget>[
-                          Image.asset(
-                            "images/img_load.jpeg",
-                            fit: BoxFit.cover,
-                            width: 120,
-                            height: 120,
+                          Expanded(
+                            child: Container(
+                              alignment: Alignment.center,
+                              child: Image.asset(
+                                "images/img_load.jpeg",
+                                fit: BoxFit.cover,
+                                width: ScreenUtil().setWidth(191),
+                                height: ScreenUtil().setHeight(191),
+                              ),
+                            ),
                           ),
-                          Expanded(child: Text('')),
-                          Column(
+                          Expanded(
+                              child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               Text(
                                 "LYSMUS",
                                 style: TextStyle(
-                                  fontSize: 35,
+                                  fontSize: ScreenUtil().setSp(56),
                                   fontWeight: FontWeight.w700,
                                   color: Colors.black,
                                 ),
                               ),
-                              Text(
-                                "你的推广码",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  decoration: TextDecoration.underline,
+                              Container(
+                                margin: EdgeInsets.only(
+                                  top: ScreenUtil().setHeight(22),
                                 ),
+                                child: Text(
+                                  "你的推广码",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: ScreenUtil().setSp(26),
+                                    color: Color(0xff333333),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(
+                                    top: ScreenUtil().setHeight(22)),
+                                width: ScreenUtil().setWidth(60),
+                                height: ScreenUtil().setHeight(2),
+                                color: Colors.black,
                               )
                             ],
-                          ),
+                          )),
                         ],
                       ),
                     ),
                     // 虚线
                     Container(
-                      margin: EdgeInsets.only(top: 20, bottom: 10),
+                      margin: EdgeInsets.only(
+                        top: ScreenUtil().setHeight(30),
+                        bottom: ScreenUtil().setHeight(20),
+                      ),
                       child: dashedLine(
                         axis: Axis.horizontal,
                         count: 45,
@@ -107,28 +130,24 @@ class _TuigPageState extends State<TuigPage>
                         children: <Widget>[
                           Expanded(
                             child: Container(
-                              height: 50,
-                              margin: EdgeInsets.only(right: 10, left: 20),
-                              child: RaisedButton(
-                                onPressed: () {},
-                                elevation: 0,
-                                color: Colors.red[300],
-                                child: Text(
-                                  "保存二维码",
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(25.0)),
+                              margin: EdgeInsets.only(
+                                  left: ScreenUtil().setWidth(30),
+                                  right: ScreenUtil().setWidth(15)),
+                              height: ScreenUtil().setHeight(78),
+                              width: ScreenUtil().setWidth(300),
+                              child: Image.asset(
+                                'images/saveewm.png',
+                                fit: BoxFit.fill,
                               ),
                             ),
                           ),
                           Expanded(
                             child: Container(
-                              height: 50,
-                              margin: EdgeInsets.only(left: 10, right: 20),
+                              height: ScreenUtil().setHeight(78),
+                              width: ScreenUtil().setWidth(300),
+                              margin: EdgeInsets.only(
+                                  left: ScreenUtil().setWidth(15),
+                                  right: ScreenUtil().setWidth(30)),
                               alignment: Alignment.center,
                               decoration: new BoxDecoration(
                                 color: Colors.white,
@@ -139,8 +158,9 @@ class _TuigPageState extends State<TuigPage>
                               ),
                               child: Text(
                                 "复制推广链接",
-                                style:
-                                    TextStyle(color: Colors.red, fontSize: 20),
+                                style: TextStyle(
+                                    color: Colors.red,
+                                    fontSize: ScreenUtil().setSp(28)),
                               ),
                             ),
                           ),
@@ -157,7 +177,7 @@ class _TuigPageState extends State<TuigPage>
             width: double.infinity,
             height: double.infinity,
             alignment: Alignment.bottomCenter,
-            padding: EdgeInsets.only(bottom: 258),
+            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(400)),
             child: Container(
               //transform: Matrix4.identity()..rotateY(90),
               child: Icon(
@@ -165,6 +185,30 @@ class _TuigPageState extends State<TuigPage>
                 size: 40,
                 color: Colors.white,
               ),
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            alignment: Alignment.bottomCenter,
+            padding: EdgeInsets.only(bottom: ScreenUtil().setHeight(468)),
+            child: Text(
+              '分享好友立即增加观影次数',
+              style: TextStyle(
+                fontSize: ScreenUtil().setSp(44),
+                color: Colors.white,
+              ),
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            height: double.infinity,
+            alignment: Alignment.topCenter,
+            padding: EdgeInsets.only(top: ScreenUtil().setHeight(48)),
+            child: Image.asset(
+              'images/extension_top_logo.png',
+              width: ScreenUtil().setWidth(233),
+              height: ScreenUtil().setHeight(72),
             ),
           )
         ],

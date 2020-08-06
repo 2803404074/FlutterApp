@@ -62,7 +62,11 @@ class _TypePageState extends State<TypePage>
             color: Colors.white,
           ),
         ),
-        leading: Icon(Icons.navigate_before),
+        leading: IconButton(
+            icon: Icon(Icons.navigate_before),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
         elevation: 0,
         backgroundColor: Colors.red,
         bottom: PreferredSize(
