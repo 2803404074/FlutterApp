@@ -41,68 +41,66 @@ class _SearchPageState extends State<HomeTypePage>
                   fontWeight: FontWeight.w700),
             ),
           ),
-          body: Container(
-            child: ListView.builder(
-                physics: BouncingScrollPhysics(),
-                itemCount: 7,
-                itemBuilder: (context, ids) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return TypePage();
-                      }));
-                    },
-                    child: Stack(
-                      children: <Widget>[
-                        Container(
-                          height: ScreenUtil().setHeight(300),
-                          margin: EdgeInsets.only(
-                              bottom: ScreenUtil().setHeight(30)),
-                          width: double.infinity,
-                          child: Card(
-                            elevation: 10,
-                            clipBehavior: Clip.antiAlias,
-                            margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15.0))),
-                            child: Image.network(
-                              '${listImg[ids]}',
-                              fit: BoxFit.cover,
-                            ),
+          body: ListView.builder(
+              cacheExtent: 1000,
+              physics: BouncingScrollPhysics(),
+              itemCount: 7,
+              itemBuilder: (context, ids) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return TypePage();
+                    }));
+                  },
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        height: ScreenUtil().setHeight(300),
+                        margin:
+                            EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
+                        width: double.infinity,
+                        child: Card(
+                          elevation: 10,
+                          clipBehavior: Clip.antiAlias,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15.0))),
+                          child: Image.network(
+                            '${listImg[ids]}',
+                            fit: BoxFit.cover,
                           ),
                         ),
-                        Container(
-                          height: ScreenUtil().setHeight(300),
-                          width: double.infinity,
-                          margin: EdgeInsets.only(
-                              bottom: ScreenUtil().setHeight(30)),
-                          child: Card(
-                            elevation: 0,
-                            color: Color(0x00000000),
-                            clipBehavior: Clip.antiAlias,
-                            margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15.0))),
-                            child: Container(
-                              padding: EdgeInsets.fromLTRB(
-                                  ScreenUtil().setHeight(60),
-                                  ScreenUtil().setHeight(40),
-                                  30,
-                                  0),
-                              decoration:
-                                  BoxDecoration(color: Color(0x4D000000)),
-                              child: _judgeItemType(ids),
-                            ),
+                      ),
+                      Container(
+                        height: ScreenUtil().setHeight(300),
+                        width: double.infinity,
+                        margin:
+                            EdgeInsets.only(bottom: ScreenUtil().setHeight(30)),
+                        child: Card(
+                          elevation: 0,
+                          color: Color(0x00000000),
+                          clipBehavior: Clip.antiAlias,
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                          shape: RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15.0))),
+                          child: Container(
+                            padding: EdgeInsets.fromLTRB(
+                                ScreenUtil().setHeight(60),
+                                ScreenUtil().setHeight(40),
+                                30,
+                                0),
+                            decoration: BoxDecoration(color: Color(0x4D000000)),
+                            child: _judgeItemType(ids),
                           ),
-                        )
-                      ],
-                    ),
-                  );
-                }),
-          ));
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }));
     } else {
       print('分类缓存页');
     }

@@ -71,7 +71,7 @@ class SearchBarDelegate extends SearchDelegate<String> {
       inputDecorationTheme: InputDecorationTheme(
         hintStyle: TextStyle(color: Colors.white),
         border: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.green),
+            borderSide: BorderSide(color: Colors.green, width: 5),
             borderRadius: BorderRadius.all(Radius.circular(5))),
       ),
     );

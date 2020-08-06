@@ -5,7 +5,6 @@ import 'package:flutterapp/pages/my_page.dart';
 import 'package:flutterapp/pages/home_type_page.dart';
 import 'package:flutterapp/pages/game_page.dart';
 import 'package:flutterapp/pages/tuig_page.dart';
-import 'package:flutterapp/util/EventBus.dart';
 
 class TabNavigator extends StatefulWidget {
   @override
@@ -14,28 +13,97 @@ class TabNavigator extends StatefulWidget {
 
 class _TabNavigatorState extends State<TabNavigator> {
   List<Widget> pages = List();
+
+  List<NavItemMo> navItemMoList = List();
+
   var _currentIndex = 0;
 
   // final PageController _controller = PageController(initialPage: 0);
 
+  bool one = false;
+  bool tow = false;
+  bool three = false;
+  bool four = false;
+  bool five = false;
+
+  //是否需要广告页期间加载基本功能页面，首页、分类、游戏、推广、我的
+  bool isNeedAllLoad = true;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    pages
-      ..add(HomePage())
-      ..add(HomeTypePage())
-      ..add(GamePage())
-      ..add(TuigPage())
-      ..add(MyPage());
+    if (isNeedAllLoad) {
+      pages
+        ..add(HomePage())
+        ..add(HomeTypePage())
+        ..add(GamePage())
+        ..add(TuigPage())
+        ..add(MyPage());
+    } else {
+      pages
+        ..add(Text(''))
+        ..add(Text(''))
+        ..add(Text(''))
+        ..add(Text(''))
+        ..add(Text(''));
+    }
+
+    navItemMoList
+      ..add(NavItemMo('首页', 'images/nav_home.png', 'images/nav_home_h.png'))
+      ..add(NavItemMo('分类', 'images/nav_type.png', 'images/nav_type_h.png'))
+      ..add(NavItemMo('游戏', 'images/nav_game.png', 'images/nav_game_h.png'))
+      ..add(NavItemMo(
+          '推广', 'images/nav_extension.png', 'images/nav_extension_h.png'))
+      ..add(
+          NavItemMo('我的', 'images/nav_person.png', 'images/nav_person_h.png'));
   }
 
   int size;
+
+  void setPageVisible() {
+    switch (_currentIndex) {
+      case 0:
+        if (!one) {
+          pages[_currentIndex] = HomePage();
+          one = true;
+        }
+        break;
+      case 1:
+        if (!tow) {
+          pages[_currentIndex] = HomeTypePage();
+          tow = true;
+        }
+        break;
+      case 2:
+        if (!three) {
+          pages[_currentIndex] = GamePage();
+          three = true;
+        }
+        break;
+      case 3:
+        if (!four) {
+          pages[_currentIndex] = TuigPage();
+          four = true;
+        }
+        break;
+      case 4:
+        if (!five) {
+          pages[_currentIndex] = MyPage();
+          five = true;
+        }
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     print('tab rebuild');
     size = 55;
+    if (!isNeedAllLoad) {
+      setPageVisible();
+    }
+
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
@@ -52,93 +120,43 @@ class _TabNavigatorState extends State<TabNavigator> {
           type: BottomNavigationBarType.fixed,
           selectedItemColor: Colors.black,
           selectedFontSize: ScreenUtil().setSp(23),
-          items: [
-            BottomNavigationBarItem(
-                icon: Image.asset(
-                  'images/nav_home_h.png',
-                  width: ScreenUtil().setWidth(size),
-                  height: ScreenUtil().setHeight(size),
-                ),
-                activeIcon: Image.asset(
-                  'images/nav_home.png',
-                  width: ScreenUtil().setWidth(size),
-                  height: ScreenUtil().setHeight(size),
-                ),
-                title: Text(
-                  '首页',
-                  style: TextStyle(
-                      fontSize: ScreenUtil().setSp(20),
-                      color: _currentIndex != 0 ? Colors.grey : Colors.red),
-                )),
-            BottomNavigationBarItem(
-                icon: Image.asset(
-                  'images/nav_type_h.png',
-                  width: ScreenUtil().setWidth(size),
-                  height: ScreenUtil().setHeight(size),
-                ),
-                activeIcon: Image.asset(
-                  'images/nav_type.png',
-                  width: ScreenUtil().setWidth(size),
-                  height: ScreenUtil().setHeight(size),
-                ),
-                title: Text(
-                  '分类',
-                  style: TextStyle(
-                      fontSize: ScreenUtil().setSp(20),
-                      color: _currentIndex != 1 ? Colors.grey : Colors.red),
-                )),
-            BottomNavigationBarItem(
-                icon: Image.asset(
-                  'images/nav_game_h.png',
-                  width: ScreenUtil().setWidth(size),
-                  height: ScreenUtil().setHeight(size),
-                ),
-                activeIcon: Image.asset(
-                  'images/nav_game.png',
-                  width: ScreenUtil().setWidth(size),
-                  height: ScreenUtil().setHeight(size),
-                ),
-                title: Text(
-                  '游戏',
-                  style: TextStyle(
-                      fontSize: ScreenUtil().setSp(20),
-                      color: _currentIndex != 2 ? Colors.grey : Colors.red),
-                )),
-            BottomNavigationBarItem(
-                icon: Image.asset(
-                  'images/nav_extension_h.png',
-                  width: ScreenUtil().setWidth(size),
-                  height: ScreenUtil().setHeight(size),
-                ),
-                activeIcon: Image.asset(
-                  'images/nav_extension.png',
-                  width: ScreenUtil().setWidth(size),
-                  height: ScreenUtil().setHeight(size),
-                ),
-                title: Text(
-                  '推广',
-                  style: TextStyle(
-                      fontSize: ScreenUtil().setSp(20),
-                      color: _currentIndex != 3 ? Colors.grey : Colors.red),
-                )),
-            BottomNavigationBarItem(
-                icon: Image.asset(
-                  'images/nav_person_h.png',
-                  width: ScreenUtil().setWidth(size),
-                  height: ScreenUtil().setHeight(size),
-                ),
-                activeIcon: Image.asset(
-                  'images/nav_person.png',
-                  width: ScreenUtil().setWidth(size),
-                  height: ScreenUtil().setHeight(size),
-                ),
-                title: Text(
-                  '我的',
-                  style: TextStyle(
-                      fontSize: ScreenUtil().setSp(20),
-                      color: _currentIndex != 4 ? Colors.grey : Colors.red),
-                ))
-          ]),
+          items: getNavigatrionItem()),
     );
+  }
+
+  List<BottomNavigationBarItem> getNavigatrionItem() {
+    List<BottomNavigationBarItem> barList = List();
+    for (int index = 0; index < navItemMoList.length; index++) {
+      barList.add(BottomNavigationBarItem(
+          icon: Image.asset(
+            navItemMoList[index].unSelectIconName,
+            width: ScreenUtil().setWidth(size),
+            height: ScreenUtil().setHeight(size),
+          ),
+          activeIcon: Image.asset(
+            navItemMoList[index].selectIconName,
+            width: ScreenUtil().setWidth(size),
+            height: ScreenUtil().setHeight(size),
+          ),
+          title: Text(
+            navItemMoList[index].title,
+            style: TextStyle(
+                fontSize: ScreenUtil().setSp(20),
+                color: _currentIndex != index ? Colors.grey : Colors.red),
+          )));
+    }
+
+    return barList;
+  }
+}
+
+class NavItemMo {
+  String title;
+  String selectIconName;
+  String unSelectIconName;
+  NavItemMo(String title, String selectIconName, String unSelectIconName) {
+    this.title = title;
+    this.selectIconName = selectIconName;
+    this.unSelectIconName = unSelectIconName;
   }
 }
