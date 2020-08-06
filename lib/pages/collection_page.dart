@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp/pages/player/video_player_pager.dart';
 import 'package:flutterapp/widget/tagView.dart';
 import 'package:flutterapp/widget/RoundCheckBox.dart';
@@ -27,7 +29,7 @@ class _CollectionPageState extends State<CollectionPage> {
   List<String> itemsTag = List();
 
   var actionTitle = "编辑";
-
+  EasyRefreshController _controller = EasyRefreshController();
   @override
   void initState() {
     // TODO: implement initState
@@ -46,45 +48,80 @@ class _CollectionPageState extends State<CollectionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('我的收藏'),
-          centerTitle: true,
-          leading: GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: Icon(
-              Icons.navigate_before,
-              color: Colors.white,
-            ),
+      appBar: AppBar(
+        title: Text('我的收藏'),
+        centerTitle: true,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.navigate_before,
+            color: Colors.white,
           ),
-          actions: <Widget>[
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  isShowEditor = !isShowEditor;
-                  if (actionTitle == "编辑") {
-                    actionTitle = "完成";
-                    //清空选中
-                    for (int i = 0; i < _isChecks.length; i++) {
-                      _isChecks[i] = false;
-                    }
-                  } else {
-                    actionTitle = "编辑";
-                  }
-                });
-              },
-              child: Container(
-                  padding: EdgeInsets.all(10),
-                  alignment: Alignment.center,
-                  child: Text(
-                    actionTitle,
-                    textAlign: TextAlign.center,
-                  )),
-            )
-          ],
         ),
-        body: ListView.builder(
+        actions: <Widget>[
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                isShowEditor = !isShowEditor;
+                if (actionTitle == "编辑") {
+                  actionTitle = "完成";
+                  //清空选中
+                  for (int i = 0; i < _isChecks.length; i++) {
+                    _isChecks[i] = false;
+                  }
+                } else {
+                  actionTitle = "编辑";
+                }
+              });
+            },
+            child: Container(
+                padding: EdgeInsets.all(10),
+                alignment: Alignment.center,
+                child: Text(
+                  actionTitle,
+                  textAlign: TextAlign.center,
+                )),
+          )
+        ],
+      ),
+      body: EasyRefresh(
+        header: ClassicalHeader(
+          refreshText: '下拉刷新',
+          refreshReadyText: '松手刷新',
+          refreshedText: '刷新成功',
+          refreshingText: '正在加载',
+          refreshFailedText: '加载失败',
+          textColor: Colors.grey,
+          bgColor: Colors.white,
+          infoText: '上次刷新 %T',
+          infoColor: Colors.red,
+        ),
+        footer: ClassicalFooter(
+            textColor: Colors.grey,
+            bgColor: Colors.white,
+            infoText: '推广可观看更多影片',
+            infoColor: Colors.red,
+            loadedText: 'ddddd',
+            noMoreText: '到底了~',
+            loadingText: '正在加载'),
+        controller: _controller,
+        enableControlFinishLoad: true,
+        enableControlFinishRefresh: true,
+        onRefresh: () async {
+          // 延时1s执行返回
+
+          Future.delayed(Duration(seconds: 2), () {
+            _controller.finishRefresh(success: true);
+          });
+        },
+        onLoad: () async {
+          Future.delayed(Duration(seconds: 2)).then((value) => {
+                _controller.finishLoad(success: true, noMore: false),
+              });
+        },
+        child: ListView.builder(
             itemCount: items.length,
             padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
             itemBuilder: (context, index) {
@@ -131,15 +168,15 @@ class _CollectionPageState extends State<CollectionPage> {
                               child: Image.network(
                                 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2307511656,3386189028&fm=26&gp=0.jpg',
                                 fit: BoxFit.cover,
-                                height: 120,
-                                width: 160,
+                                height: ScreenUtil().setHeight(225),
+                                width: ScreenUtil().setWidth(335),
                               ),
                               borderRadius: BorderRadius.circular(5),
                             ),
                           ),
                           Expanded(
                               child: Container(
-                            height: 120,
+                            height: ScreenUtil().setHeight(225),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
@@ -149,6 +186,8 @@ class _CollectionPageState extends State<CollectionPage> {
                                     '酒店偷拍，经验酒店偷拍，经验酒店偷拍，经验酒店偷拍，经验酒店偷拍，经验',
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        fontSize: ScreenUtil().setSp(28)),
                                   ),
                                 ),
                                 Wrap(
@@ -157,11 +196,14 @@ class _CollectionPageState extends State<CollectionPage> {
                                       tags: itemsTag,
                                       backgroundColor: null,
                                       itemStyle: TextStyle(
-                                          color: Colors.red, fontSize: 11),
-                                      radius: 9,
-                                      tagHeight: 18,
+                                          color: Color(0xff924949),
+                                          fontSize: ScreenUtil().setSp(22)),
+                                      radius: 15,
                                       itemPadding: EdgeInsets.only(
-                                          left: 10, right: 10, bottom: 2),
+                                          left: ScreenUtil().setWidth(21),
+                                          right: ScreenUtil().setWidth(21),
+                                          bottom: ScreenUtil().setWidth(8),
+                                          top: ScreenUtil().setWidth(8)),
                                     ),
                                   ],
                                 )
@@ -181,7 +223,9 @@ class _CollectionPageState extends State<CollectionPage> {
                       )
                     ],
                   ));
-            }));
+            }),
+      ),
+    );
   }
 
   bool aaaaa() {}

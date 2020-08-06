@@ -91,7 +91,8 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
               return Stack(
                 children: <Widget>[
                   Container(
-                    height: 100,
+                    height: 80,
+                    margin: EdgeInsets.only(top: 0),
                     decoration: BoxDecoration(
                         gradient: LinearGradient(colors: [
                       Color(0xffFF2825),
@@ -99,7 +100,7 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
                     ])),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 10, bottom: 10),
+                    margin: EdgeInsets.only(top: 3, bottom: 10),
                     height: ScreenUtil().setHeight(320),
                     child: Swiper(
                       itemCount: 4,

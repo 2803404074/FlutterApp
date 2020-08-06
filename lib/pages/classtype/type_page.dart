@@ -6,6 +6,7 @@ import 'package:flutterapp/pages/home_pagers/page01.dart';
 import 'package:flutterapp/pages/home_pagers/page02.dart';
 
 import 'package:flutterapp/search/SearchBarDelegate.dart';
+import 'package:flutterapp/widget/ACETabBarIndicator.dart';
 
 class TypePage extends StatefulWidget {
   @override
@@ -85,14 +86,21 @@ class _TypePageState extends State<TypePage>
         //设置tab未选中得颜色
         unselectedLabelColor: Color(0xa5000000),
         //设置自定义tab的指示器，CustomUnderlineTabIndicator
+        indicator: ACETabBarIndicator(
+            type: ACETabBarIndicatorType.runderline,
+            height: 5.0,
+            lineWidth: 5.0,
+            color: Colors.red),
+
         //若不需要自定义，可直接通过
         //indicatorColor 设置指示器颜色
 
         //indicatorWight 设置指示器厚度
+        indicatorWeight: 3.0,
         //indicatorPadding
         //indicatorSize  设置指示器大小计算方式
 
-        indicatorColor: Color(0xffff6e40),
+        //indicatorColor: Color(0xffff6e40),
         indicatorSize: TabBarIndicatorSize.label,
         tabs: tabTitles.map((item) {
           return Tab(text: item);

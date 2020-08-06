@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutterapp/widget/GradientButton.dart';
 
 class ExtensionPage extends StatefulWidget {
@@ -14,56 +15,61 @@ class _ExtensionPageState extends State<ExtensionPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        title: Text(
-          '推广中心',
-          style: TextStyle(fontSize: 20, color: Colors.black),
-        ),
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Icon(
-            Icons.navigate_before,
-            color: Colors.grey,
+        appBar: AppBar(
+          elevation: 0,
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          title: Text(
+            '推广中心',
+            style: TextStyle(fontSize: 20, color: Colors.black),
+          ),
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.navigate_before,
+              color: Colors.grey,
+            ),
           ),
         ),
-      ),
-      body: CustomScrollView(
-        shrinkWrap: true,
-        slivers: <Widget>[
-          SliverPadding(
-              padding: EdgeInsets.all(0),
-              sliver: SliverList(
-                  delegate: SliverChildListDelegate(<Widget>[
-                getContent(),
-                getCard(),
-                extensionBtn,
-                Container(
-                    margin: EdgeInsets.only(left: 20),
-                    child: Text(
-                      '等级提升',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    )),
-                extensionList
-              ]))),
-        ],
-      ),
-    );
+        body: ListView.builder(
+            physics: BouncingScrollPhysics(),
+            itemCount: 5,
+            itemBuilder: (context, index) {
+              switch (index) {
+                case 0:
+                  return getContent();
+                case 1:
+                  return getCard();
+                case 2:
+                  return extensionBtn;
+                case 3:
+                  return Container(
+                      margin: EdgeInsets.only(
+                          left: 20, bottom: ScreenUtil().setHeight(30)),
+                      child: Text(
+                        '等级提升',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ));
+                case 4:
+                  return extensionList;
+              }
+            }));
   }
 
   Widget getContent() {
-    return Image.asset(
-      'images/extension_top_bg.png',
+    return Container(
       width: double.infinity,
-      fit: BoxFit.fitWidth,
+      color: Colors.white,
+      height: ScreenUtil().setHeight(567),
+      padding: EdgeInsets.only(top: ScreenUtil().setHeight(64)),
+      child: Image.asset('images/extension_top_bg.png',
+          width: double.infinity, fit: BoxFit.fitHeight),
     );
   }
 
@@ -73,7 +79,8 @@ class _ExtensionPageState extends State<ExtensionPage>
         Container(
             height: 120,
             width: double.infinity,
-            margin: EdgeInsets.only(left: 20, right: 20),
+            margin: EdgeInsets.only(
+                left: 20, right: 20, top: ScreenUtil().setHeight(58)),
             //边框设置
             decoration: new BoxDecoration(
               //背景
@@ -99,7 +106,14 @@ class _ExtensionPageState extends State<ExtensionPage>
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text('LV1/英勇黄铜'),
+                        Text(
+                          'LV1/英勇黄铜',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: ScreenUtil().setSp(28),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                         Expanded(child: Text('')),
                         SizedBox(
                             height: 10.0,
@@ -118,8 +132,9 @@ class _ExtensionPageState extends State<ExtensionPage>
                         Text.rich(
                           TextSpan(
                               text: '距离升级下一个等级还差',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 12),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: ScreenUtil().setSp(26)),
                               children: <TextSpan>[
                                 TextSpan(
                                     text: '10',
@@ -140,7 +155,7 @@ class _ExtensionPageState extends State<ExtensionPage>
             )),
         Container(
           width: double.infinity,
-          margin: EdgeInsets.only(right: 20),
+          margin: EdgeInsets.only(right: 20, top: ScreenUtil().setHeight(58)),
           child: Image.asset(
             'images/extention_right.png',
             width: 50,
@@ -151,7 +166,7 @@ class _ExtensionPageState extends State<ExtensionPage>
         Container(
             margin: EdgeInsets.only(right: 20),
             width: double.infinity,
-            padding: EdgeInsets.only(top: 2, right: 5),
+            padding: EdgeInsets.only(top: ScreenUtil().setHeight(64), right: 5),
             child: Text(
               "当前等级",
               textAlign: TextAlign.end,
@@ -168,6 +183,7 @@ class _ExtensionPageState extends State<ExtensionPage>
       child: Text('立即推广'),
       height: 50,
       width: 200,
+      shadow: Color(0xffFF5B59),
       colors: [Color(0xffFF5B59), Color(0xffFF2825)],
       onPressed: () {},
       borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -182,49 +198,35 @@ class _ExtensionPageState extends State<ExtensionPage>
         physics: NeverScrollableScrollPhysics(),
         itemCount: 6,
         itemBuilder: (contex, ids) {
-          return Column(
-            children: <Widget>[
-              Stack(
-                children: <Widget>[
-                  Container(
-                    child: Row(
-                      children: <Widget>[
-                        Container(
-                          height: 70,
-                          margin: EdgeInsets.only(left: 10),
-                          alignment: Alignment.centerLeft,
-                          child: Image.asset(
-                            'images/img_load.jpeg',
-                            width: 60,
-                            height: 60,
-                            fit: BoxFit.cover,
-                          ),
-                        )
-                      ],
+          return Container(
+            margin: EdgeInsets.fromLTRB(ScreenUtil().setWidth(30), 0,
+                ScreenUtil().setWidth(30), ScreenUtil().setWidth(20)),
+            height: ScreenUtil().setHeight(175),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Container(
+                color: Colors.white,
+                height: ScreenUtil().setHeight(175),
+                padding: EdgeInsets.only(
+                    left: ScreenUtil().setWidth(34),
+                    right: ScreenUtil().setWidth(34),
+                    top: ScreenUtil().setWidth(40),
+                    bottom: ScreenUtil().setWidth(40)),
+                child: Row(
+                  children: <Widget>[
+                    Image.asset(
+                      'images/img_load.jpeg',
+                      width: ScreenUtil().setWidth(100),
+                      height: ScreenUtil().setHeight(100),
+                      fit: BoxFit.cover,
                     ),
-
-                    margin: EdgeInsets.only(left: 20, right: 20),
-                    //边框设置
-                    decoration: new BoxDecoration(
-                      //背景
-                      color: Colors.white,
-                      //设置四周圆角 角度
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      //设置四周边框
-                      border: new Border.all(width: 1, color: Colors.white),
-                    ),
-                  ),
-                  Container(
-                    height: 70,
-                    margin: EdgeInsets.only(left: 100),
-                    alignment: Alignment.centerLeft,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(bottom: 7),
-                          child: Text(
+                    Container(
+                      margin: EdgeInsets.only(left: ScreenUtil().setWidth(26)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Expanded(child: SizedBox()),
+                          Text(
                             '英勇黄铜',
                             style: TextStyle(
                               fontSize: 16,
@@ -232,65 +234,64 @@ class _ExtensionPageState extends State<ExtensionPage>
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                        ),
-                        Text.rich(
-                          TextSpan(
-                              text: '累计推广',
-                              style: TextStyle(
-                                color: Color(0xff666666),
-                                fontSize: 12,
-                              ),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: '1',
-                                    style: TextStyle(
-                                      color: Color(0xff433528),
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    )),
-                                TextSpan(
-                                    text: '人,每日观影次数',
-                                    style: TextStyle(
-                                      color: Color(0xff666666),
-                                      fontSize: 12,
-                                    )),
-                                TextSpan(
-                                    text: '+1',
-                                    style: TextStyle(
-                                      color: Color(0xff433528),
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    )),
-                                TextSpan(
-                                    text: ',畅想',
-                                    style: TextStyle(
-                                      color: Color(0xff666666),
-                                      fontSize: 12,
-                                    )),
-                                TextSpan(
-                                    text: '标清',
-                                    style: TextStyle(
-                                      color: Color(0xff433528),
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 12,
-                                    )),
-                                TextSpan(
-                                    text: '片源',
-                                    style: TextStyle(
-                                      color: Color(0xff666666),
-                                      fontSize: 12,
-                                    )),
-                              ]),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
+                          Expanded(child: SizedBox()),
+                          Text.rich(
+                            TextSpan(
+                                text: '累计推广',
+                                style: TextStyle(
+                                  color: Color(0xff666666),
+                                  fontSize: 12,
+                                ),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: '1',
+                                      style: TextStyle(
+                                        color: Color(0xff433528),
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12,
+                                      )),
+                                  TextSpan(
+                                      text: '人,每日观影次数',
+                                      style: TextStyle(
+                                        color: Color(0xff666666),
+                                        fontSize: 12,
+                                      )),
+                                  TextSpan(
+                                      text: '+1',
+                                      style: TextStyle(
+                                        color: Color(0xff433528),
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12,
+                                      )),
+                                  TextSpan(
+                                      text: ',畅想',
+                                      style: TextStyle(
+                                        color: Color(0xff666666),
+                                        fontSize: 12,
+                                      )),
+                                  TextSpan(
+                                      text: '标清',
+                                      style: TextStyle(
+                                        color: Color(0xff433528),
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 12,
+                                      )),
+                                  TextSpan(
+                                      text: '片源',
+                                      style: TextStyle(
+                                        color: Color(0xff666666),
+                                        fontSize: 12,
+                                      )),
+                                ]),
+                          ),
+                          Expanded(child: SizedBox()),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
-              Container(
-                height: 10,
-              )
-            ],
+            ),
           );
         }),
   );

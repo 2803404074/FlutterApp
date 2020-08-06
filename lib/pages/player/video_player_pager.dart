@@ -1,5 +1,6 @@
 import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:ui';
 
 import 'package:flutterapp/widget/CustomFijkWidgetBottom.dart';
@@ -52,7 +53,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
           Stack(
             children: <Widget>[
               Container(
-                height: 220,
+                height: ScreenUtil().setHeight(422),
                 margin: EdgeInsets.only(top: topHeight),
                 width: MediaQuery.of(context).size.width,
                 child: FijkView(
@@ -60,7 +61,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                   color: Colors.black,
                   cover: AssetImage('images/img_load.jpeg'),
                   width: double.infinity,
-                  height: 220,
+                  height: ScreenUtil().setHeight(422),
                   fit: FijkFit.cover,
                   panelBuilder: (FijkPlayer player, FijkData data,
                       BuildContext context, Size viewSize, Rect texturePos) {
@@ -97,7 +98,11 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                             return getCenterView;
                           case 2:
                             return Container(
-                              padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+                              padding: EdgeInsets.fromLTRB(
+                                  ScreenUtil().setWidth(30),
+                                  0,
+                                  ScreenUtil().setWidth(30),
+                                  ScreenUtil().setWidth(20)),
                               child: Text(
                                 '猜你喜欢',
                                 style: TextStyle(
@@ -112,7 +117,9 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                                 shrinkWrap: true,
                                 physics: NeverScrollableScrollPhysics(),
                                 itemCount: 10,
-                                padding: EdgeInsets.only(left: 20, right: 20),
+                                padding: EdgeInsets.only(
+                                    left: ScreenUtil().setWidth(30),
+                                    right: ScreenUtil().setWidth(30)),
                                 itemBuilder: (context, index) {
                                   return GestureDetector(
                                       onTap: () {
@@ -140,8 +147,10 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                                                   child: Image.network(
                                                     'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2307511656,3386189028&fm=26&gp=0.jpg',
                                                     fit: BoxFit.cover,
-                                                    height: 120,
-                                                    width: 160,
+                                                    height: ScreenUtil()
+                                                        .setHeight(224),
+                                                    width: ScreenUtil()
+                                                        .setWidth(335),
                                                   ),
                                                   borderRadius:
                                                       BorderRadius.circular(5),
@@ -149,7 +158,8 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                                               ),
                                               Expanded(
                                                   child: Container(
-                                                height: 120,
+                                                height:
+                                                    ScreenUtil().setHeight(224),
                                                 child: Column(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
@@ -159,6 +169,10 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                                                           left: 10, right: 10),
                                                       child: Text(
                                                         '酒店偷拍，经验酒店偷拍，经验酒店偷拍，经验酒店偷拍，经验酒店偷拍，经验',
+                                                        style: TextStyle(
+                                                            fontSize:
+                                                                ScreenUtil()
+                                                                    .setSp(28)),
                                                         maxLines: 2,
                                                         overflow: TextOverflow
                                                             .ellipsis,
@@ -202,7 +216,8 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   }
 
   Widget getCardView = Container(
-    margin: EdgeInsets.fromLTRB(20, 0, 20, 20),
+    margin: EdgeInsets.fromLTRB(
+        ScreenUtil().setWidth(30), 0, ScreenUtil().setWidth(30), 20),
     child: GradientButton(
       child: Row(
         children: <Widget>[
@@ -252,7 +267,8 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
 
   Widget getCenterView = Container(
     alignment: Alignment.centerLeft,
-    padding: EdgeInsets.only(left: 20, right: 20),
+    padding: EdgeInsets.only(
+        left: ScreenUtil().setWidth(30), right: ScreenUtil().setWidth(30)),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[

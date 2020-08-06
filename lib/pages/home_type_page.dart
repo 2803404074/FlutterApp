@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:convert';
 
 import 'package:flutterapp/pages/classtype/type_page.dart';
@@ -55,8 +56,9 @@ class _SearchPageState extends State<HomeTypePage>
                     child: Stack(
                       children: <Widget>[
                         Container(
-                          height: 200,
-                          margin: EdgeInsets.only(bottom: 20),
+                          height: ScreenUtil().setHeight(300),
+                          margin: EdgeInsets.only(
+                              bottom: ScreenUtil().setHeight(30)),
                           width: double.infinity,
                           child: Card(
                             elevation: 10,
@@ -72,9 +74,10 @@ class _SearchPageState extends State<HomeTypePage>
                           ),
                         ),
                         Container(
-                          height: 200,
+                          height: ScreenUtil().setHeight(300),
                           width: double.infinity,
-                          margin: EdgeInsets.only(bottom: 20),
+                          margin: EdgeInsets.only(
+                              bottom: ScreenUtil().setHeight(30)),
                           child: Card(
                             elevation: 0,
                             color: Color(0x00000000),
@@ -84,7 +87,11 @@ class _SearchPageState extends State<HomeTypePage>
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(15.0))),
                             child: Container(
-                              padding: EdgeInsets.fromLTRB(30, 30, 30, 0),
+                              padding: EdgeInsets.fromLTRB(
+                                  ScreenUtil().setHeight(60),
+                                  ScreenUtil().setHeight(40),
+                                  30,
+                                  0),
                               decoration:
                                   BoxDecoration(color: Color(0x4D000000)),
                               child: _judgeItemType(ids),
@@ -111,26 +118,27 @@ class _SearchPageState extends State<HomeTypePage>
         Text(
           '${list[ids]}',
           style: TextStyle(
-            fontSize: 20,
+            fontSize: ScreenUtil().setSp(52),
             color: Colors.white,
             fontWeight: FontWeight.w700,
           ),
-          maxLines: 2,
         ),
-        Expanded(
-            child: Container(
-          margin: EdgeInsets.only(top: 10, bottom: 10),
+        Container(
+          alignment: Alignment.topLeft,
+          margin: EdgeInsets.only(
+              top: ScreenUtil().setHeight(19),
+              bottom: ScreenUtil().setHeight(30)),
           width: 150,
           child: Text(
             "国内成人视频海量汇聚·精品推荐·越看越爽...",
             maxLines: 2,
             style: TextStyle(
                 color: Colors.white54,
-                fontSize: 16,
+                fontSize: ScreenUtil().setSp(26),
                 decoration: TextDecoration.none),
             overflow: TextOverflow.ellipsis,
           ),
-        )),
+        ),
         Expanded(
             child: Wrap(
           spacing: 8.0,
@@ -148,7 +156,8 @@ class _SearchPageState extends State<HomeTypePage>
         padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
         child: Text(
           '精品',
-          style: TextStyle(fontSize: 12, color: Colors.white),
+          style:
+              TextStyle(fontSize: ScreenUtil().setSp(20), color: Colors.white),
         ),
         decoration: BoxDecoration(
             color: Color(0x80000000),

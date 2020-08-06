@@ -8,6 +8,7 @@ import 'package:flutterapp/pages/home_pagers/page02.dart';
 
 import 'package:flutterapp/search/SearchBarDelegate.dart';
 import 'package:flutterapp/util/EventBus.dart';
+import 'package:flutterapp/widget/ACETabBarIndicator.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -142,8 +143,8 @@ class _HomePageState extends State<HomePage>
 
   Widget _tabBar() {
     return TabBar(
-        indicatorPadding: EdgeInsets.all(5),
         isScrollable: true,
+        indicatorPadding: EdgeInsets.all(5),
         controller: mController,
         labelStyle: TextStyle(
             fontSize: ScreenUtil().setSp(32), fontWeight: FontWeight.bold),
@@ -151,6 +152,11 @@ class _HomePageState extends State<HomePage>
         labelColor: Colors.white,
         //设置tab未选中得颜色
         unselectedLabelColor: Color(0xa5ffffff),
+        indicator: ACETabBarIndicator(
+            type: ACETabBarIndicatorType.runderline,
+            height: 6.0,
+            lineWidth: 3.0,
+            color: Colors.yellow),
         //设置自定义tab的指示器，CustomUnderlineTabIndicator
         //若不需要自定义，可直接通过
         //indicatorColor 设置指示器颜色
@@ -158,13 +164,15 @@ class _HomePageState extends State<HomePage>
         //indicatorPadding
         //indicatorSize  设置指示器大小计算方式
 
-        indicatorColor: Colors.yellow,
+        // indicatorColor: Colors.yellow,
+
         indicatorSize: TabBarIndicatorSize.label,
         tabs: tabTitles.map((item) {
           return Tab(text: item);
         }).toList());
   }
 
+  bool isShowLine = true;
   Widget _tabBarView() {
     return TabBarView(
       controller: mController,
@@ -191,7 +199,24 @@ class _HomePageState extends State<HomePage>
       print('首页build');
       content = Scaffold(
         appBar: _appBarView(),
-        body: _tabBarView(),
+        body: Column(
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                  Color(0xffFF2825),
+                  Color(0xffFF5B59),
+                ])),
+              ),
+              flex: 1,
+            ),
+            Expanded(
+              child: _tabBarView(),
+              flex: 70,
+            )
+          ],
+        ),
       );
     } else {
       print('首页缓存页');

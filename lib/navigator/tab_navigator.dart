@@ -30,10 +30,12 @@ class _TabNavigatorState extends State<TabNavigator> {
       ..add(MyPage());
   }
 
+  int size;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     print('tab rebuild');
+    size = 55;
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
@@ -48,85 +50,92 @@ class _TabNavigatorState extends State<TabNavigator> {
             });
           },
           type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.black,
+          selectedFontSize: ScreenUtil().setSp(23),
           items: [
             BottomNavigationBarItem(
                 icon: Image.asset(
                   'images/nav_home_h.png',
-                  width: ScreenUtil().setWidth(60),
-                  height: ScreenUtil().setHeight(60),
+                  width: ScreenUtil().setWidth(size),
+                  height: ScreenUtil().setHeight(size),
                 ),
                 activeIcon: Image.asset(
                   'images/nav_home.png',
-                  width: ScreenUtil().setWidth(60),
-                  height: ScreenUtil().setHeight(60),
+                  width: ScreenUtil().setWidth(size),
+                  height: ScreenUtil().setHeight(size),
                 ),
                 title: Text(
                   '首页',
                   style: TextStyle(
+                      fontSize: ScreenUtil().setSp(20),
                       color: _currentIndex != 0 ? Colors.grey : Colors.red),
                 )),
             BottomNavigationBarItem(
                 icon: Image.asset(
                   'images/nav_type_h.png',
-                  width: ScreenUtil().setWidth(60),
-                  height: ScreenUtil().setHeight(60),
+                  width: ScreenUtil().setWidth(size),
+                  height: ScreenUtil().setHeight(size),
                 ),
                 activeIcon: Image.asset(
                   'images/nav_type.png',
-                  width: ScreenUtil().setWidth(60),
-                  height: ScreenUtil().setHeight(60),
+                  width: ScreenUtil().setWidth(size),
+                  height: ScreenUtil().setHeight(size),
                 ),
                 title: Text(
                   '分类',
                   style: TextStyle(
+                      fontSize: ScreenUtil().setSp(20),
                       color: _currentIndex != 1 ? Colors.grey : Colors.red),
                 )),
             BottomNavigationBarItem(
                 icon: Image.asset(
                   'images/nav_game_h.png',
-                  width: ScreenUtil().setWidth(60),
-                  height: ScreenUtil().setHeight(60),
+                  width: ScreenUtil().setWidth(size),
+                  height: ScreenUtil().setHeight(size),
                 ),
                 activeIcon: Image.asset(
                   'images/nav_game.png',
-                  width: ScreenUtil().setWidth(60),
-                  height: ScreenUtil().setHeight(60),
+                  width: ScreenUtil().setWidth(size),
+                  height: ScreenUtil().setHeight(size),
                 ),
                 title: Text(
                   '游戏',
                   style: TextStyle(
+                      fontSize: ScreenUtil().setSp(20),
                       color: _currentIndex != 2 ? Colors.grey : Colors.red),
                 )),
             BottomNavigationBarItem(
                 icon: Image.asset(
                   'images/nav_extension_h.png',
-                  width: ScreenUtil().setWidth(60),
-                  height: ScreenUtil().setHeight(60),
+                  width: ScreenUtil().setWidth(size),
+                  height: ScreenUtil().setHeight(size),
                 ),
                 activeIcon: Image.asset(
                   'images/nav_extension.png',
-                  width: ScreenUtil().setWidth(60),
-                  height: ScreenUtil().setHeight(60),
+                  width: ScreenUtil().setWidth(size),
+                  height: ScreenUtil().setHeight(size),
                 ),
                 title: Text(
                   '推广',
                   style: TextStyle(
+                      fontSize: ScreenUtil().setSp(20),
                       color: _currentIndex != 3 ? Colors.grey : Colors.red),
                 )),
             BottomNavigationBarItem(
                 icon: Image.asset(
                   'images/nav_person_h.png',
-                  width: ScreenUtil().setWidth(60),
-                  height: ScreenUtil().setHeight(60),
+                  width: ScreenUtil().setWidth(size),
+                  height: ScreenUtil().setHeight(size),
                 ),
                 activeIcon: Image.asset(
                   'images/nav_person.png',
-                  width: ScreenUtil().setWidth(60),
-                  height: ScreenUtil().setHeight(60),
+                  width: ScreenUtil().setWidth(size),
+                  height: ScreenUtil().setHeight(size),
                 ),
                 title: Text(
                   '我的',
                   style: TextStyle(
+                      fontSize: ScreenUtil().setSp(20),
                       color: _currentIndex != 4 ? Colors.grey : Colors.red),
                 ))
           ]),
