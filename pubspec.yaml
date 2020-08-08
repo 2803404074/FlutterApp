@@ -88,6 +88,10 @@ flutter:
    - images/feedBack@3x.png
    - images/collection@2x.png
    - images/collection@3x.png
+   - cellphone.png
+   - cellphone@2x.png
+   - password.png
+   - password@2x.png
 
 
   #  - images/a_dot_ham.jpeg

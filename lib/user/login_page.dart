@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'dart:ui';
 
 import 'package:flutterapp/user/find_pass_page.dart';
@@ -105,18 +106,23 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     // logo 图片区域
     Widget logoImageArea = Container(
-      margin: EdgeInsets.only(left: 20, top: 50),
+      margin: EdgeInsets.only(
+          left: ScreenUtil().setWidth(82), top: ScreenUtil().setHeight(219)),
       alignment: Alignment.topLeft,
       // 设置图片为圆形
       child: Text(
         '登录',
-        style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+        style: TextStyle(
+            fontSize: ScreenUtil().setSp(48), fontWeight: FontWeight.w600),
       ),
     );
 
     //输入文本框区域
     Widget inputTextArea = Container(
-      margin: EdgeInsets.only(left: 20, right: 20, top: 50),
+      margin: EdgeInsets.only(
+          left: ScreenUtil().setWidth(80),
+          right: ScreenUtil().setWidth(80),
+          top: ScreenUtil().setHeight(161)),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(8)),
           color: Colors.white),
@@ -125,64 +131,95 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            TextFormField(
-              controller: _userNameController,
-              focusNode: _focusNodeUserName,
-              //设置键盘类型
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                contentPadding: EdgeInsets.all(20),
-                labelText: "用户名",
-                hintText: "请输入手机号",
-                prefixIcon: Icon(Icons.person),
-                //尾部添加清除按钮
-                suffixIcon: (_isShowClear)
-                    ? IconButton(
-                        icon: Icon(Icons.clear),
-                        onPressed: () {
-                          // 清空输入框内容
-                          _userNameController.clear();
-                        },
-                      )
-                    : null,
-              ),
-              //验证用户名
-              validator: validateUserName,
-              //保存数据
-              onSaved: (String value) {
-                _username = value;
-              },
+            Stack(
+              children: <Widget>[
+                TextFormField(
+                  controller: _userNameController,
+                  focusNode: _focusNodeUserName,
+                  //设置键盘类型
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(20),
+                    // labelText: "用户名",
+                    hintText: "请输入手机号",
+                    // prefixIcon: Image.asset(
+                    //   'images/cellphone.png',
+                    //   width: ScreenUtil().setWidth(21),
+                    //   height: ScreenUtil().setHeight(30),
+                    // ),
+                    //尾部添加清除按钮
+                    suffixIcon: (_isShowClear)
+                        ? IconButton(
+                            icon: Icon(Icons.clear),
+                            onPressed: () {
+                              // 清空输入框内容
+                              _userNameController.clear();
+                            },
+                          )
+                        : null,
+                  ),
+                  //验证用户名
+                  validator: validateUserName,
+                  //保存数据
+                  onSaved: (String value) {
+                    _username = value;
+                  },
+                ),
+                Positioned(
+                  top: 20,
+                  child: Image.asset(
+                    'images/cellphone.png',
+                    width: ScreenUtil().setWidth(21),
+                    height: ScreenUtil().setHeight(30),
+                  ),
+                ),
+              ],
             ),
             Container(
-              margin: EdgeInsets.only(top: 10),
-              child: TextFormField(
-                focusNode: _focusNodePassWord,
-                decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(20),
-                    labelText: "密码",
-                    hintText: "请输入密码",
-                    prefixIcon: Icon(Icons.lock),
-                    // 是否显示密码
-                    suffixIcon: IconButton(
-                      icon: Icon((_isShowPwd)
-                          ? Icons.visibility
-                          : Icons.visibility_off),
-                      // 点击改变显示或隐藏密码
-                      onPressed: () {
-                        setState(() {
-                          _isShowPwd = !_isShowPwd;
-                        });
+                margin: EdgeInsets.only(top: 10),
+                child: Stack(
+                  children: <Widget>[
+                    TextFormField(
+                      focusNode: _focusNodePassWord,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(20),
+                          // labelText: "密码",
+                          hintText: "请输入密码",
+                          // prefixIcon: Image.asset(
+                          //   'images/password.png',
+                          //   width: ScreenUtil().setWidth(25),
+                          //   height: ScreenUtil().setHeight(30),
+                          // ),
+                          // 是否显示密码
+                          suffixIcon: IconButton(
+                            icon: Icon((_isShowPwd)
+                                ? Icons.visibility
+                                : Icons.visibility_off),
+                            // 点击改变显示或隐藏密码
+                            onPressed: () {
+                              setState(() {
+                                _isShowPwd = !_isShowPwd;
+                              });
+                            },
+                          )),
+                      obscureText: !_isShowPwd,
+                      //密码验证
+                      validator: validatePassWord,
+                      //保存数据
+                      onSaved: (String value) {
+                        _password = value;
                       },
-                    )),
-                obscureText: !_isShowPwd,
-                //密码验证
-                validator: validatePassWord,
-                //保存数据
-                onSaved: (String value) {
-                  _password = value;
-                },
-              ),
-            ),
+                    ),
+                    Positioned(
+                      top: 20,
+                      child: Image.asset(
+                        'images/password.png',
+                        width: ScreenUtil().setWidth(25),
+                        height: ScreenUtil().setHeight(30),
+                      ),
+                    )
+                  ],
+                )),
           ],
         ),
       ),
@@ -190,23 +227,27 @@ class _LoginPageState extends State<LoginPage> {
 
     // 登录按钮区域
     Widget loginButtonArea = Container(
-        margin: EdgeInsets.only(left: 20, right: 20, top: 50),
+        margin: EdgeInsets.only(
+            left: ScreenUtil().setWidth(80),
+            right: ScreenUtil().setWidth(80),
+            top: ScreenUtil().setHeight(100)),
         alignment: Alignment(0, 0),
-        height: 45,
+        height: ScreenUtil().setHeight(88),
         child: SizedBox(
           width: double.infinity,
           height: double.infinity,
           child: RaisedButton(
             elevation: 10,
-
             color: Colors.red[300],
             child: Text(
               "登录",
-              style: TextStyle(fontSize: 20, color: Colors.white),
+              style: TextStyle(
+                  fontSize: ScreenUtil().setSp(28), color: Colors.white),
             ),
             // 设置按钮圆角
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25.0)),
+                borderRadius:
+                    BorderRadius.circular(ScreenUtil().setHeight(44))),
             onPressed: () {
               //点击登录按钮，解除焦点，回收键盘
               _focusNodePassWord.unfocus();
@@ -224,23 +265,27 @@ class _LoginPageState extends State<LoginPage> {
 
     // 注册按钮区域
     Widget registButtonArea = Container(
-      margin: EdgeInsets.only(left: 20, right: 20, top: 30),
+      margin: EdgeInsets.only(
+          left: ScreenUtil().setWidth(80),
+          right: ScreenUtil().setWidth(80),
+          top: ScreenUtil().setHeight(50)),
       //设置 child 居中
       alignment: Alignment(0, 0),
-      height: 45,
+      height: ScreenUtil().setHeight(88),
 
       //边框设置
       decoration: new BoxDecoration(
         //背景
         color: Colors.white,
         //设置四周圆角 角度
-        borderRadius: BorderRadius.all(Radius.circular(25)),
+        borderRadius:
+            BorderRadius.all(Radius.circular(ScreenUtil().setHeight(44))),
         //设置四周边框
         border: new Border.all(width: 1, color: Colors.red),
       ),
       child: Text(
         "注册",
-        style: TextStyle(color: Colors.red, fontSize: 20),
+        style: TextStyle(color: Colors.red, fontSize: ScreenUtil().setSp(28)),
       ),
     );
 

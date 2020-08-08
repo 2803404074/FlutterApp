@@ -56,14 +56,28 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
               item = bigLin(ScreenUtil().setHeight(20), 0);
               break;
             case 6:
-              item = functionView('我的收藏', 'images/collection@2x.png');
+              item = GestureDetector(
+                child: functionView('我的收藏', 'images/collection@2x.png'),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return CollectionPage();
+                  }));
+                },
+              );
               break;
             case 7:
               item =
                   bigLin(ScreenUtil().setHeight(2), ScreenUtil().setWidth(30));
               break;
             case 8:
-              item = functionView('意见反馈', 'images/feedBack@2x.png');
+              item = GestureDetector(
+                child: functionView('意见反馈', 'images/feedBack@2x.png'),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return FeedbackPage();
+                  }));
+                },
+              );
               break;
             case 9:
               item = bigLin(ScreenUtil().setHeight(20), 0);
@@ -252,7 +266,7 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
             position: 0,
             padding: EdgeInsets.only(left: ScreenUtil().setWidth(16)),
             style: TextStyle(
-                fontSize: ScreenUtil().setSp(26),
+                fontSize: ScreenUtil().setSp(20),
                 color: Color.fromRGBO(102, 102, 102, 1)),
             icon: Icon(
               Icons.navigate_next,
@@ -331,7 +345,7 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
           ),
           Icon(
             Icons.navigate_next,
-            size: ScreenUtil().setWidth(28),
+            size: ScreenUtil().setWidth(30),
             color: Color(0xff7A7A7A),
           )
         ],
