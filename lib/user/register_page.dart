@@ -344,7 +344,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 _focusNodeUserCode.unfocus();
               },
               child: Container(
-                color: Colors.white,
+                color: Colors.white, // 绘制背景颜色,否则点击事件不起作用
                 width: double.infinity,
                 padding: EdgeInsets.only(top: height),
                 child: Column(

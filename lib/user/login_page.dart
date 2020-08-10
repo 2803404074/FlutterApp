@@ -306,7 +306,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Container(
               height: double.infinity,
               width: double.infinity,
-              color: Colors.white,
+              color: Colors.white, // 绘制背景颜色,否则点击事件不起作用
               padding: EdgeInsets.only(top: height),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
