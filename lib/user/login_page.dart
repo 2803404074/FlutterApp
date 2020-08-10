@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutterapp/http/CMApi.dart';
+import 'package:flutterapp/http/CMMethod.dart';
+import 'package:flutterapp/http/DioManager.dart';
+import 'package:flutterapp/model/UserMo.dart';
 import 'dart:ui';
 
 import 'package:flutterapp/user/find_pass_page.dart';
 import 'package:flutterapp/user/register_page.dart';
+import 'package:toast/toast.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -107,8 +112,9 @@ class _LoginPageState extends State<LoginPage> {
     // logo 图片区域
     Widget logoImageArea = Container(
       margin: EdgeInsets.only(
-          left: ScreenUtil().setWidth(82), top: ScreenUtil().setHeight(219)),
-      alignment: Alignment.topLeft,
+          left: ScreenUtil().setWidth(82),
+          top: ScreenUtil().setHeight(219) - height),
+      // alignment: Alignment.topLeft,
       // 设置图片为圆形
       child: Text(
         '登录',
@@ -122,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
       margin: EdgeInsets.only(
           left: ScreenUtil().setWidth(80),
           right: ScreenUtil().setWidth(80),
-          top: ScreenUtil().setHeight(161)),
+          top: ScreenUtil().setHeight(100)),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(8)),
           color: Colors.white),
@@ -242,6 +248,15 @@ class _LoginPageState extends State<LoginPage> {
                 //只有输入通过验证，才会执行这里
                 _formKey.currentState.save();
                 //todo 登录操作
+                DioManager().request<UserMo>(CMMethod.GET, CMApi.loginPath,
+                    params: {'phone': _username, 'pass': _password},
+                    success: (data) {
+                  Toast.show("返回数据:${data.u_name},${data.u_pass}", context,
+                      duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+
+                  //print('返回数据:' + data.);
+                }, error: (message) {});
+
                 print("$_username + $_password");
               }
             },

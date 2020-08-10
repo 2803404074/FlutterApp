@@ -32,7 +32,9 @@ class DioManager {
 // success：请求成功回调
 // error：请求失败回调
   Future request<T>(CMMethod method, String path,
-      {Map params, Function(T) success, Function(ErrorEntity) error}) async {
+      {Map<String, dynamic> params,
+      Function(T) success,
+      Function(ErrorEntity) error}) async {
     try {
       Response response = await dio.request(path,
           queryParameters: params,
@@ -40,9 +42,10 @@ class DioManager {
       if (response != null) {
         BaseEntity entity = BaseEntity<T>.fromJson(response.data);
         if (entity.code == 0) {
-          success(entity.data);
+          print('aaaaaaaaaaaaaa');
+          success(entity.result);
         } else {
-          error(ErrorEntity(code: entity.code, message: entity.message));
+          error(ErrorEntity(code: entity.code, message: entity.msg));
         }
       } else {
         error(ErrorEntity(code: -1, message: "未知错误"));
