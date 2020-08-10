@@ -52,13 +52,10 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
       mo.list = moList;
       mTypeData.add(mo);
     }
-
-    print('数据->${mTypeData[0].list.toString()}');
-    print('数据->${mTypeData[0].list[0].imgUrl}');
-    setState(() {});
   }
 
   EasyRefreshController _controller = EasyRefreshController();
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -66,14 +63,15 @@ class _Pages01State extends State<Page01> with AutomaticKeepAliveClientMixin {
       ImageDownHttp.getInstance().startDownLoad(
           'http://image.i438500.com/storage/images/video/thumbnail/d834f6a7f0dc4419c426ea952cf73bb5.raw!t!70!600.js',
           (values, status) {
-        advWidget = Image.memory(
-          base64.decode(values),
-          height: ScreenUtil().setWidth(190),
-          width: double.infinity,
-          fit: BoxFit.cover,
-          gaplessPlayback: true,
-        );
-        setState(() {});
+        setState(() {
+          advWidget = Image.memory(
+            base64.decode(values),
+            height: ScreenUtil().setWidth(190),
+            width: double.infinity,
+            fit: BoxFit.cover,
+            gaplessPlayback: true,
+          );
+        });
       });
     }
 
