@@ -92,6 +92,12 @@ flutter:
    - cellphone@2x.png
    - password.png
    - password@2x.png
+   - verCode.png
+   - verCode@2x.png
+   - visibility.png
+   - visibility@2x.png
+   - visibility_off.png
+   - visibility_off@2x.png
 
 
   #  - images/a_dot_ham.jpeg

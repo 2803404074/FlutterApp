@@ -131,17 +131,22 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     //标题
     Widget logoImageArea = Container(
-      margin: EdgeInsets.only(left: 20, top: 50),
+      margin: EdgeInsets.only(
+          left: ScreenUtil().setWidth(82), top: ScreenUtil().setHeight(219)),
       alignment: Alignment.topLeft,
       child: Text(
         '注册',
-        style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600),
+        style: TextStyle(
+            fontSize: ScreenUtil().setSp(48), fontWeight: FontWeight.w600),
       ),
     );
 
     //输入文本框区域
     Widget inputTextArea = Container(
-      margin: EdgeInsets.only(left: 20, right: 20, top: 50),
+      margin: EdgeInsets.only(
+          left: ScreenUtil().setWidth(80),
+          right: ScreenUtil().setWidth(80),
+          top: ScreenUtil().setHeight(161)),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(8)),
           color: Colors.white),
@@ -159,7 +164,14 @@ class _RegisterPageState extends State<RegisterPage> {
                 contentPadding: EdgeInsets.all(20),
                 labelText: "用户名",
                 hintText: "请输入手机号",
-                prefixIcon: Icon(Icons.phone_android),
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(15),
+                  child: Image.asset(
+                    'images/cellphone.png',
+                    width: ScreenUtil().setWidth(24),
+                    height: ScreenUtil().setWidth(30),
+                  ),
+                ),
                 //尾部添加清除按钮
                 suffixIcon: (_isShowClear)
                     ? IconButton(
@@ -192,26 +204,27 @@ class _RegisterPageState extends State<RegisterPage> {
                   prefixIcon: Padding(
                     padding: EdgeInsets.all(15),
                     child: Image.asset(
-                      'images/cellphone.png',
+                      'images/verCode.png',
                       width: ScreenUtil().setWidth(24),
                       height: ScreenUtil().setWidth(30),
                     ),
                   ),
                   suffixIcon: Padding(
-                    padding: EdgeInsets.all(5),
+                    padding: EdgeInsets.all(ScreenUtil().setWidth(20)),
                     child: RaisedButton(
                       elevation: 0,
                       color: isEnableSendMessage ? Colors.red : Colors.grey,
                       child: Text(
                         "发送验证码",
                         style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.white,
-                        ),
+                            fontSize: ScreenUtil().setSp(24),
+                            color: Colors.white,
+                            fontWeight: FontWeight.w300),
                       ),
                       // 设置按钮圆角
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)),
+                          borderRadius: BorderRadius.circular(
+                              ScreenUtil().setHeight(12))),
                       onPressed: () {
                         //手机号正确
                         if (validateUserName(_username) == null) {
@@ -240,11 +253,19 @@ class _RegisterPageState extends State<RegisterPage> {
                   contentPadding: EdgeInsets.all(20),
                   labelText: "密码",
                   hintText: "请输入密码",
-                  prefixIcon: Icon(Icons.lock),
+                  prefixIcon: Padding(
+                    padding: EdgeInsets.all(15),
+                    child: Image.asset(
+                      'images/password.png',
+                      width: ScreenUtil().setWidth(24),
+                      height: ScreenUtil().setWidth(30),
+                    ),
+                  ),
                   // 是否显示密码
                   suffixIcon: IconButton(
-                    icon: Icon(
-                        (_isShowPwd) ? Icons.visibility : Icons.visibility_off),
+                    icon: ImageIcon((_isShowPwd)
+                        ? AssetImage('images/visibility.png')
+                        : AssetImage('images/visibility_off.png')),
                     // 点击改变显示或隐藏密码
                     onPressed: () {
                       setState(() {
@@ -267,23 +288,29 @@ class _RegisterPageState extends State<RegisterPage> {
 
     // 登录按钮区域
     Widget loginButtonArea = Container(
-        margin: EdgeInsets.only(left: 20, right: 20, top: 50),
+        margin: EdgeInsets.only(
+            left: ScreenUtil().setWidth(80),
+            right: ScreenUtil().setWidth(80),
+            top: ScreenUtil().setHeight(100)),
         alignment: Alignment(0, 0),
-        height: 45,
+        height: ScreenUtil().setHeight(88),
         child: SizedBox(
           width: double.infinity,
           height: double.infinity,
           child: RaisedButton(
             elevation: 10,
-
             color: Colors.red[300],
             child: Text(
               "注册",
-              style: TextStyle(fontSize: 20, color: Colors.white),
+              style: TextStyle(
+                  fontSize: ScreenUtil().setSp(28),
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400),
             ),
             // 设置按钮圆角
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25.0)),
+                borderRadius:
+                    BorderRadius.circular(ScreenUtil().setHeight(44))),
             onPressed: () {
               //点击登录按钮，解除焦点，回收键盘
               _focusNodePassWord.unfocus();

@@ -131,95 +131,78 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Stack(
-              children: <Widget>[
-                TextFormField(
-                  controller: _userNameController,
-                  focusNode: _focusNodeUserName,
-                  //设置键盘类型
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(20),
-                    // labelText: "用户名",
-                    hintText: "请输入手机号",
-                    // prefixIcon: Image.asset(
-                    //   'images/cellphone.png',
-                    //   width: ScreenUtil().setWidth(21),
-                    //   height: ScreenUtil().setHeight(30),
-                    // ),
-                    //尾部添加清除按钮
-                    suffixIcon: (_isShowClear)
-                        ? IconButton(
-                            icon: Icon(Icons.clear),
-                            onPressed: () {
-                              // 清空输入框内容
-                              _userNameController.clear();
-                            },
-                          )
-                        : null,
-                  ),
-                  //验证用户名
-                  validator: validateUserName,
-                  //保存数据
-                  onSaved: (String value) {
-                    _username = value;
-                  },
-                ),
-                Positioned(
-                  top: 20,
+            TextFormField(
+              controller: _userNameController,
+              focusNode: _focusNodeUserName,
+              //设置键盘类型
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.all(20),
+                labelText: "用户名",
+                hintText: "请输入手机号",
+                prefixIcon: Padding(
+                  padding: EdgeInsets.all(15),
                   child: Image.asset(
                     'images/cellphone.png',
-                    width: ScreenUtil().setWidth(21),
-                    height: ScreenUtil().setHeight(30),
+                    width: ScreenUtil().setWidth(24),
+                    height: ScreenUtil().setWidth(30),
                   ),
                 ),
-              ],
+                //尾部添加清除按钮
+                suffixIcon: (_isShowClear)
+                    ? IconButton(
+                        icon: Icon(Icons.clear),
+                        onPressed: () {
+                          // 清空输入框内容
+                          _userNameController.clear();
+                        },
+                      )
+                    : null,
+              ),
+              //验证用户名
+              validator: validateUserName,
+              //保存数据
+              onSaved: (String value) {
+                _username = value;
+              },
             ),
             Container(
-                margin: EdgeInsets.only(top: 10),
-                child: Stack(
-                  children: <Widget>[
-                    TextFormField(
-                      focusNode: _focusNodePassWord,
-                      decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(20),
-                          // labelText: "密码",
-                          hintText: "请输入密码",
-                          // prefixIcon: Image.asset(
-                          //   'images/password.png',
-                          //   width: ScreenUtil().setWidth(25),
-                          //   height: ScreenUtil().setHeight(30),
-                          // ),
-                          // 是否显示密码
-                          suffixIcon: IconButton(
-                            icon: Icon((_isShowPwd)
-                                ? Icons.visibility
-                                : Icons.visibility_off),
-                            // 点击改变显示或隐藏密码
-                            onPressed: () {
-                              setState(() {
-                                _isShowPwd = !_isShowPwd;
-                              });
-                            },
-                          )),
-                      obscureText: !_isShowPwd,
-                      //密码验证
-                      validator: validatePassWord,
-                      //保存数据
-                      onSaved: (String value) {
-                        _password = value;
-                      },
-                    ),
-                    Positioned(
-                      top: 20,
+              margin: EdgeInsets.only(top: 10),
+              child: TextFormField(
+                focusNode: _focusNodePassWord,
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(20),
+                    labelText: "密码",
+                    hintText: "请输入密码",
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.all(15),
                       child: Image.asset(
                         'images/password.png',
-                        width: ScreenUtil().setWidth(25),
-                        height: ScreenUtil().setHeight(30),
+                        width: ScreenUtil().setWidth(24),
+                        height: ScreenUtil().setWidth(30),
                       ),
-                    )
-                  ],
-                )),
+                    ),
+                    // 是否显示密码
+                    suffixIcon: IconButton(
+                      icon: ImageIcon((_isShowPwd)
+                          ? AssetImage('images/visibility.png')
+                          : AssetImage('images/visibility_off.png')),
+                      // 点击改变显示或隐藏密码
+                      onPressed: () {
+                        setState(() {
+                          _isShowPwd = !_isShowPwd;
+                        });
+                      },
+                    )),
+                obscureText: !_isShowPwd,
+                //密码验证
+                validator: validatePassWord,
+                //保存数据
+                onSaved: (String value) {
+                  _password = value;
+                },
+              ),
+            ),
           ],
         ),
       ),
@@ -242,7 +225,9 @@ class _LoginPageState extends State<LoginPage> {
             child: Text(
               "登录",
               style: TextStyle(
-                  fontSize: ScreenUtil().setSp(28), color: Colors.white),
+                  fontSize: ScreenUtil().setSp(28),
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400),
             ),
             // 设置按钮圆角
             shape: RoundedRectangleBorder(
@@ -285,7 +270,10 @@ class _LoginPageState extends State<LoginPage> {
       ),
       child: Text(
         "注册",
-        style: TextStyle(color: Colors.red, fontSize: ScreenUtil().setSp(28)),
+        style: TextStyle(
+            color: Colors.red,
+            fontSize: ScreenUtil().setSp(28),
+            fontWeight: FontWeight.w400),
       ),
     );
 
