@@ -306,19 +306,21 @@ class _LoginPageState extends State<LoginPage> {
             child: Container(
               height: double.infinity,
               width: double.infinity,
+              color: Colors.white,
               padding: EdgeInsets.only(top: height),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   GestureDetector(
-                      child: Icon(
-                        Icons.navigate_before,
-                        color: Colors.grey,
-                        size: 45,
-                      ),
-                      onTap: () {
-                        Navigator.pop(context);
-                      }),
+                    child: Icon(
+                      Icons.navigate_before,
+                      color: Colors.grey,
+                      size: 45,
+                    ),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                  ),
                   logoImageArea,
                   inputTextArea,
                   loginButtonArea,
