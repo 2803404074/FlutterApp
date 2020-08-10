@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
@@ -186,7 +188,15 @@ class _RegisterPageState extends State<RegisterPage> {
                   contentPadding: EdgeInsets.all(20),
                   labelText: "验证码",
                   hintText: "请输入验证码",
-                  prefixIcon: Icon(Icons.save),
+                  hintStyle: TextStyle(fontSize: ScreenUtil().setSp(28)),
+                  prefixIcon: Padding(
+                    padding: EdgeInsets.all(15),
+                    child: Image.asset(
+                      'images/cellphone.png',
+                      width: ScreenUtil().setWidth(24),
+                      height: ScreenUtil().setWidth(30),
+                    ),
+                  ),
                   suffixIcon: Padding(
                     padding: EdgeInsets.all(5),
                     child: RaisedButton(
