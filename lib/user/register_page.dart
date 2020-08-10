@@ -132,7 +132,8 @@ class _RegisterPageState extends State<RegisterPage> {
     //标题
     Widget logoImageArea = Container(
       margin: EdgeInsets.only(
-          left: ScreenUtil().setWidth(82), top: ScreenUtil().setHeight(219)),
+          left: ScreenUtil().setWidth(82),
+          top: ScreenUtil().setHeight(219) - height),
       alignment: Alignment.topLeft,
       child: Text(
         '注册',
@@ -146,7 +147,7 @@ class _RegisterPageState extends State<RegisterPage> {
       margin: EdgeInsets.only(
           left: ScreenUtil().setWidth(80),
           right: ScreenUtil().setWidth(80),
-          top: ScreenUtil().setHeight(161)),
+          top: ScreenUtil().setHeight(100)),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(8)),
           color: Colors.white),
@@ -343,6 +344,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 _focusNodeUserCode.unfocus();
               },
               child: Container(
+                color: Colors.white,
                 width: double.infinity,
                 padding: EdgeInsets.only(top: height),
                 child: Column(
