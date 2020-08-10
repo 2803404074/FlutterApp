@@ -329,37 +329,42 @@ class _RegisterPageState extends State<RegisterPage> {
 
     return Scaffold(
         backgroundColor: Colors.white,
-        resizeToAvoidBottomInset: false,
+        //resizeToAvoidBottomInset: false,
         // 外层添加一个手势，用于点击空白部分，回收键盘
-        body: GestureDetector(
-            onTap: () {
-              // 点击空白区域，回收键盘
-              print("点击了空白区域");
-              _focusNodePassWord.unfocus();
-              _focusNodeUserName.unfocus();
-              _focusNodeUserCode.unfocus();
-            },
-            child: Container(
-              height: double.infinity,
-              width: double.infinity,
-              padding: EdgeInsets.only(top: height),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  GestureDetector(
-                      child: Icon(
-                        Icons.navigate_before,
-                        color: Colors.grey,
-                        size: 45,
-                      ),
-                      onTap: () {
-                        Navigator.pop(context);
-                      }),
-                  logoImageArea,
-                  inputTextArea,
-                  loginButtonArea,
-                ],
+        body: Container(
+          height: double.infinity,
+          child: SingleChildScrollView(
+            child: GestureDetector(
+              onTap: () {
+                // 点击空白区域，回收键盘
+                print("点击了空白区域");
+                _focusNodePassWord.unfocus();
+                _focusNodeUserName.unfocus();
+                _focusNodeUserCode.unfocus();
+              },
+              child: Container(
+                width: double.infinity,
+                padding: EdgeInsets.only(top: height),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    GestureDetector(
+                        child: Icon(
+                          Icons.navigate_before,
+                          color: Colors.grey,
+                          size: 45,
+                        ),
+                        onTap: () {
+                          Navigator.pop(context);
+                        }),
+                    logoImageArea,
+                    inputTextArea,
+                    loginButtonArea,
+                  ],
+                ),
               ),
-            )));
+            ),
+          ),
+        ));
   }
 }
