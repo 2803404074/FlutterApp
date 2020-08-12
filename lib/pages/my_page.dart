@@ -10,6 +10,7 @@ import 'package:flutterapp/widget/GradientButton.dart';
 import 'dart:ui';
 
 import 'package:flutterapp/widget/IconText.dart';
+import 'package:toast/toast.dart';
 
 class MyPage extends StatefulWidget {
   @override
@@ -260,17 +261,29 @@ class _MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin {
             child: Text(''),
             flex: 1,
           ),
-          IconText(
-            subTitle,
-            direction: Axis.horizontal,
-            position: 0,
-            padding: EdgeInsets.only(left: ScreenUtil().setWidth(16)),
-            style: TextStyle(
-                fontSize: ScreenUtil().setSp(20),
-                color: Color.fromRGBO(102, 102, 102, 1)),
-            icon: Icon(
-              Icons.navigate_next,
-              color: Color(0xff7A7A7A),
+          GestureDetector(
+            onTap: () {
+              if (title == '观看历史') {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return HistoryPage();
+                }));
+              } else {
+                Toast.show("暂未开放", context,
+                    duration: Toast.LENGTH_SHORT, gravity: Toast.CENTER);
+              }
+            },
+            child: IconText(
+              subTitle,
+              direction: Axis.horizontal,
+              position: 0,
+              padding: EdgeInsets.only(left: ScreenUtil().setWidth(16)),
+              style: TextStyle(
+                  fontSize: ScreenUtil().setSp(20),
+                  color: Color.fromRGBO(102, 102, 102, 1)),
+              icon: Icon(
+                Icons.navigate_next,
+                color: Color(0xff7A7A7A),
+              ),
             ),
           ),
         ],

@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 typedef clickCallback = void Function(bool value);
 typedef SliderValueCallback = void Function(double value);
@@ -146,7 +147,7 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
             /// 如果显示了  , 3秒后 隐藏进度条+标题栏
             if (isPlayShowCont)
               _timer =
-                  Timer(Duration(seconds: 3), () => isPlayShowCont = false);
+                  Timer(Duration(seconds: 4), () => isPlayShowCont = false);
 
             //隐藏清晰度视图
             isShowQua = false;
@@ -188,7 +189,7 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
                 !isPlayShowCont
                     ? SizedBox()
                     : Container(
-                        color: Color.fromRGBO(0, 0, 0, 0.45),
+                        color: Color.fromRGBO(0, 0, 0, 0.25),
                         height: 40,
                         child: Row(
                           children: <Widget>[
@@ -229,10 +230,10 @@ class _CustomFijkWidgetBottomState extends State<CustomFijkWidgetBottom> {
                     ? SizedBox()
                     : Container(
                         height: widget.player.value.fullScreen == false
-                            ? 220
+                            ? ScreenUtil().setHeight(422)
                             : MediaQuery.of(context).size.height,
                         width: 100,
-                        color: Color.fromRGBO(0, 0, 0, 0.45),
+                        color: Color.fromRGBO(0, 0, 0, 0.25),
                         child: Column(
                           children: <Widget>[
                             Expanded(child: Text('')),

@@ -79,7 +79,7 @@ class _TypePageSunState extends State<TypePageSun>
                 },
                 child: Container(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       ClipRRect(
                         borderRadius: BorderRadius.circular(5),

@@ -87,6 +87,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
                   context: context,
                   removeTop: true,
                   child: ListView.builder(
+                      physics: BouncingScrollPhysics(),
                       padding: EdgeInsets.only(top: 20),
                       shrinkWrap: true,
                       itemCount: 4,

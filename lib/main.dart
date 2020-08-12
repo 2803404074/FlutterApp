@@ -160,7 +160,7 @@ class _MainPageState extends State<MainPageHome>
                     alignment: Alignment.center,
                     color: Colors.white,
                     child: Image.asset(
-                      'images/app_adv_bottom.jpg',
+                      'images/adv_bottom_logo.png',
                       width: 220,
                       height: 100,
                     ),
